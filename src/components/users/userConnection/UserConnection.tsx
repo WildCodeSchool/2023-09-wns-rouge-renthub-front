@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -6,18 +6,18 @@ import {
   FormControl,
   Link,
   Typography,
-} from "@mui/material";
-import LoginIcon from "@mui/icons-material/Login";
-import UserEmail from "../components/UserEmail";
-import UserPassword from "../components/UserPassword";
-import { mutationUserLogin, queryMeContext } from "@/components/graphql/Users";
-import { useMutation } from "@apollo/client";
-import toast, { Toaster } from "react-hot-toast";
-import router from "next/router";
+} from '@mui/material';
+import LoginIcon from '@mui/icons-material/Login';
+import UserEmail from '../components/UserEmail';
+import UserPassword from '../components/UserPassword';
+import { mutationUserLogin, queryMeContext } from '@/components/graphql/Users';
+import { useMutation } from '@apollo/client';
+import toast, { Toaster } from 'react-hot-toast';
+import router from 'next/router';
 
 const UserConnection = (): React.ReactNode => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const handlePasswordChange = (newPassword: React.SetStateAction<string>) => {
     setPassword(newPassword);
   };
@@ -31,9 +31,9 @@ const UserConnection = (): React.ReactNode => {
       const { data } = await doLogin({
         variables: { data: { email, password } },
       });
-      if ("id" in data.item) {
+      if ('id' in data.item) {
         toast(`Connexion réussie, bienvenue ${data.item.nickName}`, {
-          style: { background: "#0fcc45", color: "#fff" },
+          style: { background: '#0fcc45', color: '#fff' },
         });
         setTimeout(() => {
           router.replace(`/compte`);
@@ -41,10 +41,10 @@ const UserConnection = (): React.ReactNode => {
       }
     } catch (error) {
       toast(error.message, {
-        style: { background: "#e14d2a", color: "#fff" },
+        style: { background: '#e14d2a', color: '#fff' },
       });
-      setEmail("");
-      setPassword("");
+      setEmail('');
+      setPassword('');
     }
   };
 
@@ -76,16 +76,16 @@ const UserConnection = (): React.ReactNode => {
       </FormControl>
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "5px",
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '5px',
         }}
       >
         <Typography variant="subtitle2" gutterBottom>
           Pas encore de compte ?
         </Typography>
         <Link variant="body2" href="/inscription">
-          {"Inscrivez-vous"}
+          {'Inscrivez-vous'}
         </Link>
       </Box>
     </Card>

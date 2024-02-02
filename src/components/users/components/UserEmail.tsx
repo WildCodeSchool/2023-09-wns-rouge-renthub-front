@@ -1,5 +1,5 @@
-import React from "react";
-import { TextField } from "@mui/material";
+import React from 'react';
+import { TextField } from '@mui/material';
 
 type UserEmailProps = {
   email: string;
@@ -15,8 +15,8 @@ const UserEmail = (props: UserEmailProps): React.ReactNode => {
       size="small"
       label="Email"
       variant="outlined"
-      value={props.email || ""}
-      onChange={(e) => props.setEmail(e.target.value)}
+      value={props.email || ''}
+      onChange={e => props.setEmail(e.target.value)}
       required
     />
   );

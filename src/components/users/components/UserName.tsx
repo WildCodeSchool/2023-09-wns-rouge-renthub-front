@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, TextField } from "@mui/material";
+import React, { useState } from 'react';
+import { Box, TextField } from '@mui/material';
 
 type UserNameProps = {
   firstName: string;
@@ -9,8 +9,8 @@ type UserNameProps = {
 };
 
 const UserName = (props: UserNameProps): React.ReactNode => {
-  const [firstNameError, setFirstNameError] = useState<string>("");
-  const [lastNameError, setLastNameError] = useState<string>("");
+  const [firstNameError, setFirstNameError] = useState<string>('');
+  const [lastNameError, setLastNameError] = useState<string>('');
 
   const validateName = (name: string) => /^[a-zA-ZÀ-ÿ\s-]{2,50}$/.test(name);
 
@@ -19,10 +19,10 @@ const UserName = (props: UserNameProps): React.ReactNode => {
     props.setFirstName(value);
     if (!validateName(value)) {
       setFirstNameError(
-        "Ne doit contenir que des lettres (minimum 2, maximum 50)"
+        'Ne doit contenir que des lettres (minimum 2, maximum 50)'
       );
     } else {
-      setFirstNameError("");
+      setFirstNameError('');
     }
   };
 
@@ -31,10 +31,10 @@ const UserName = (props: UserNameProps): React.ReactNode => {
     props.setLastName(value);
     if (!validateName(value)) {
       setLastNameError(
-        "Ne doit contenir que des lettres (minimum 2, maximum 50)"
+        'Ne doit contenir que des lettres (minimum 2, maximum 50)'
       );
     } else {
-      setLastNameError("");
+      setLastNameError('');
     }
   };
 

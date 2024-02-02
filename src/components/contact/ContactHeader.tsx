@@ -1,17 +1,17 @@
-import { Button, Typography, Box } from "@mui/material";
-import { PATH_IMAGE } from "@/api/configApi";
+import { Button, Typography, Box } from '@mui/material';
+import { PATH_IMAGE } from '@/api/configApi';
 
 const ContactHeader = (): React.ReactNode => {
   return (
     <Box
       sx={{
-        height: "250px",
-        display: "flex",
-        color: "white",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "8px",
+        height: '250px',
+        display: 'flex',
+        color: 'white',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '8px',
         background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${PATH_IMAGE}/general/contact.jpg)`,
       }}
     >

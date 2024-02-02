@@ -1,5 +1,5 @@
-import LayoutFull from "@/components/layout/LayoutFull";
-import UserAccount from "@/components/users/userAccount/UserAccount";
+import LayoutFull from '@/components/layout/LayoutFull';
+import UserAccount from '@/components/users/userAccount/UserAccount';
 
 const AccountPage = (): React.ReactNode => {
   return (

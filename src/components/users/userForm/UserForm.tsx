@@ -1,11 +1,11 @@
-import React, { FormEvent, useRef, useState } from "react";
-import axios from "axios";
-import UserName from "../components/UserName";
-import UserPassword from "../components/UserPassword";
-import UserZipCity from "../components/UserZipCity";
-import UserEmail from "../components/UserEmail";
-import UserPhone from "../components/UserPhone";
-import toast, { Toaster } from "react-hot-toast";
+import React, { FormEvent, useRef, useState } from 'react';
+import axios from 'axios';
+import UserName from '../components/UserName';
+import UserPassword from '../components/UserPassword';
+import UserZipCity from '../components/UserZipCity';
+import UserEmail from '../components/UserEmail';
+import UserPhone from '../components/UserPhone';
+import toast, { Toaster } from 'react-hot-toast';
 import {
   Box,
   Button,
@@ -15,16 +15,16 @@ import {
   Link,
   TextField,
   Typography,
-} from "@mui/material";
-import ReCAPTCHA from "react-google-recaptcha";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { mutationCreateUser } from "@/components/graphql/Users";
-import { UserFormData } from "@/types/UserTypes";
-import { API_URL, RECAPTCHA_SITE_KEY } from "@/api/configApi";
-import { useMutation } from "@apollo/client";
-import router from "next/router";
-import { DownloadInput } from "@/styles/MuiStyled";
-import SendIcon from "@mui/icons-material/Send";
+} from '@mui/material';
+import ReCAPTCHA from 'react-google-recaptcha';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { mutationCreateUser } from '@/components/graphql/Users';
+import { UserFormData } from '@/types/UserTypes';
+import { API_URL, RECAPTCHA_SITE_KEY } from '@/api/configApi';
+import { useMutation } from '@apollo/client';
+import router from 'next/router';
+import { DownloadInput } from '@/styles/MuiStyled';
+import SendIcon from '@mui/icons-material/Send';
 
 const UserForm = (): React.ReactNode => {
   // ReCaptcha
@@ -34,18 +34,18 @@ const UserForm = (): React.ReactNode => {
     setRecaptcha(!!value);
   };
   // Form
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [nickName, setNickName] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [nickName, setNickName] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const handlePasswordChange = (newPassword: React.SetStateAction<string>) => {
     setPassword(newPassword);
   };
-  const [zipCode, setZipCode] = useState<string>("");
-  const [city, setCity] = useState<string>("");
+  const [zipCode, setZipCode] = useState<string>('');
+  const [city, setCity] = useState<string>('');
   const [coordinates, setCoordinates] = useState<[number, number]>([0, 0]);
-  const [email, setEmail] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [picture, setPicture] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   function handleFileSelection(event: React.ChangeEvent<HTMLInputElement>) {
@@ -60,15 +60,15 @@ const UserForm = (): React.ReactNode => {
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const dataFile = new FormData();
-    dataFile.append("title", nickName);
-    dataFile.append("file", picture);
+    dataFile.append('title', nickName);
+    dataFile.append('file', picture);
 
     try {
       let pictureId: number | null = null;
       if (picture) {
         const uploadResponse = await axios.post(`${API_URL}picture`, dataFile, {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
         });
         pictureId = uploadResponse.data.id;
@@ -85,8 +85,8 @@ const UserForm = (): React.ReactNode => {
         city,
         coordinates,
         isVerified: false,
-        role: "USER",
-        ...(phoneNumber !== "" && { phoneNumber }),
+        role: 'USER',
+        ...(phoneNumber !== '' && { phoneNumber }),
       };
 
       const result = await doCreate({
@@ -94,7 +94,7 @@ const UserForm = (): React.ReactNode => {
           data: data,
         },
       });
-      if ("id" in result.data?.item) {
+      if ('id' in result.data?.item) {
         toast(
           `Bienvenue ${result.data?.item.nickName} ! Un email de confirmation vous a été envoyé.`
         );
@@ -102,11 +102,11 @@ const UserForm = (): React.ReactNode => {
           router.replace(`/`);
         }, 2000);
       } else {
-        toast("Erreur pendant la création de votre compte");
+        toast('Erreur pendant la création de votre compte');
       }
     } catch (error) {
-      toast("Erreur pendant la création de votre compte");
-      console.error("error", error);
+      toast('Erreur pendant la création de votre compte');
+      console.error('error', error);
     }
   }
   return (
@@ -114,8 +114,8 @@ const UserForm = (): React.ReactNode => {
       <Toaster
         toastOptions={{
           style: {
-            background: "#ff8a00",
-            color: "#fff",
+            background: '#ff8a00',
+            color: '#fff',
           },
         }}
       />
@@ -141,8 +141,8 @@ const UserForm = (): React.ReactNode => {
             size="small"
             label="Pseudo"
             variant="outlined"
-            value={nickName || ""}
-            onChange={(e) => setNickName(e.target.value)}
+            value={nickName || ''}
+            onChange={e => setNickName(e.target.value)}
             required
           />
           <UserEmail email={email} setEmail={setEmail} />
@@ -166,11 +166,11 @@ const UserForm = (): React.ReactNode => {
         {previewUrl && (
           <CardMedia
             sx={{
-              width: "200px",
-              height: "200px",
-              margin: "auto",
-              objectFit: "cover",
-              borderRadius: "5px",
+              width: '200px',
+              height: '200px',
+              margin: 'auto',
+              objectFit: 'cover',
+              borderRadius: '5px',
             }}
             image={previewUrl}
           />
@@ -208,7 +208,7 @@ const UserForm = (): React.ReactNode => {
             Déjà inscrit ?
           </Typography>
           <Link variant="body2" href="/connexion">
-            {"Connectez-vous"}
+            {'Connectez-vous'}
           </Link>
         </Box>
       </FormControl>
