@@ -39,7 +39,6 @@ export default function Header(): React.ReactNode {
   // User connected ?
   const { data, error } = useQuery<{ item: UserContextTypes }>(queryMeContext);
   const [userContext, setUserContext] = useState<UserContextTypes>(null);
-  console.log('userContext', userContext);
   const [userConnected, setUserConnected] = useState<Boolean>(false);
 
   useEffect(() => {

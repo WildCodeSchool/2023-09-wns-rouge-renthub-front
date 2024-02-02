@@ -2,6 +2,6 @@
   "extends": "next",
   "rules": {
     "react-hooks/exhaustive-deps": "off",
-    "no-console": "warn"
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }]
   }
 }
