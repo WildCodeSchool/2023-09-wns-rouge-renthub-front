@@ -1,0 +1,39 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.6",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.16",
+    "@mui/material": "^5.14.16",
+    "axios": "^1.5.0",
+    "graphql": "^16.8.1",
+    "next": "13.4.19",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-google-recaptcha": "^3.1.0",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^4.11.0",
+    "react-multi-carousel": "^2.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "20.6.2",
+    "@types/react": "18.2.22",
+    "@types/react-dom": "18.2.7",
+    "@types/react-google-recaptcha": "^2.1.8",
+    "eslint": "^8.49.0",
+    "eslint-config-next": "13.4.19",
+    "husky": "^8.0.0",
+    "prettier": "^3.2.4",
+    "sass": "^1.68.0",
+    "typescript": "5.2.2"
+  }
+}
