@@ -37,9 +37,9 @@ const ContactForm = (): React.ReactNode => {
     e.preventDefault();
     const token = captchaRef.current.getValue();
     const formDetails = {
-      firstName: firstName === '' ? firstName : 'Non indiqué',
-      lastName: lastName === '' ? lastName : 'Non indiqué',
-      phoneNumber: phoneNumber === '' ? phoneNumber : 'Non indiqué',
+      firstName: firstName === '' ? 'Non indiqué' : firstName,
+      lastName: lastName === '' ? 'Non indiqué' : lastName,
+      phoneNumber: phoneNumber === '' ? 'Non indiqué' : phoneNumber,
       email,
       message,
     };

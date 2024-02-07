@@ -96,6 +96,8 @@ const UserPassword = (props: UserPasswordProps): React.ReactNode => {
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: '7px',
           }}
         >
           {Object.entries(passwordCriteria).map(([criteria, check]) => (
@@ -104,10 +106,11 @@ const UserPassword = (props: UserPasswordProps): React.ReactNode => {
               variant="caption"
               sx={{
                 display: 'flex',
-                width: '40%',
-                flexDirection: 'row',
+                width: '48%',
+                // flexDirection: 'row',
                 alignItems: 'center',
                 gap: '5px',
+                fontSize: '10px',
               }}
             >
               {check ? (
