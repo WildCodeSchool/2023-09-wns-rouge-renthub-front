@@ -1,7 +1,40 @@
 {
-  "extends": "next",
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["next", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "tsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "import"],
   "rules": {
     "react-hooks/exhaustive-deps": "off",
-    "no-console": ["warn", { "allow": ["warn", "error", "info"] }]
+    "no-console": "off",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(error|warn)$/]",
+        "message": "You can only call the error() and warn() functions from the console object"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "eslint-import-resolver-custom-alias": {
+        "alias": {
+          "@components": "./src/components",
+          "@pages": "./src/pages",
+          "@styles": "./src/styles",
+          "@type": "./src/types",
+          "@api": "./src/api"
+        },
+        "extensions": [".ts", ".tsx", ".json"]
+      }
+    }
   }
 }
