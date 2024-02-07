@@ -23,9 +23,7 @@ const UserConnection = (): React.ReactNode => {
   };
 
   const theme = useTheme();
-  const [doLogin] = useMutation(mutationUserLogin, {
-    refetchQueries: [queryMeContext],
-  });
+  const [doLogin] = useMutation(mutationUserLogin);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,7 +32,7 @@ const UserConnection = (): React.ReactNode => {
         variables: { data: { email, password } },
       });
       if ('id' in data.item) {
-        toast(`Connexion réussie, bienvenue ${data.item.nickName}`, {
+        toast(`Connexion réussie, bienvenue ${data.item.firstName}`, {
           style: { background: '#0fcc45', color: '#fff' },
         });
         setEmail('');
