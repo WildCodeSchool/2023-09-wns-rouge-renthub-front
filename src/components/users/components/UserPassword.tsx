@@ -107,7 +107,6 @@ const UserPassword = (props: UserPasswordProps): React.ReactNode => {
               sx={{
                 display: 'flex',
                 width: '48%',
-                // flexDirection: 'row',
                 alignItems: 'center',
                 gap: '5px',
                 fontSize: '10px',

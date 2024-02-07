@@ -39,9 +39,6 @@ const theme = createTheme({
         root: {
           backgroundColor: '#F8F8F8',
         },
-        // orangeBox: {
-        //   backgroundColor: 'orange'
-        // }
       },
     },
   },
