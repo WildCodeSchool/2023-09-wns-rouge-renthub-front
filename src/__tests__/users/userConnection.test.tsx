@@ -1,5 +1,17 @@
 import '@testing-library/jest-dom';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloLink,
+  ApolloProvider,
+} from '@apollo/client';
+import {
+  render,
+  fireEvent,
+  waitFor,
+  screen,
+  act,
+} from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { toast } from 'react-hot-toast';
 import UserConnection from '@/components/users/userConnection/UserConnection';
@@ -57,7 +69,7 @@ const mocks = [
 
 jest.mock('react-hot-toast');
 
-describe('UserConnection', () => {
+describe('UserConnection test component & toast', () => {
   beforeEach(() => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
@@ -130,11 +142,52 @@ describe('UserConnection', () => {
       target: { value: 'anyPassword' },
     });
     fireEvent.click(screen.getByRole('button', { name: /Se connecter/ }));
-
     await waitFor(() => {
       expect(toast).toHaveBeenCalledWith('Failed to fetch', {
         style: { background: '#e14d2a', color: '#fff' },
       });
+    });
+  });
+});
+
+describe('UserConnection test graphQl mutation', () => {
+  let graphQlMutation = [];
+
+  const mockLink = new ApolloLink((mutation, forward) => {
+    graphQlMutation.push(mutation);
+    return forward(mutation);
+  });
+
+  const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    link: mockLink,
+  });
+
+  beforeEach(() => {
+    graphQlMutation = [];
+    render(
+      <ApolloProvider client={client}>
+        <UserConnection />
+      </ApolloProvider>
+    );
+  });
+  it('should make a GraphQL mutation call when the button is clicked', async () => {
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText(/Email/), {
+        target: { value: 'test@example.com' },
+      });
+      fireEvent.change(screen.getByLabelText(/Mot de passe/), {
+        target: { value: 'password123' },
+      });
+      fireEvent.click(screen.getByRole('button', { name: /Se connecter/ }));
+    });
+    // console.log(graphQlMutation);
+    await waitFor(() => {
+      // const loginMutationCall = graphQlMutation.find(
+      //   op => op.operationName === 'userLogin'
+      // );
+      const loginMutationCall = graphQlMutation[0].operationName;
+      expect(loginMutationCall).toBeDefined();
     });
   });
 });
