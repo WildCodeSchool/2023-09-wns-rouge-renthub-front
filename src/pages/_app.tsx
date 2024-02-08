@@ -20,10 +20,10 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     background: {
-      default: '#f5f5f5',
+      default: 'FFFFFF',
     },
     primary: {
-      main: '#ffa41b',
+      main: '#FF8E3C',
       light: '#FFB648',
       dark: '#e89116',
     },
@@ -31,6 +31,15 @@ const theme = createTheme({
       main: '#343a40',
       light: '#5C6166',
       dark: '#24282C',
+    },
+  },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#F8F8F8',
+        },
+      },
     },
   },
 });

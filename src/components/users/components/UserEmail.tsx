@@ -9,12 +9,12 @@ type UserEmailProps = {
 const UserEmail = (props: UserEmailProps): React.ReactNode => {
   return (
     <TextField
-      fullWidth
       id="email"
       type="email"
       size="small"
       label="Email"
       variant="outlined"
+      fullWidth
       value={props.email || ''}
       onChange={e => props.setEmail(e.target.value)}
       required
