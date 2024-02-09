@@ -8,7 +8,6 @@ describe('UserEmail', () => {
 
     const emailInput = screen.getByRole('textbox', { name: /Email/i });
     expect(emailInput).toBeInTheDocument();
-    // expect(screen.getByLabelText('Email*')).toBeInTheDocument();
     expect(emailInput).toBeRequired();
     expect(emailInput).toHaveAttribute('type', 'email');
     expect(emailInput).toHaveValue('');
@@ -22,7 +21,7 @@ describe('UserEmail', () => {
     expect(emailInput).toHaveAttribute('type', 'email');
     expect(emailInput).toHaveValue('test@super.com');
   });
-  it('call setEmail when the value changes', () => {
+  it('call setEmail when the value change', () => {
     const setEmailMock = jest.fn();
     render(<UserEmail email="" setEmail={setEmailMock} />);
 

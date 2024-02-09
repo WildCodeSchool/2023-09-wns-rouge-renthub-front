@@ -17,7 +17,10 @@ import { toast } from 'react-hot-toast';
 import UserConnection from '@/components/users/userConnection/UserConnection';
 import { mutationUserLogin } from '@/components/graphql/Users';
 
-// GraphQL requests simulation
+// Mocks React-Hot-Toast
+jest.mock('react-hot-toast');
+
+// Mock GraphQL requests simulation
 const mocks = [
   // Successful login
   {
@@ -67,8 +70,7 @@ const mocks = [
   },
 ];
 
-jest.mock('react-hot-toast');
-
+// Scenario 1: UserConnection test component & toast
 describe('UserConnection test component & toast', () => {
   beforeEach(() => {
     render(
@@ -89,6 +91,15 @@ describe('UserConnection test component & toast', () => {
     expect(screen.getByText('Mot de passe oublié ?')).toBeInTheDocument();
     expect(screen.getByText('Première connexion ?')).toBeInTheDocument();
     expect(screen.getByText('Créer votre compte')).toBeInTheDocument();
+    const forgotPasswordLink = screen.getByText('Mot de passe oublié ?');
+    expect(forgotPasswordLink).toBeInTheDocument();
+    expect(forgotPasswordLink.closest('a')).toHaveAttribute(
+      'href',
+      '/forgot-password'
+    );
+    const signUpLink = screen.getByText('Créer votre compte');
+    expect(signUpLink).toBeInTheDocument();
+    expect(signUpLink.closest('a')).toHaveAttribute('href', '/signup');
   });
   it('should update email and password fields and show password alerts', () => {
     fireEvent.change(screen.getByLabelText(/Email/), {
@@ -148,8 +159,20 @@ describe('UserConnection test component & toast', () => {
       });
     });
   });
+  it('has a link to the forgot password page', () => {
+    const forgotPasswordLink = screen.getByText('Mot de passe oublié ?');
+    expect(forgotPasswordLink.closest('a')).toHaveAttribute(
+      'href',
+      '/forgot-password'
+    );
+  });
+  it('has a link to the signup page', () => {
+    const signUpLink = screen.getByText('Créer votre compte');
+    expect(signUpLink.closest('a')).toHaveAttribute('href', '/signup');
+  });
 });
 
+// Scenario 2: UserConnection test graphQl mutation
 describe('UserConnection test graphQl mutation', () => {
   let graphQlMutation = [];
 
@@ -181,12 +204,10 @@ describe('UserConnection test graphQl mutation', () => {
       });
       fireEvent.click(screen.getByRole('button', { name: /Se connecter/ }));
     });
-    // console.log(graphQlMutation);
     await waitFor(() => {
-      // const loginMutationCall = graphQlMutation.find(
-      //   op => op.operationName === 'userLogin'
-      // );
-      const loginMutationCall = graphQlMutation[0].operationName;
+      const loginMutationCall = graphQlMutation.find(
+        op => op.operationName === 'userLogin'
+      );
       expect(loginMutationCall).toBeDefined();
     });
   });

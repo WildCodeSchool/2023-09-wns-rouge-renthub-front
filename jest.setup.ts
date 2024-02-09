@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-export type MockMediaQueryList = {
+type MockMediaQueryList = {
   matches: boolean;
   media: string;
   onchange: null | ((this: MediaQueryList, ev: MediaQueryListEvent) => any);

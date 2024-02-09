@@ -51,7 +51,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const privatePages = ['/compte', '/annonces/new'];
+const privatePages = ['/signup', '/compte', '/annonces/new'];
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const { loading, error, refetch } = useQuery<{
@@ -74,7 +74,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (privatePages.includes(router.pathname) && error) {
-      router.replace('/connexion');
+      router.replace('/signin');
     }
   }, [router, error]);
 
