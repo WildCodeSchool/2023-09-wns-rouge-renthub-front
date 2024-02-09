@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import UserEmail from '../components/UserEmail';
 import UserPassword from '../components/UserPassword';
-import { mutationUserLogin, queryMeContext } from '@/components/graphql/Users';
+import { mutationUserLogin } from '@/components/graphql/Users';
 import { useMutation } from '@apollo/client';
 import toast, { Toaster } from 'react-hot-toast';
 import { OrangeBtnWhiteHover } from '@/styles/MuiButtons';
@@ -23,9 +23,7 @@ const UserConnection = (): React.ReactNode => {
   };
 
   const theme = useTheme();
-  const [doLogin] = useMutation(mutationUserLogin, {
-    refetchQueries: [queryMeContext],
-  });
+  const [doLogin] = useMutation(mutationUserLogin);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,7 +32,7 @@ const UserConnection = (): React.ReactNode => {
         variables: { data: { email, password } },
       });
       if ('id' in data.item) {
-        toast(`Connexion réussie, bienvenue ${data.item.nickName}`, {
+        toast(`Connexion réussie, bienvenue ${data.item.firstName}`, {
           style: { background: '#0fcc45', color: '#fff' },
         });
         setEmail('');
