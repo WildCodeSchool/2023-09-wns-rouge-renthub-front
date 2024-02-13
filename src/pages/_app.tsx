@@ -17,6 +17,9 @@ import { UserContextTypes } from '@/types/UserTypes';
 import Header from '@/components/appBar/AppBar';
 
 const theme = createTheme({
+  typography: {
+    fontFamily: ['Poppins', 'sans-serif'].join(','),
+  },
   palette: {
     mode: 'light',
     background: {
