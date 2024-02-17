@@ -14,7 +14,7 @@ import {
 } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { toast } from 'react-hot-toast';
-import UserConnection from '@/components/users/userConnection/UserConnection';
+import UserConnection from '@/components/users/signin/SignIn';
 import { mutationUserLogin } from '@/components/graphql/Users';
 
 // Mocks React-Hot-Toast
