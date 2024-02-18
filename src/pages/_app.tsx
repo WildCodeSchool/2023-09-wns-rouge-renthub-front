@@ -51,7 +51,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const privatePages = ['/signup', '/compte', '/annonces/new'];
+const privatePages = ['/compte'];
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const { loading, error, refetch } = useQuery<{

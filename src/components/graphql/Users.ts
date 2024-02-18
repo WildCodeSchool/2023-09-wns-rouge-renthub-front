@@ -4,8 +4,7 @@ export const mutationCreateUser = gql`
   mutation userCreate($data: UserCreateInput!) {
     item: userCreate(data: $data) {
       id
-      nickName
-      registrationDate
+      firstName
     }
   }
 `;

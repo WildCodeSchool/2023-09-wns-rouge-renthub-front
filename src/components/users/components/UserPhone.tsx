@@ -3,7 +3,7 @@ import { TextField } from '@mui/material';
 
 type UserPhoneProps = {
   phoneNumber: string;
-  setPhoneNumber: (email: string) => void;
+  setPhoneNumber: (phoneNumber: string) => void;
 };
 
 const UserPhone = (props: UserPhoneProps): React.ReactNode => {

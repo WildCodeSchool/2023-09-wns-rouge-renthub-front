@@ -1,17 +1,9 @@
 export type UserFormData = {
   firstName: string;
   lastName: string;
-  nickName: string;
   email: string;
   password: string;
-  pictureId: number;
-  adress?: string;
-  zipCode: string;
-  city: string;
-  coordinates: [number, number];
   phoneNumber?: string;
-  isVerified: boolean;
-  role: string;
 };
 
 export type UserTypes = {
@@ -37,4 +29,9 @@ export type UserContextTypes = {
   id: string;
   nickName: string;
   picture: string;
+};
+
+export type UserEmailProps = {
+  email: string;
+  setEmail: (email: string) => void;
 };
