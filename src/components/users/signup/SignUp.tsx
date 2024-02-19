@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import StepEmail from './StepEmail';
-import StepFirstName from './StepFirstName';
-import StepLastName from './StepLastName';
-import StepPhoneNumber from './StepPhoneNumber';
-import StepPassword from './StepPassword';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import StepSignUpForm from './StepForm';
+import { Button, Grid, Typography } from '@mui/material';
 import { VariablesColors } from '@/styles/Variables.colors';
 import { useMutation } from '@apollo/client';
 import { mutationCreateUser } from '@/components/graphql/Users';
@@ -58,51 +54,6 @@ const SignUp = (): React.ReactNode => {
     }
   }
   const [currentStep, setCurrentStep] = useState<string>('email');
-  // DISPLAY
-  const PageDisplay = () => {
-    switch (currentStep) {
-      case 'email':
-        return (
-          <StepEmail
-            UserEmailProps={{ email, setEmail }}
-            setCurrentStep={setCurrentStep}
-          />
-        );
-      case 'firstName':
-        return (
-          <StepFirstName
-            firstName={firstName}
-            setFirstName={setFirstName}
-            setCurrentStep={setCurrentStep}
-          />
-        );
-      case 'lastName':
-        return (
-          <StepLastName
-            firstName={firstName}
-            lastName={lastName}
-            setLastName={setLastName}
-            setCurrentStep={setCurrentStep}
-          />
-        );
-      case 'phoneNumber':
-        return (
-          <StepPhoneNumber
-            phoneNumber={phoneNumber}
-            setPhoneNumber={setPhoneNumber}
-            setCurrentStep={setCurrentStep}
-          />
-        );
-      case 'password':
-        return (
-          <StepPassword
-            password={password}
-            setPassword={setPassword}
-            onSubmit={onSubmit}
-          />
-        );
-    }
-  };
   // FORM STEPS
   const formSteps = [
     {
@@ -124,7 +75,7 @@ const SignUp = (): React.ReactNode => {
     <Grid
       container
       item
-      xs={11}
+      xs={12}
       sx={{
         display: 'flex',
         flexDirection: 'row',
@@ -137,6 +88,7 @@ const SignUp = (): React.ReactNode => {
           display: 'flex',
           flexDirection: 'column',
           backgroundColor: color2,
+          height: '89vh',
         }}
       >
         <Typography variant="h5" fontWeight={600} gutterBottom>
@@ -158,7 +110,20 @@ const SignUp = (): React.ReactNode => {
         ))}
       </Grid>
       <Grid item xs={9}>
-        <Box>{PageDisplay()}</Box>
+        <StepSignUpForm
+          email={email}
+          setEmail={setEmail}
+          firstName={firstName}
+          setFirstName={setFirstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          phoneNumber={phoneNumber}
+          setPhoneNumber={setPhoneNumber}
+          password={password}
+          setPassword={setPassword}
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+        />
       </Grid>
     </Grid>
   );

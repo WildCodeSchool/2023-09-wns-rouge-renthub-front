@@ -42,6 +42,15 @@ const theme = createTheme({
       },
     },
   },
+  typography: {
+    fontFamily: 'Poppins, sans-serif',
+    h1: {
+      fontFamily: 'Impact, sans-serif',
+    },
+    h2: {
+      fontFamily: 'Impact, sans-serif',
+    },
+  },
 });
 const client = new ApolloClient({
   link: new HttpLink({
