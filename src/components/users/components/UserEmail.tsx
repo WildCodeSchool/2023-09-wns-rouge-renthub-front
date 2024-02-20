@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
-import { UserEmailProps } from '@/types/UserTypes';
+
+type UserEmailProps = {
+  email: string;
+  setEmail: (email: string) => void;
+};
 
 const UserEmail = (props: UserEmailProps): React.ReactNode => {
   const [emailError, setEmailError] = useState<string>('');

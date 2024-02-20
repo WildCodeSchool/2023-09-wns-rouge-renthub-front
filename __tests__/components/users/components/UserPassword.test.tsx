@@ -3,15 +3,10 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import UserPassword from '@/components/users/components/UserPassword';
 
 describe('UserPassword Component', () => {
-  const mockOnPasswordChange = jest.fn();
+  const mockSetPassword = jest.fn();
 
   const setup = (password = '') =>
-    render(
-      <UserPassword
-        password={password}
-        onPasswordChange={mockOnPasswordChange}
-      />
-    );
+    render(<UserPassword password={password} setPassword={mockSetPassword} />);
 
   it('should render the password input field', () => {
     setup();
@@ -32,7 +27,7 @@ describe('UserPassword Component', () => {
     fireEvent.change(screen.getByLabelText(/Mot de passe/i), {
       target: { value: newPassword },
     });
-    expect(mockOnPasswordChange).toHaveBeenCalledWith(newPassword);
+    expect(mockSetPassword).toHaveBeenCalledWith(newPassword);
   });
 
   it('should display password criteria', () => {

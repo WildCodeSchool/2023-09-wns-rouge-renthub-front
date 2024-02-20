@@ -4,14 +4,22 @@ import UserFirstName from '../components/UserFirstName';
 import UserLastName from '../components/UserLastName';
 import UserPhone from '../components/UserPhone';
 import UserPassword from '../components/UserPassword';
-import { Box, Grid, Typography } from '@mui/material';
 import { StepFormButton } from '@/styles/MuiButtons';
+import { VariablesColors } from '@/styles/Variables.colors';
+import { Box, Grid, Typography } from '@mui/material';
 import {
   isValidEmailRegex,
   isValidNameRegex,
   isValidPhoneNumberRegex,
   isValidPasswordRegex,
 } from './StepRegex';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import FingerprintIcon from '@mui/icons-material/Fingerprint';
+import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+import LockIcon from '@mui/icons-material/Lock';
+
+const colors = new VariablesColors();
+const { color3 } = colors;
 
 type StepSignUpFormProps = {
   email: string;
@@ -33,6 +41,7 @@ const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
     email: {
       title: 'Votre email ?',
       subtitle: 'Si on doit vous envoyer un email.',
+      icon: AlternateEmailIcon,
       Component: UserEmail,
       componentProps: {
         email: props.email,
@@ -44,6 +53,7 @@ const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
     firstName: {
       title: 'Votre prénom ?',
       subtitle: 'Dites nous en un peu plus sur vous.',
+      icon: FingerprintIcon,
       Component: UserFirstName,
       componentProps: {
         firstName: props.firstName,
@@ -56,6 +66,7 @@ const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
     lastName: {
       title: 'Votre  nom ?',
       subtitle: `Dites nous en un peu plus sur vous, ${props.firstName}.`,
+      icon: FingerprintIcon,
       Component: UserLastName,
       componentProps: {
         lastName: props.lastName,
@@ -69,6 +80,7 @@ const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
       title: 'Votre numéro de téléphone ?',
       subtitle:
         'Si on doit vous appeler pour la préparation de votre matériel.',
+      icon: PhoneIphoneIcon,
       Component: UserPhone,
       componentProps: {
         phoneNumber: props.phoneNumber,
@@ -81,6 +93,7 @@ const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
     password: {
       title: 'Votre mot de passe ?',
       subtitle: 'On ne vous embête plus après. Promis !',
+      icon: LockIcon,
       Component: UserPassword,
       componentProps: {
         password: props.password,
@@ -93,15 +106,17 @@ const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
   };
 
   const currentConfig = stepConfig[props.currentStep];
-
   const isButtonDisabled = currentConfig.isDisabled();
-
   const StepComponent = currentConfig.Component;
+  const StepIcon = currentConfig.icon;
   return (
     <Grid
       container
       item
-      xs={4.5}
+      xs={11}
+      sm={10}
+      md={5}
+      lg={3.5}
       sx={{
         display: 'flex',
         margin: 'auto',
@@ -111,7 +126,8 @@ const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
         alignItems: 'center',
       }}
     >
-      <Typography variant="h5" fontWeight={700} gutterBottom>
+      <StepIcon sx={{ fontSize: 50, color: color3 }} />
+      <Typography variant="h5" fontWeight={700} marginTop={3} gutterBottom>
         {currentConfig.title}
       </Typography>
       <Typography variant="subtitle2" gutterBottom>

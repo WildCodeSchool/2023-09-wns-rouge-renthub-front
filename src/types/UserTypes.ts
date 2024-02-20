@@ -30,8 +30,3 @@ export type UserContextTypes = {
   nickName: string;
   picture: string;
 };
-
-export type UserEmailProps = {
-  email: string;
-  setEmail: (email: string) => void;
-};
