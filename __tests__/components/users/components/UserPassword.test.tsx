@@ -49,7 +49,7 @@ describe('UserPassword Component', () => {
     expect(errorIcons[3].parentNode).toHaveTextContent('Un caractère spécial');
   });
   // NOT WORKING DON'T KNOW WHY
-  it.only('should show 2 check icons', async () => {
+  it('should show 2 check icons', async () => {
     // const { getByLabelText } = render(
     //   <UserPassword password="" onPasswordChange={() => {}} />
     // );

@@ -3,12 +3,14 @@ import { Grid, Typography } from '@mui/material';
 import { StepFormButton } from '@/styles/MuiButtons';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { VariablesColors } from '@/styles/Variables.colors';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const colors = new VariablesColors();
 const { color3 } = colors;
 
 type StepSubmitProps = {
   onSubmit: () => void;
+  loading: boolean;
 };
 
 const StepSubmit = (props: StepSubmitProps): React.ReactNode => {
@@ -41,7 +43,11 @@ const StepSubmit = (props: StepSubmitProps): React.ReactNode => {
         sx={{ width: '100% ', marginTop: '10px' }}
         onClick={props.onSubmit}
       >
-        Valider mon inscription
+        {props.loading ? (
+          <CircularProgress size={24} />
+        ) : (
+          'Valider mon inscription'
+        )}
       </StepFormButton>
     </Grid>
   );

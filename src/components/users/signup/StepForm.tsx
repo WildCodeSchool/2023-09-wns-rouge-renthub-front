@@ -12,7 +12,7 @@ import {
   isValidNameRegex,
   isValidPhoneNumberRegex,
   isValidPasswordRegex,
-} from './StepRegex';
+} from './RegexForm';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';

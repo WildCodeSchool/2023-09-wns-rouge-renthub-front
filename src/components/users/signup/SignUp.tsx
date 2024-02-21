@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import router from 'next/router';
 import StepSignUpForm from './StepForm';
 import StepSubmit from './StepSubmit';
-import { StepFormButton } from '@/styles/MuiButtons';
+import StepWelcome from './StepWelcome';
 import { Box, Button, Divider, Grid, Typography } from '@mui/material';
 import { VariablesColors } from '@/styles/Variables.colors';
 import { useMutation } from '@apollo/client';
 import { mutationCreateUser } from '@/components/graphql/Users';
 import { UserFormData } from '@/types/UserTypes';
 import toast, { Toaster } from 'react-hot-toast';
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 
 const colors = new VariablesColors();
-const { color2, color3 } = colors;
+const { color2 } = colors;
 
 const SignUp = (): React.ReactNode => {
   // FORM
@@ -27,7 +25,7 @@ const SignUp = (): React.ReactNode => {
     return hidenPassword;
   };
 
-  const [currentStep, setCurrentStep] = useState<string>('email');
+  const [currentStep, setCurrentStep] = useState<string>('submit');
   // FORM STEPS
   const formSteps = [
     {
@@ -45,7 +43,7 @@ const SignUp = (): React.ReactNode => {
     { step: 'password', title: 'Votre mot de passe', data: password },
   ];
   // SUBMIT
-  const [doCreate] = useMutation(mutationCreateUser);
+  const [doCreate, loading] = useMutation(mutationCreateUser);
   async function onSubmit() {
     try {
       const data: UserFormData = {
@@ -83,36 +81,7 @@ const SignUp = (): React.ReactNode => {
   return (
     <>
       {currentStep === 'welcome' ? (
-        <Grid
-          container
-          item
-          xs={12}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            height: '89vh',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '1rem',
-          }}
-        >
-          <RocketLaunchIcon sx={{ fontSize: 50, color: color3 }} />
-          <Typography variant="h5" fontWeight={700} gutterBottom>
-            Bienvenue !
-          </Typography>
-          <Typography variant="subtitle2" gutterBottom>
-            {`Votre compte a bien été créé !`}
-          </Typography>
-          <Typography variant="subtitle2" gutterBottom>
-            {`Un email de vérification vous a été envoyé à l'adresse ${email}`}
-          </Typography>
-          <StepFormButton
-            sx={{ width: '300px', marginTop: '10px' }}
-            onClick={() => router.replace(`/`)}
-          >
-            Accueil
-          </StepFormButton>
-        </Grid>
+        <StepWelcome email={email} />
       ) : (
         <Grid
           container
@@ -188,7 +157,7 @@ const SignUp = (): React.ReactNode => {
           </Grid>
           <Grid item xs={6} sm={6} md={8.5}>
             {currentStep === 'submit' ? (
-              <StepSubmit onSubmit={onSubmit} />
+              <StepSubmit onSubmit={onSubmit} loading={loading.loading} />
             ) : (
               <StepSignUpForm
                 email={email}
