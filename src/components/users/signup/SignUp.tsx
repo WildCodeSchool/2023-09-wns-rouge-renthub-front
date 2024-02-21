@@ -25,7 +25,7 @@ const SignUp = (): React.ReactNode => {
     return hidenPassword;
   };
 
-  const [currentStep, setCurrentStep] = useState<string>('submit');
+  const [currentStep, setCurrentStep] = useState<string>('email');
   // FORM STEPS
   const formSteps = [
     {
