@@ -1,7 +1,6 @@
 import React from 'react';
 import UserEmail from '../components/UserEmail';
-import UserFirstName from '../components/UserFirstName';
-import UserLastName from '../components/UserLastName';
+import UserName from '../components/UserName';
 import UserPhone from '../components/UserPhone';
 import UserPassword from '../components/UserPassword';
 import { StepFormButton } from '@/styles/MuiButtons';
@@ -54,10 +53,11 @@ const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
       title: 'Votre prénom ?',
       subtitle: 'Dites nous en un peu plus sur vous.',
       icon: FingerprintIcon,
-      Component: UserFirstName,
+      Component: UserName,
       componentProps: {
-        firstName: props.firstName,
-        setFirstName: props.setFirstName,
+        userName: props.firstName,
+        setUserName: props.setFirstName,
+        type: 'firstName',
       },
       isDisabled: () =>
         props.firstName === '' || !isValidNameRegex(props.firstName),
@@ -67,10 +67,11 @@ const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
       title: 'Votre  nom ?',
       subtitle: `Dites nous en un peu plus sur vous, ${props.firstName}.`,
       icon: FingerprintIcon,
-      Component: UserLastName,
+      Component: UserName,
       componentProps: {
-        lastName: props.lastName,
-        setLastName: props.setLastName,
+        userName: props.lastName,
+        setUserName: props.setLastName,
+        type: 'lastName',
       },
       isDisabled: () =>
         props.lastName === '' || !isValidNameRegex(props.lastName),

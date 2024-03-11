@@ -3,9 +3,9 @@ export const isValidEmailRegex = (email: string) => {
   return regex.test(email);
 };
 
-export const isValidNameRegex = (firstName: string) => {
+export const isValidNameRegex = (name: string) => {
   const regex = /^[a-zA-ZÀ-ÿ\s-]{2,50}$/;
-  return regex.test(firstName);
+  return regex.test(name);
 };
 
 export const isValidPhoneNumberRegex = (phoneNumber: string) => {

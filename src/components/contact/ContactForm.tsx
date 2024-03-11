@@ -12,12 +12,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { FormEvent, useRef, useState } from 'react';
 import UserEmail from '../users/components/UserEmail';
 import UserPhone from '../users/components/UserPhone';
+import UserName from '../users/components/UserName';
 import toast, { Toaster } from 'react-hot-toast';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 import { API_URL, RECAPTCHA_SITE_KEY } from '@/api/configApi';
-import UserFirstName from '../users/components/UserFirstName';
-import UserLastName from '../users/components/UserLastName';
 
 const ContactForm = (): React.ReactNode => {
   const [firstName, setFirstName] = useState<string>('');
@@ -100,8 +99,16 @@ const ContactForm = (): React.ReactNode => {
         autoComplete="off"
         onSubmit={sendContactEmail}
       >
-        <UserFirstName firstName={firstName} setFirstName={setFirstName} />
-        <UserLastName lastName={lastName} setLastName={setLastName} />
+        <UserName
+          userName={firstName}
+          setUserName={setFirstName}
+          type="firstName"
+        />
+        <UserName
+          userName={lastName}
+          setUserName={setLastName}
+          type="lastName"
+        />
         <Box className="userForm_control_box">
           <UserEmail email={email} setEmail={setEmail} />
           <UserPhone

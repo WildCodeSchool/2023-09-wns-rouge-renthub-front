@@ -2,39 +2,38 @@ import React, { useState } from 'react';
 import { TextField } from '@mui/material';
 
 type UserNameProps = {
-  firstName: string;
-  setFirstName: (firstName: string) => void;
+  userName: string;
+  setUserName: (firstName: string) => void;
+  type: string;
 };
 
 const UserName = (props: UserNameProps): React.ReactNode => {
-  const [firstNameError, setFirstNameError] = useState<string>('');
+  const [nameError, setNameError] = useState<string>('');
 
   const validateName = (name: string) => /^[a-zA-ZÀ-ÿ\s-]{2,50}$/.test(name);
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    props.setFirstName(value);
+    const { value } = e.target;
+    props.setUserName(value);
     if (!validateName(value)) {
-      setFirstNameError(
-        'Ne doit contenir que des lettres (minimum 2, maximum 50)'
-      );
+      setNameError('Ne doit contenir que des lettres (minimum 2, maximum 50)');
     } else {
-      setFirstNameError('');
+      setNameError('');
     }
   };
 
   return (
     <TextField
       fullWidth
-      id="firstName"
+      id={props.type === 'firstName' ? 'firstName' : 'lastName'}
       size="small"
-      label="Prénom"
+      label={props.type === 'firstName' ? 'Prénom' : 'Nom'}
       variant="outlined"
-      value={props.firstName}
+      value={props.userName}
       onChange={handleFirstNameChange}
       required
-      error={!!firstNameError}
-      helperText={firstNameError}
+      error={!!nameError}
+      helperText={nameError}
     />
   );
 };
