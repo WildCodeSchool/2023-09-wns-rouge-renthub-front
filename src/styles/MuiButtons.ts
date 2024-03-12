@@ -45,8 +45,32 @@ export const OrangeBtnBlueHover = styled('button')<ButtonsHoverProps>(() => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   transition:
-    'background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease',
+    'background-color 0.4s ease, color 0.4s ease, font-weight 0.4s ease',
   '&:hover': {
+    backgroundColor: color1,
+  },
+}));
+
+export const StepFormButton = styled('button')<ButtonsHoverProps>(() => ({
+  borderRadius: '10px',
+  backgroundColor: color1,
+  color: 'white',
+  fontWeight: '600',
+  minWidth: '160px',
+  minHeight: '40px',
+  border: 'none',
+  outline: 'none',
+  cursor: 'pointer',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  transition:
+    'background-color 0.4s ease, color 0.4s ease, font-weight 0.4s ease',
+  '&:hover': {
+    backgroundColor: color3,
+  },
+  '&:disabled': {
+    cursor: 'not-allowed',
     backgroundColor: color1,
   },
 }));

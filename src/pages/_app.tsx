@@ -42,6 +42,15 @@ const theme = createTheme({
       },
     },
   },
+  typography: {
+    fontFamily: 'Poppins, sans-serif',
+    h1: {
+      fontFamily: 'Impact, sans-serif',
+    },
+    h2: {
+      fontFamily: 'Impact, sans-serif',
+    },
+  },
 });
 const client = new ApolloClient({
   link: new HttpLink({
@@ -51,7 +60,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const privatePages = ['/signup', '/compte', '/annonces/new'];
+const privatePages = ['/compte'];
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const { loading, error, refetch } = useQuery<{

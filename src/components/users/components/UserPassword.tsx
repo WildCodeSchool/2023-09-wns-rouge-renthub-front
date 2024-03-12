@@ -15,7 +15,7 @@ import {
 
 type UserPasswordProps = {
   password: string;
-  onPasswordChange: (newPassword: string) => void;
+  setPassword: (password: string) => void;
 };
 
 const UserPassword = (props: UserPasswordProps): React.ReactNode => {
@@ -44,7 +44,7 @@ const UserPassword = (props: UserPasswordProps): React.ReactNode => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newPassword = event.target.value;
     if (!touched) setTouched(true);
-    props.onPasswordChange(newPassword);
+    props.setPassword(newPassword);
     setPasswordCriteria(validatePassword(newPassword));
   };
   const showError = touched && !Object.values(passwordCriteria).every(Boolean);

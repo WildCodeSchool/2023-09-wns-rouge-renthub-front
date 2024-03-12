@@ -14,7 +14,7 @@ import {
 } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { toast } from 'react-hot-toast';
-import UserConnection from '@/components/users/userConnection/UserConnection';
+import SignIn from '@/components/users/signin/SignIn';
 import { mutationUserLogin } from '@/components/graphql/Users';
 
 // Mocks React-Hot-Toast
@@ -70,12 +70,12 @@ const mocks = [
   },
 ];
 
-// Scenario 1: UserConnection test component & toast
-describe('UserConnection test component & toast', () => {
+// Scenario 1: SignIn test component & toast
+describe('SignIn test component & toast', () => {
   beforeEach(() => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <UserConnection />
+        <SignIn />
       </MockedProvider>
     );
   });
@@ -172,8 +172,8 @@ describe('UserConnection test component & toast', () => {
   });
 });
 
-// Scenario 2: UserConnection test graphQl mutation
-describe('UserConnection test graphQl mutation', () => {
+// Scenario 2: SignIn test graphQl mutation
+describe('SignIn test graphQl mutation', () => {
   let graphQlMutation = [];
 
   const mockLink = new ApolloLink((mutation, forward) => {
@@ -190,7 +190,7 @@ describe('UserConnection test graphQl mutation', () => {
     graphQlMutation = [];
     render(
       <ApolloProvider client={client}>
-        <UserConnection />
+        <SignIn />
       </ApolloProvider>
     );
   });
