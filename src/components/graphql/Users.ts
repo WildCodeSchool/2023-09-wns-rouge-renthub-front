@@ -10,10 +10,10 @@ export const mutationCreateUser = gql`
 `;
 
 export const mutationVerifyEmail = gql`
-  mutation verifyEmail($token: String!) {
-    item: verifyEmail(token: $token) {
-      success
+  mutation Mutation($code: String!, $userId: Float!) {
+    verifyEmail(code: $code, userId: $userId) {
       message
+      success
     }
   }
 `;
