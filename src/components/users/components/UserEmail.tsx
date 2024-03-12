@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextField } from '@mui/material';
 
 type UserEmailProps = {
@@ -7,6 +7,20 @@ type UserEmailProps = {
 };
 
 const UserEmail = (props: UserEmailProps): React.ReactNode => {
+  const [emailError, setEmailError] = useState<string>('');
+
+  const validateEmail = (name: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(name);
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    props.setEmail(value);
+    if (!validateEmail(value)) {
+      setEmailError('Doit être une adresse email valide');
+    } else {
+      setEmailError('');
+    }
+  };
   return (
     <TextField
       id="email"
@@ -14,9 +28,11 @@ const UserEmail = (props: UserEmailProps): React.ReactNode => {
       size="small"
       label="Email"
       variant="outlined"
+      error={!!emailError}
+      helperText={emailError}
       fullWidth
       value={props.email || ''}
-      onChange={e => props.setEmail(e.target.value)}
+      onChange={handlePasswordChange}
       required
     />
   );

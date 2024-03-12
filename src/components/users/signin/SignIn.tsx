@@ -18,9 +18,6 @@ import { OrangeBtnWhiteHover } from '@/styles/MuiButtons';
 const UserConnection = (): React.ReactNode => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const handlePasswordChange = (newPassword: React.SetStateAction<string>) => {
-    setPassword(newPassword);
-  };
 
   const theme = useTheme();
   const [doLogin] = useMutation(mutationUserLogin);
@@ -92,10 +89,7 @@ const UserConnection = (): React.ReactNode => {
               }}
             >
               <UserEmail email={email} setEmail={setEmail} />
-              <UserPassword
-                password={password}
-                onPasswordChange={handlePasswordChange}
-              />
+              <UserPassword password={password} setPassword={setPassword} />
             </Grid>
             <Grid item xs={12}>
               <Link variant="body2" href="/forgot-password">

@@ -10,9 +10,9 @@ import {
 import SendIcon from '@mui/icons-material/Send';
 import CircularProgress from '@mui/material/CircularProgress';
 import { FormEvent, useRef, useState } from 'react';
-import UserName from '../users/components/UserName';
 import UserEmail from '../users/components/UserEmail';
 import UserPhone from '../users/components/UserPhone';
+import UserName from '../users/components/UserName';
 import toast, { Toaster } from 'react-hot-toast';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
@@ -100,10 +100,14 @@ const ContactForm = (): React.ReactNode => {
         onSubmit={sendContactEmail}
       >
         <UserName
-          lastName={lastName}
-          firstName={firstName}
-          setFirstName={setFirstName}
-          setLastName={setLastName}
+          userName={firstName}
+          setUserName={setFirstName}
+          type="firstName"
+        />
+        <UserName
+          userName={lastName}
+          setUserName={setLastName}
+          type="lastName"
         />
         <Box className="userForm_control_box">
           <UserEmail email={email} setEmail={setEmail} />
