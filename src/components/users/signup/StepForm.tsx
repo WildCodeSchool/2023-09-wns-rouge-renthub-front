@@ -35,7 +35,7 @@ type StepSignUpFormProps = {
   setCurrentStep: (currentStep: string) => void;
 };
 
-const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
+const StepForm = (props: StepSignUpFormProps): React.ReactNode => {
   const stepConfig = {
     email: {
       title: 'Votre email ?',
@@ -150,4 +150,4 @@ const StepSignUpForm = (props: StepSignUpFormProps): React.ReactNode => {
   );
 };
 
-export default StepSignUpForm;
+export default StepForm;

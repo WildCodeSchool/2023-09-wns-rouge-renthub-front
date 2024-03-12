@@ -14,6 +14,10 @@ import { mutationUserLogin } from '@/components/graphql/Users';
 import { useMutation } from '@apollo/client';
 import toast, { Toaster } from 'react-hot-toast';
 import { OrangeBtnWhiteHover } from '@/styles/MuiButtons';
+import { VariablesColors } from '@/styles/Variables.colors';
+
+const colors = new VariablesColors();
+const { color2, successColor, errorColor } = colors;
 
 const UserConnection = (): React.ReactNode => {
   const [email, setEmail] = useState<string>('');
@@ -30,14 +34,14 @@ const UserConnection = (): React.ReactNode => {
       });
       if ('id' in data.item) {
         toast(`Connexion réussie, bienvenue ${data.item.firstName}`, {
-          style: { background: '#0fcc45', color: '#fff' },
+          style: { background: successColor, color: color2 },
         });
         setEmail('');
         setPassword('');
       }
     } catch (error) {
       toast(error.message, {
-        style: { background: '#e14d2a', color: '#fff' },
+        style: { background: errorColor, color: color2 },
       });
       setEmail('');
       setPassword('');
