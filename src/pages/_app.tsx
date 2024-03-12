@@ -19,7 +19,20 @@ import Header from '@/components/appBar/AppBar';
 const theme = createTheme({
   typography: {
     fontFamily: ['Poppins', 'sans-serif'].join(','),
+    h1: {
+      fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
+    },
+    h2: {
+      fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
+    },
+    h3: {
+      fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
+    },
+    h4: {
+      fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
+    },
   },
+
   palette: {
     mode: 'light',
     background: {
