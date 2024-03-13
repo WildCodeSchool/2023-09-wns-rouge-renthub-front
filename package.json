@@ -12,8 +12,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@apollo/client": "^3.9.2",
-    "@emotion/react": "^11.11.3",
+    "@apollo/client": "^3.9.6",
+    "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.7",
     "@mui/material": "^5.15.7",
