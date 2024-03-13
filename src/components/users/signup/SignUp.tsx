@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StepSignUpForm from './StepForm';
+import StepForm from './StepForm';
 import StepSubmit from './StepSubmit';
 import StepWelcome from './StepWelcome';
 import { Box, Button, Divider, Grid, Typography } from '@mui/material';
@@ -159,7 +159,7 @@ const SignUp = (): React.ReactNode => {
             {currentStep === 'submit' ? (
               <StepSubmit onSubmit={onSubmit} loading={loading.loading} />
             ) : (
-              <StepSignUpForm
+              <StepForm
                 email={email}
                 setEmail={setEmail}
                 firstName={firstName}
