@@ -9,7 +9,7 @@ h1 {
   right: 0;
   padding: 10px;
   background-color: white !important;
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 .main-menu {
@@ -27,7 +27,6 @@ h1 {
   align-items: center;
   gap: 3px;
   font-size: 12px;
-
   cursor: pointer;
 }
 
