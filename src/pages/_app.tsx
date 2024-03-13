@@ -31,6 +31,9 @@ const theme = createTheme({
     h4: {
       fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
     },
+    h5: {
+      fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
+    },
   },
 
   palette: {
@@ -56,15 +59,6 @@ const theme = createTheme({
           backgroundColor: '#F8F8F8',
         },
       },
-    },
-  },
-  typography: {
-    fontFamily: 'Poppins, sans-serif',
-    h1: {
-      fontFamily: 'Impact, sans-serif',
-    },
-    h2: {
-      fontFamily: 'Impact, sans-serif',
     },
   },
 });

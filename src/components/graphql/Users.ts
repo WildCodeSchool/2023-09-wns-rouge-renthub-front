@@ -10,11 +10,17 @@ export const mutationCreateUser = gql`
 `;
 
 export const mutationVerifyEmail = gql`
-  mutation Mutation($code: String!, $userId: Float!) {
-    verifyEmail(code: $code, userId: $userId) {
+  mutation VerifyEmail($data: VerifyEmailResponseInput!) {
+    verifyEmail(data: $data) {
       message
       success
     }
+  }
+`;
+
+export const mutationReSendCode = gql`
+  mutation GenerateNewVerificationCode($data: ReSendVerificationCodeInput!) {
+    generateNewVerificationCode(data: $data)
   }
 `;
 
