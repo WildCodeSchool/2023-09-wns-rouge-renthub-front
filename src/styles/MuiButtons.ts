@@ -30,6 +30,11 @@ export const OrangeBtnWhiteHover = styled('button')<ButtonsHoverProps>(() => ({
     color: color1,
     border: `1px solid ${color1}`,
   },
+  '&:disabled': {
+    cursor: 'not-allowed',
+    backgroundColor: color1,
+    color: 'white',
+  },
 }));
 
 export const OrangeBtnBlueHover = styled('button')<ButtonsHoverProps>(() => ({
