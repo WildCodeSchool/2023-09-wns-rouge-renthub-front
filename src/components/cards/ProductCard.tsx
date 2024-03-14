@@ -83,7 +83,7 @@ function ProductCard({
             <Typography fontWeight={'bold'} textTransform={'uppercase'}>
               {name}
             </Typography>
-            <Typography color={'gray'}>{description}</Typography>
+            {/* <Typography color={'gray'}>{description}</Typography> */}
           </Typography>
         </Box>
       </Box>
