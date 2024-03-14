@@ -15,8 +15,28 @@ import { Suspense, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { UserContextTypes } from '@/types/UserTypes';
 import Header from '@/components/appBar/AppBar';
+import { API_URL } from '@/api/configApi';
 
 const theme = createTheme({
+  typography: {
+    fontFamily: ['Poppins', 'sans-serif'].join(','),
+    h1: {
+      fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
+    },
+    h2: {
+      fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
+    },
+    h3: {
+      fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
+    },
+    h4: {
+      fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
+    },
+    h5: {
+      fontFamily: ['Poppins-Medium', 'sans-serif'].join(','),
+    },
+  },
+
   palette: {
     mode: 'light',
     background: {
@@ -42,19 +62,11 @@ const theme = createTheme({
       },
     },
   },
-  typography: {
-    fontFamily: 'Poppins, sans-serif',
-    h1: {
-      fontFamily: 'Impact, sans-serif',
-    },
-    h2: {
-      fontFamily: 'Impact, sans-serif',
-    },
-  },
 });
+
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'http://localhost:5000/',
+    uri: API_URL || 'http://localhost:5000/',
     credentials: 'include',
   }),
   cache: new InMemoryCache(),

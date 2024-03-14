@@ -1,6 +1,7 @@
 import { OrangeBtnWhiteHover } from '@/styles/MuiButtons';
 import { VariablesColors } from '@/styles/Variables.colors';
 import { Grid, Typography } from '@mui/material';
+import Carousel from '../utils/Carousel';
 
 function Hero() {
   const { color6, color7 } = new VariablesColors();
@@ -59,7 +60,7 @@ function Hero() {
         sm={6}
         sx={{ ...styleCarouselHeroWrapper }}
       >
-        Carousel
+        <Carousel />
       </Grid>
     </Grid>
   );
