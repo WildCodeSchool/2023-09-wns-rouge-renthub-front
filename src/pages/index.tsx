@@ -1,21 +1,34 @@
-import LayoutFull from '@/components/layout/LayoutFull';
 import ProductCard from '@/components/cards/ProductCard';
+import LayoutFull from '@/components/layout/LayoutFull';
 import { Container } from '@mui/material';
 
-const cards = [
+const products = [
   {
-    brand: 'Fischer',
+    id: 1,
     name: 'Hannibal 100',
-    alt: 'photo of skies',
-    description: 'Great product tatati tatata',
+    description: 'Great product tatati tatata ',
+    display: true,
+    brandName: 'Fischer',
+    price: 50,
     src: '/images/fischer2_mini.png',
   },
   {
-    brand: 'Salomon',
+    id: 2,
     name: 'Hannibal 94',
-    alt: 'photo of snowboard',
     description: 'Great product',
+    display: true,
+    brandName: 'Salomon',
+    price: [50, 100, 120],
     src: '/images/salomon1.png',
+  },
+  {
+    id: 3,
+    name: 'Hannibal Pro',
+    description: 'Great product',
+    display: true,
+    brandName: 'Fischer',
+    price: 160,
+    src: '/images/fischer2_mini.png',
   },
 ];
 
@@ -28,11 +41,12 @@ const Home = (): React.ReactNode => {
           backgroundColor: '#dfdfdf',
           display: 'flex',
           gap: '20px',
+          flex: 'stretch',
           justifyContent: 'flex-end',
           padding: '50px 30px',
         }}
       >
-        {cards.map((card, index) => (
+        {products.map((card, index) => (
           <ProductCard key={index} {...card} />
         ))}
       </Container>

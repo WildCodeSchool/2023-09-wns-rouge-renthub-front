@@ -6,17 +6,54 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { CardDetailsBtn, CardTarifBtn } from '@/styles/MuiButtons';
+import { CardDetailsBtn } from '@/styles/MuiButtons';
+import Link from 'next/link';
+import { VariablesColors } from '@/styles/Variables.colors';
+import CollapseCard from '../utils/CollapseCard';
 
-function ProductCard({ brand, name, description, src, alt }) {
+type ProductCardPropsType = {
+  id: number;
+  brandName: string;
+  name: string;
+  price: number | number[];
+  description: string;
+  src: string;
+};
+
+function ProductCard({
+  id,
+  brandName,
+  name,
+  price,
+  description,
+  src,
+}: ProductCardPropsType) {
+  const { color1, color3 } = new VariablesColors();
+  const priceArray = Array.isArray(price) ? price : [price];
+
   return (
-    <Card sx={{ width: 286, height: 380, borderRadius: '20px' }}>
+    <Card
+      sx={{
+        width: 286,
+        minHeight: 'fit-content',
+        borderRadius: '20px',
+        boxShadow: 'none',
+        overflow: 'visible',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        transition: 'background-color 0.3s ease',
+        '--colorBtnCard': color1,
+        '&:hover': {
+          backgroundColor: '#152535',
+          color: 'white',
+          '--colorBtnCard': color3,
+        },
+      }}
+    >
       <Box
         sx={{
-          width: '100%',
-          height: 180,
-          padding: '20px 20px 0',
+          padding: '20px 20px 0 20px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -25,65 +62,59 @@ function ProductCard({ brand, name, description, src, alt }) {
       >
         <Box
           sx={{
-            height: '100%',
+            height: '130px',
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
+            backgroundColor: 'white',
+            borderRadius: '20px',
           }}
         >
-          <CardMedia
-            component="img"
-            alt={alt}
-            image={src}
-            sx={{
-              maxWidth: '100%',
-            }}
-          />
+          <CardMedia component="img" alt={name} image={src} />
         </Box>
-        <Typography
-          gutterBottom
-          paragraph
-          component="div"
-          sx={{ alignSelf: 'flex-start', marginBottom: 0 }}
-        >
-          <b style={{ color: '#FF8E3C' }}>{brand}</b>
-        </Typography>
+        <Box sx={{ alignSelf: 'flex-start' }}>
+          <Typography component={'span'}>{brandName}</Typography>
+          <Typography
+            paddingTop={2}
+            variant="h6"
+            component="div"
+            sx={{ marginBottom: 0 }}
+          >
+            <Typography fontWeight={'bold'} textTransform={'uppercase'}>
+              {name}
+            </Typography>
+            <Typography color={'gray'}>{description}</Typography>
+          </Typography>
+        </Box>
       </Box>
       <CardContent
         sx={{
           display: 'flex',
           flexDirection: 'column',
           gap: '30px',
+          justifyContent: 'space-between',
         }}
       >
-        <Box>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            sx={{ marginBottom: 0 }}
-          >
-            {name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
-        </Box>
-        <Box>
-          <Stack
-            direction={'column'}
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            gap={2}
-          >
-            <CardTarifBtn>
-              Tarif et durée de location
-              <KeyboardArrowDownIcon />
-            </CardTarifBtn>
-
-            <CardDetailsBtn>Voir le matériel</CardDetailsBtn>
-          </Stack>
-        </Box>
+        <Stack
+          direction={'column'}
+          justifyContent="flex-start"
+          alignItems="flex-start"
+          gap={2}
+          sx={{ width: '100%' }}
+        >
+          <Box sx={{ position: 'relative', height: '25px' }}>
+            <Box sx={{ position: 'absolute', zIndex: 2 }}>
+              <CollapseCard id={id} priceArray={priceArray} />
+            </Box>
+          </Box>
+          <Box sx={{ position: 'relative', zIndex: 1 }}>
+            <Link href={`/?productId=${id}`} style={{ textDecoration: 'none' }}>
+              <CardDetailsBtn sx={{ backgroundColor: 'var(--colorBtnCard)' }}>
+                <Typography variant="body2">Voir le matériel</Typography>
+              </CardDetailsBtn>
+            </Link>
+          </Box>
+        </Stack>
       </CardContent>
     </Card>
   );
