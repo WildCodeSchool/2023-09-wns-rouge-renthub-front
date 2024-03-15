@@ -1,10 +1,10 @@
-import LayoutFull from '@/components/layout/LayoutFull';
-import UserForm from '@/components/users/userForm/UserForm';
+import LayoutFull from "@/components/layout/LayoutFull";
+import SignUp from "@/components/users/signup/SignUp";
 
 const SignUpPage = (): React.ReactNode => {
   return (
     <LayoutFull title="RentHub : Inscription">
-      <UserForm />
+      <SignUp />
     </LayoutFull>
   );
 };

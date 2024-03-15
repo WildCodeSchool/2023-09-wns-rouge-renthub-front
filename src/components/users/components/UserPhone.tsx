@@ -1,9 +1,9 @@
-import React from 'react';
-import { TextField } from '@mui/material';
+import React from "react";
+import { TextField } from "@mui/material";
 
 type UserPhoneProps = {
   phoneNumber: string;
-  setPhoneNumber: (email: string) => void;
+  setPhoneNumber: (phoneNumber: string) => void;
 };
 
 const UserPhone = (props: UserPhoneProps): React.ReactNode => {
@@ -15,8 +15,8 @@ const UserPhone = (props: UserPhoneProps): React.ReactNode => {
       size="small"
       label="Téléphone"
       variant="outlined"
-      value={props.phoneNumber || ''}
-      onChange={e => {
+      value={props.phoneNumber || ""}
+      onChange={(e) => {
         const inputNumber = e.target.value;
         const regex = /^[0-9]*$/;
         if (regex.test(inputNumber)) {
