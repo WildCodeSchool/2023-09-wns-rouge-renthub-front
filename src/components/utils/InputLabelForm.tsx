@@ -1,6 +1,6 @@
-import { InputLabel } from '@mui/material';
-import { VariablesColors } from '@/styles/Variables.colors';
-import React from 'react';
+import { InputLabel } from "@mui/material";
+import { VariablesColors } from "@/styles/Variables.colors";
+import React from "react";
 
 /* Ce composant (modulable)permet de créer un label pour un input. */
 export default function InputLabelForm({
@@ -8,10 +8,10 @@ export default function InputLabelForm({
   htmlFor,
   required = true,
   shrink = true,
-  fontSize = '1.5rem',
-  fontWeight = 'bold',
-  color = 'black',
-  textAlign = 'start',
+  fontSize = "1.5rem",
+  fontWeight = "bold",
+  color = "black",
+  textAlign = "start",
 }): React.ReactNode {
   const colors = new VariablesColors();
 
@@ -25,7 +25,7 @@ export default function InputLabelForm({
         fontWeight: fontWeight,
         color: color,
         textAlign: textAlign,
-        '.MuiInputLabel-asterisk': {
+        ".MuiInputLabel-asterisk": {
           color: colors.color3,
         },
       }}

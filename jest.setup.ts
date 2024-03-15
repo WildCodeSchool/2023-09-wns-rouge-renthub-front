@@ -1,24 +1,24 @@
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
 type MockMediaQueryList = {
   matches: boolean;
   media: string;
   onchange: null | ((this: MediaQueryList, ev: MediaQueryListEvent) => any);
   addListener: (
-    callback: (this: MediaQueryList, ev: MediaQueryListEvent) => any
+    callback: (this: MediaQueryList, ev: MediaQueryListEvent) => any,
   ) => void;
   removeListener: (
-    callback: (this: MediaQueryList, ev: MediaQueryListEvent) => any
+    callback: (this: MediaQueryList, ev: MediaQueryListEvent) => any,
   ) => void;
   addEventListener: (
     type: string,
     listener: EventListenerOrEventListenerObject,
-    options?: boolean | AddEventListenerOptions
+    options?: boolean | AddEventListenerOptions,
   ) => void;
   removeEventListener: (
     type: string,
     listener: EventListenerOrEventListenerObject,
-    options?: boolean | EventListenerOptions
+    options?: boolean | EventListenerOptions,
   ) => void;
   dispatchEvent: (event: Event) => boolean;
 };

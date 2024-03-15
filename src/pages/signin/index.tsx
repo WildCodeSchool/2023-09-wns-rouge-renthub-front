@@ -1,5 +1,5 @@
-import LayoutFull from '@/components/layout/LayoutFull';
-import SignIn from '@/components/users/signin/SignIn';
+import LayoutFull from "@/components/layout/LayoutFull";
+import SignIn from "@/components/users/signin/SignIn";
 
 const SignUpPage = (): React.ReactNode => {
   return (

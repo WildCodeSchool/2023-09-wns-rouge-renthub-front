@@ -1,17 +1,17 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from "react";
 import {
   Box,
   IconButton,
   InputAdornment,
   TextField,
   Typography,
-} from '@mui/material';
+} from "@mui/material";
 import {
   CheckCircle,
   Error,
   Visibility,
   VisibilityOff,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
 
 type UserPasswordProps = {
   password: string;
@@ -23,22 +23,22 @@ const UserPassword = (props: UserPasswordProps): React.ReactNode => {
   const [touched, setTouched] = useState<Boolean>(false);
   const validatePassword = (password: string) => {
     return {
-      '9 caractères minimum': password.length >= 9,
-      'Un nombre': /\d/.test(password),
-      'Majuscule et minuscule':
+      "9 caractères minimum": password.length >= 9,
+      "Un nombre": /\d/.test(password),
+      "Majuscule et minuscule":
         /[A-Z]/.test(password) && /[a-z]/.test(password),
-      'Un caractère spécial':
+      "Un caractère spécial":
         /[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\\\|\,\.\/\<\>\?]/.test(
-          password
+          password,
         ),
     };
   };
 
   const [passwordCriteria, setPasswordCriteria] = useState({
-    '9 caractères minimum': false,
-    'Un nombre': false,
-    'Majuscule et minuscule': false,
-    'Un caractère spécial': false,
+    "9 caractères minimum": false,
+    "Un nombre": false,
+    "Majuscule et minuscule": false,
+    "Un caractère spécial": false,
   });
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -52,10 +52,10 @@ const UserPassword = (props: UserPasswordProps): React.ReactNode => {
   // See the password
   const [showPassword, setShowPassword] = useState<Boolean>(false);
 
-  const handleClickShowPassword = () => setShowPassword(show => !show);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
+    event: React.MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
   };
@@ -64,7 +64,7 @@ const UserPassword = (props: UserPasswordProps): React.ReactNode => {
     <>
       <TextField
         id="outlined-adornment-password"
-        type={showPassword ? 'text' : 'password'}
+        type={showPassword ? "text" : "password"}
         size="small"
         label="Mot de passe"
         variant="outlined"
@@ -88,16 +88,16 @@ const UserPassword = (props: UserPasswordProps): React.ReactNode => {
           ),
         }}
       />
-      {props.password !== '' && (
+      {props.password !== "" && (
         <Box
           sx={{
-            width: '100%',
-            margin: 'auto',
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: '7px',
+            width: "100%",
+            margin: "auto",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "7px",
           }}
         >
           {Object.entries(passwordCriteria).map(([criteria, check]) => (
@@ -105,11 +105,11 @@ const UserPassword = (props: UserPasswordProps): React.ReactNode => {
               key={criteria}
               variant="caption"
               sx={{
-                display: 'flex',
-                width: '48%',
-                alignItems: 'center',
-                gap: '5px',
-                fontSize: '10px',
+                display: "flex",
+                width: "48%",
+                alignItems: "center",
+                gap: "5px",
+                fontSize: "10px",
               }}
             >
               {check ? (

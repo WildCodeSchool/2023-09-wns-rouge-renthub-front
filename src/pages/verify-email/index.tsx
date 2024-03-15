@@ -1,9 +1,9 @@
 import {
   mutationReSendCode,
   mutationVerifyEmail,
-} from '@/components/graphql/Users';
-import { OrangeBtnWhiteHover } from '@/styles/MuiButtons';
-import { useMutation } from '@apollo/client';
+} from "@/components/graphql/Users";
+import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
+import { useMutation } from "@apollo/client";
 import {
   Card,
   Grid,
@@ -11,10 +11,10 @@ import {
   useTheme,
   Link,
   TextField,
-} from '@mui/material';
-import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+} from "@mui/material";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 interface VerifyEmailMutationData {
   userId: number;
@@ -22,8 +22,8 @@ interface VerifyEmailMutationData {
 }
 
 const VerifyEmail = (): React.ReactNode => {
-  const user = parseInt(useSearchParams().get('userId'));
-  const [code, setCode] = useState<string>('');
+  const user = parseInt(useSearchParams().get("userId"));
+  const [code, setCode] = useState<string>("");
   const [doValidate, loading] = useMutation(mutationVerifyEmail);
   const [doResend, loadingResend] = useMutation(mutationReSendCode);
   const theme = useTheme();
@@ -41,18 +41,18 @@ const VerifyEmail = (): React.ReactNode => {
       if (!result.data.verifyEmail.success) {
         throw new Error(result.data.verifyEmail.message);
       }
-      toast('Votre compte a été vérifié avec succès !', {
+      toast("Votre compte a été vérifié avec succès !", {
         style: {
-          background: 'green',
-          color: '#fff',
+          background: "green",
+          color: "#fff",
         },
       });
     } catch (error) {
       console.error(error);
       toast(error.message, {
         style: {
-          background: 'red',
-          color: '#fff',
+          background: "red",
+          color: "#fff",
         },
       });
     }
@@ -70,18 +70,18 @@ const VerifyEmail = (): React.ReactNode => {
       if (result.data.generateNewVerificationCode !== true) {
         throw new Error("Erreur lors de l'envoi du code");
       }
-      toast('Votre code a été envoyé sur votre boite mail !', {
+      toast("Votre code a été envoyé sur votre boite mail !", {
         style: {
-          background: 'green',
-          color: '#fff',
+          background: "green",
+          color: "#fff",
         },
       });
     } catch (error) {
       console.error(error);
       toast("Erreur lors de l'envoi du code", {
         style: {
-          background: 'red',
-          color: '#fff',
+          background: "red",
+          color: "#fff",
         },
       });
     }
@@ -95,13 +95,13 @@ const VerifyEmail = (): React.ReactNode => {
       xs={12}
       sx={{
         margin: 2,
-        [theme.breakpoints.down('sm')]: {
-          marginRight: 'auto',
-          marginLeft: 'auto',
-          alignItems: 'center',
+        [theme.breakpoints.down("sm")]: {
+          marginRight: "auto",
+          marginLeft: "auto",
+          alignItems: "center",
         },
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <Toaster position="bottom-left" />
@@ -111,9 +111,9 @@ const VerifyEmail = (): React.ReactNode => {
       <Grid item xs={12} sm={6} md={6} xl={5} minWidth={360}>
         <Card
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
             gap: 1,
             padding: 5,
           }}
@@ -124,9 +124,9 @@ const VerifyEmail = (): React.ReactNode => {
             xs={12}
             sm={11}
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
               gap: 3,
             }}
           >
@@ -137,17 +137,17 @@ const VerifyEmail = (): React.ReactNode => {
               type="text"
               variant="outlined"
               value={code}
-              onChange={e => setCode(e.target.value)}
+              onChange={(e) => setCode(e.target.value)}
               size="small"
             />
           </Grid>
           <Grid item xs={12}>
             <Link
               variant="body2"
-              sx={{ cursor: 'pointer' }}
+              sx={{ cursor: "pointer" }}
               onClick={() => reSendCode()}
             >
-              {'Recevoir un nouveau code ?'}
+              {"Recevoir un nouveau code ?"}
             </Link>
           </Grid>
           <Grid item xs={12} marginTop={3}>

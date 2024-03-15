@@ -1,9 +1,9 @@
-import React from 'react';
-import router from 'next/router';
-import { Grid, Typography } from '@mui/material';
-import { StepFormButton } from '@/styles/MuiButtons';
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import { VariablesColors } from '@/styles/Variables.colors';
+import React from "react";
+import router from "next/router";
+import { Grid, Typography } from "@mui/material";
+import { StepFormButton } from "@/styles/MuiButtons";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import { VariablesColors } from "@/styles/Variables.colors";
 
 const colors = new VariablesColors();
 const { color3 } = colors;
@@ -19,12 +19,12 @@ const StepWelcome = (props: StepWelcomeProps): React.ReactNode => {
       item
       xs={12}
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '89vh',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '1rem',
+        display: "flex",
+        flexDirection: "column",
+        height: "89vh",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "1rem",
       }}
     >
       <RocketLaunchIcon sx={{ fontSize: 50, color: color3 }} />
@@ -38,7 +38,7 @@ const StepWelcome = (props: StepWelcomeProps): React.ReactNode => {
         {`Un email de vérification vous a été envoyé à l'adresse ${props.email}`}
       </Typography>
       <StepFormButton
-        sx={{ width: '300px', marginTop: '10px' }}
+        sx={{ width: "300px", marginTop: "10px" }}
         onClick={() => router.replace(`/`)}
       >
         Accueil

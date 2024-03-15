@@ -1,9 +1,9 @@
-import React from 'react';
-import { Grid, Typography } from '@mui/material';
-import { StepFormButton } from '@/styles/MuiButtons';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { VariablesColors } from '@/styles/Variables.colors';
-import CircularProgress from '@mui/material/CircularProgress';
+import React from "react";
+import { Grid, Typography } from "@mui/material";
+import { StepFormButton } from "@/styles/MuiButtons";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { VariablesColors } from "@/styles/Variables.colors";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const colors = new VariablesColors();
 const { color3 } = colors;
@@ -23,13 +23,13 @@ const StepSubmit = (props: StepSubmitProps): React.ReactNode => {
       md={5}
       lg={3.5}
       sx={{
-        display: 'flex',
-        margin: 'auto',
-        height: '100%',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '1rem',
+        display: "flex",
+        margin: "auto",
+        height: "100%",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "1rem",
       }}
     >
       <CheckCircleIcon sx={{ fontSize: 50, color: color3 }} />
@@ -40,13 +40,13 @@ const StepSubmit = (props: StepSubmitProps): React.ReactNode => {
         {`Si c'est bon pour vous, c'est bon pour nous !`}
       </Typography>
       <StepFormButton
-        sx={{ width: '100% ', marginTop: '10px' }}
+        sx={{ width: "100% ", marginTop: "10px" }}
         onClick={props.onSubmit}
       >
         {props.loading ? (
           <CircularProgress size={24} />
         ) : (
-          'Valider mon inscription'
+          "Valider mon inscription"
         )}
       </StepFormButton>
     </Grid>

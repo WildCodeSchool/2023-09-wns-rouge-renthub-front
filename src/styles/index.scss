@@ -1,26 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 // Variables
-@import './variables.colors.scss';
+@import "./variables.colors.scss";
 
 // Spinner
-@import '../pages/_app.scss';
+@import "../pages/_app.scss";
 
 // Components
-@import '../components/appBar/appBar.scss';
-@import '../components/users/userVerifyEmail/emailVerify.scss';
+@import "../components/appBar/appBar.scss";
+@import "../components/users/userVerifyEmail/emailVerify.scss";
 
 /* fonts */
 /* A utiliser pour le body */
 @font-face {
-  font-family: 'Poppins';
-  src: url('../../public/fonts/Poppins-Regular.ttf') format('truetype');
+  font-family: "Poppins";
+  src: url("../../public/fonts/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
 }
 
 /* A utiliser pour les titres */
 @font-face {
-  font-family: 'Poppins-Medium';
-  src: url('../../public/fonts/Poppins-Medium.ttf') format('truetype');
+  font-family: "Poppins-Medium";
+  src: url("../../public/fonts/Poppins-Medium.ttf") format("truetype");
   font-weight: 700;
 }
