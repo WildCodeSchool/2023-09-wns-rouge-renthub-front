@@ -10,6 +10,10 @@
     "fix": "prettier --write . && eslint --fix --ext .ts,.tsx .",
     "test": "jest --verbose"
   },
+  "lint-staged": {
+    "./src/**/*.{ts,tsx,html,css,scss}": "prettier --write ",
+    "./src/**/*.{ts,tsx}": "eslint "
+  },
   "dependencies": {
     "@apollo/client": "^3.9.6",
     "@emotion/react": "^11.11.4",
