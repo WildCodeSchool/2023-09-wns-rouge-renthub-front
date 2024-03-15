@@ -15,10 +15,10 @@ import Link from 'next/link';
 
 type CollapseCardPropsType = {
   id: number;
-  priceArray: number[];
+  list: number[];
 };
 
-function CollapseCard({ id, priceArray }: CollapseCardPropsType) {
+function CollapseCard({ id, list }: CollapseCardPropsType) {
   const [expand, setExpand] = useState<boolean | undefined>(false);
 
   const CollapseCardStyled = styled<typeof Card>(Card)<CardProps>(() => ({
@@ -56,27 +56,28 @@ function CollapseCard({ id, priceArray }: CollapseCardPropsType) {
         </Stack>
 
         <Collapse in={expand} sx={{ width: '100%' }}>
-          <Grid
-            container
-            alignItems="flex-start"
-            justifyContent="flex-start"
-            padding={'20px'}
-          >
-            {priceArray.map((price, index) => (
-              <Grid item xs={12} key={index}>
+          <Grid container padding={'20px'}>
+            {list.map((price, index) => (
+              <Grid
+                item
+                justifyContent="flex-start"
+                xs={12}
+                key={index}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                }}
+              >
                 <Link
-                  href={`/?productId=${id}/&price=${price}`}
+                  href={`/?productId=${id}&price=${price}`}
                   style={{
                     textDecoration: 'none',
                     color: 'inherit',
-                    alignSelf: 'flex-start',
                   }}
                 >
                   <Typography
                     variant="body2"
-                    sx={{
-                      '&:hover': { fontWeight: 'bold' },
-                    }}
+                    sx={{ '&:hover': { fontWeight: 'bold' } }}
                   >
                     {price}€ par jour
                   </Typography>

@@ -25,7 +25,6 @@ function ProductCard({
   brandName,
   name,
   price,
-  description,
   src,
 }: ProductCardPropsType) {
   const { color1, color3 } = new VariablesColors();
@@ -83,7 +82,6 @@ function ProductCard({
             <Typography fontWeight={'bold'} textTransform={'uppercase'}>
               {name}
             </Typography>
-            {/* <Typography color={'gray'}>{description}</Typography> */}
           </Typography>
         </Box>
       </Box>
@@ -104,7 +102,7 @@ function ProductCard({
         >
           <Box sx={{ position: 'relative', height: '25px' }}>
             <Box sx={{ position: 'absolute', zIndex: 2 }}>
-              <CollapseCard id={id} priceArray={priceArray} />
+              <CollapseCard id={id} list={priceArray} />
             </Box>
           </Box>
           <Box sx={{ position: 'relative', zIndex: 1 }}>
