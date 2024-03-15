@@ -1,17 +1,17 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
-import { OrangeBtnBlueHover } from '@/styles/MuiButtons';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import { OrangeBtnBlueHover } from "@/styles/MuiButtons";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 
 function ResponsiveAppBar() {
-  const [searchWord, setSearchWord] = useState('');
+  const [searchWord, setSearchWord] = useState("");
   const router = useRouter();
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -27,7 +27,7 @@ function ResponsiveAppBar() {
         <Link href="/" className="button logo link-button">
           {/* <span className="desktop-long-label">RENTHUB</span> */}
           <Image
-            src={'/images/logo.png'}
+            src={"/images/logo.png"}
             alt="logo"
             width={201}
             height={38.74}
@@ -35,9 +35,9 @@ function ResponsiveAppBar() {
         </Link>
         <OrangeBtnBlueHover
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           Nos matériels <KeyboardArrowDownIcon />
@@ -47,7 +47,7 @@ function ResponsiveAppBar() {
             className="text-field main-search-field"
             type="search"
             value={searchWord}
-            onChange={e => setSearchWord(e.target.value)}
+            onChange={(e) => setSearchWord(e.target.value)}
             placeholder="Rechercher par matériel"
           />
           <button className="button button-primary" type="submit">

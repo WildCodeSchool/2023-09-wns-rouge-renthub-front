@@ -1,31 +1,31 @@
-import { Grid } from '@mui/material';
-import Hero from './Hero';
-import InfoLocation from './InfoLocation';
-import Promotions from './Promotions';
-import Articles from './Articles';
-import Testimonials from './Testimonials';
-import Footer from '../footer/Footer';
-import TopLocations from './TopLocations';
+import { Grid } from "@mui/material";
+import Hero from "./Hero";
+import InfoLocation from "./InfoLocation";
+import Promotions from "./Promotions";
+import Articles from "./Articles";
+import Testimonials from "./Testimonials";
+import Footer from "../footer/Footer";
+import TopLocations from "./TopLocations";
 
 function Home() {
   const styleHome = {
-    margin: 'auto',
+    margin: "auto",
   };
 
   const styleHero = {
-    position: 'relative',
+    position: "relative",
     background: "url('/images/heroBackground.jpg')",
-    backgroundAttachment: 'fixed',
-    backgroundPosition: 'center 30%',
-    backgroundSize: 'cover', // Use 'cover' to ensure the image covers the entire container
-    height: '500px',
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center 30%",
+    backgroundSize: "cover", // Use 'cover' to ensure the image covers the entire container
+    height: "500px",
   };
 
   return (
     <Grid
       container
       maxWidth="xl"
-      justifyContent={'center'}
+      justifyContent={"center"}
       sx={{ ...styleHome }}
     >
       <Grid item xs={12} sx={{ ...styleHero }}>

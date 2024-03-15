@@ -1,5 +1,5 @@
-import Home from '@/components/home/Home';
-import LayoutFull from '@/components/layout/LayoutFull';
+import Home from "@/components/home/Home";
+import LayoutFull from "@/components/layout/LayoutFull";
 
 const Index = (): React.ReactNode => {
   return (

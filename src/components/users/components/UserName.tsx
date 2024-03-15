@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { TextField } from '@mui/material';
+import React, { useState } from "react";
+import { TextField } from "@mui/material";
 
 type UserNameProps = {
   userName: string;
@@ -8,7 +8,7 @@ type UserNameProps = {
 };
 
 const UserName = (props: UserNameProps): React.ReactNode => {
-  const [nameError, setNameError] = useState<string>('');
+  const [nameError, setNameError] = useState<string>("");
 
   const validateName = (name: string) => /^[a-zA-ZÀ-ÿ\s-]{2,50}$/.test(name);
 
@@ -16,18 +16,18 @@ const UserName = (props: UserNameProps): React.ReactNode => {
     const { value } = e.target;
     props.setUserName(value);
     if (!validateName(value)) {
-      setNameError('Ne doit contenir que des lettres (minimum 2, maximum 50)');
+      setNameError("Ne doit contenir que des lettres (minimum 2, maximum 50)");
     } else {
-      setNameError('');
+      setNameError("");
     }
   };
 
   return (
     <TextField
       fullWidth
-      id={props.type === 'firstName' ? 'firstName' : 'lastName'}
+      id={props.type === "firstName" ? "firstName" : "lastName"}
       size="small"
-      label={props.type === 'firstName' ? 'Prénom' : 'Nom'}
+      label={props.type === "firstName" ? "Prénom" : "Nom"}
       variant="outlined"
       value={props.userName}
       onChange={handleFirstNameChange}
