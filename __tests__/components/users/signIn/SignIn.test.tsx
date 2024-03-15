@@ -126,7 +126,7 @@ describe('SignIn test component & toast', () => {
 
     await waitFor(() => {
       expect(toast).toHaveBeenCalledWith('Connexion réussie, bienvenue John', {
-        style: { background: '#0fcc45', color: '#fff' },
+        style: { background: '#4caf50', color: '#f8f8f8' },
       });
     });
   });
@@ -141,7 +141,7 @@ describe('SignIn test component & toast', () => {
 
     await waitFor(() => {
       expect(toast).toHaveBeenCalledWith('Email ou mot de passe incorrect', {
-        style: { background: '#e14d2a', color: '#fff' },
+        style: { background: '#f44336', color: '#f8f8f8' },
       });
     });
   });
@@ -155,7 +155,7 @@ describe('SignIn test component & toast', () => {
     fireEvent.click(screen.getByRole('button', { name: /Se connecter/ }));
     await waitFor(() => {
       expect(toast).toHaveBeenCalledWith('Failed to fetch', {
-        style: { background: '#e14d2a', color: '#fff' },
+        style: { background: '#f44336', color: '#f8f8f8' },
       });
     });
   });
