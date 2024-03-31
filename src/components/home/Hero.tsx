@@ -19,6 +19,8 @@ function Hero() {
   const styleTitleHero = {
     fontSize: "2rem",
     textShadow: `-2px 3px 5px ${color7}`,
+    textWrap: "balance",
+    fontFamily: "Impact",
   };
 
   const styleCarouselHeroWrapper = {};

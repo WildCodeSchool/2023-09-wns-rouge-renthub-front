@@ -28,7 +28,7 @@ export const OrangeBtnWhiteHover = styled("button")<ButtonsHoverProps>(() => ({
   "&:hover": {
     backgroundColor: color2,
     color: color1,
-    border: `1px solid ${color1}`,
+    outline: `1px solid ${color1}`,
   },
   "&:disabled": {
     cursor: "not-allowed",

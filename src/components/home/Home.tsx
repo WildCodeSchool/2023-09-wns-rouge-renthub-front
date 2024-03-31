@@ -18,7 +18,8 @@ function Home() {
     backgroundAttachment: "fixed",
     backgroundPosition: "center 30%",
     backgroundSize: "cover", // Use 'cover' to ensure the image covers the entire container
-    height: "500px",
+    height: "60vh",
+    minHeight: "400px",
   };
 
   return (
