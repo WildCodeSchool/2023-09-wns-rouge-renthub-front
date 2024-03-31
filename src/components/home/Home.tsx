@@ -25,30 +25,28 @@ function Home() {
   return (
     <Grid
       container
+      component={"main"}
       maxWidth="xl"
       justifyContent={"center"}
       sx={{ ...styleHome }}
     >
-      <Grid item xs={12} sx={{ ...styleHero }}>
+      <Grid item xs={12} sx={{ ...styleHero }} component={"section"}>
         <Hero />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <InfoLocation />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <Promotions />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <TopLocations />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <Articles />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <Testimonials />
-      </Grid>
-      <Grid className="body" item xs={12}>
-        <Footer />
       </Grid>
     </Grid>
   );

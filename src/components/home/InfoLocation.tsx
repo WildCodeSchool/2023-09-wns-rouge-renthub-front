@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import InfoCard from "../cards/InfoCard";
 
 const infoCards = [
@@ -34,15 +34,42 @@ const infoCards = [
 function InfoLocation() {
   return (
     <Stack
-      direction={"row"}
-      justifyContent={"center"}
-      paddingBlock={"5rem"}
+      direction={"column"}
       flexWrap={"wrap"}
       gap={"2rem"}
+      paddingTop={"5rem"}
     >
-      {infoCards.map((infoCard) => (
-        <InfoCard key={infoCard.id} {...infoCard} />
-      ))}
+      <Stack direction={"column"} gap={2}>
+        <Typography
+          variant="h4"
+          component="h2"
+          align="center"
+          fontFamily={"Poppins"}
+          fontWeight={700}
+        >
+          Réservez en ligne, c&apos;est simple et rapide !
+        </Typography>
+        <Typography
+          variant="body1"
+          textAlign={"center"}
+          marginInline={"auto"}
+          fontFamily={"Poppins"}
+          fontWeight={400}
+          width={"33ch"}
+        >
+          Nos équipes vous accompagnent tout au long de votre location.
+        </Typography>
+      </Stack>
+      <Stack
+        direction={"row"}
+        justifyContent={"center"}
+        flexWrap={"wrap"}
+        gap={"2rem"}
+      >
+        {infoCards.map((infoCard) => (
+          <InfoCard key={infoCard.id} {...infoCard} />
+        ))}
+      </Stack>
     </Stack>
   );
 }
