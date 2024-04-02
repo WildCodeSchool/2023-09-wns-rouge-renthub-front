@@ -44,7 +44,7 @@ function ProductCard({
         transition: "background-color 0.3s ease",
         "--colorBtnCard": color1,
         "&:hover": {
-          backgroundColor: "#152535",
+          backgroundColor: color1,
           color: "white",
           "--colorBtnCard": color3,
         },
