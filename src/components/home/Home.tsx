@@ -17,36 +17,31 @@ function Home() {
     background: "url('/images/heroBackground.jpg')",
     backgroundAttachment: "fixed",
     backgroundPosition: "center 30%",
-    backgroundSize: "cover", // Use 'cover' to ensure the image covers the entire container
+    backgroundSize: "cover",
     height: "500px",
   };
 
   return (
-    <Grid
-      container
-      maxWidth="xl"
-      justifyContent={"center"}
-      sx={{ ...styleHome }}
-    >
-      <Grid item xs={12} sx={{ ...styleHero }}>
+    <Grid container justifyContent={"center"} sx={{ ...styleHome }}>
+      <Grid item xs={12} lg={9} sx={{ ...styleHero }}>
         <Hero />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid className="body" item xs={9}>
         <InfoLocation />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid className="body" item xs={9}>
         <Promotions />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid className="body" item xs={9}>
         <TopLocations />
       </Grid>
       <Grid className="body" item xs={12}>
         <Articles />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid className="body" item xs={9}>
         <Testimonials />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid className="body" item xs={9}>
         <Footer />
       </Grid>
     </Grid>
