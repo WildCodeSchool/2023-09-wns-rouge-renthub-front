@@ -67,7 +67,7 @@ const theme = createTheme({
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: API_URL || "http://localhost:5000/",
+    uri: "/api",
     credentials: "include",
   }),
   cache: new InMemoryCache(),
