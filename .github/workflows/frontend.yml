@@ -109,4 +109,6 @@ jobs:
           target: prod
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: ${{ steps.tag_sha.outputs.value }}
+          tags: 
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest 
+            ${{ steps.tag_sha.outputs.value }}
