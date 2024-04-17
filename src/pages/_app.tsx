@@ -15,6 +15,7 @@ import { Suspense, useEffect } from "react";
 import { useRouter } from "next/router";
 import { UserContextTypes } from "@/types/UserTypes";
 import Header from "@/components/appBar/AppBar";
+import { API_URL } from "@/api/configApi";
 
 const theme = createTheme({
   typography: {
@@ -65,7 +66,7 @@ const theme = createTheme({
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: "/api",
+    uri: API_URL || "/api",
     credentials: "include",
   }),
   cache: new InMemoryCache(),
