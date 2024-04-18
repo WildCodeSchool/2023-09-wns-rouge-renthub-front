@@ -26,7 +26,7 @@ export default function InputLabelForm({
         color: color,
         textAlign: textAlign,
         ".MuiInputLabel-asterisk": {
-          color: colors.color3,
+          color: colors.orangeColor,
         },
       }}
     >

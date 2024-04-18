@@ -2,7 +2,8 @@ import { styled } from "@mui/material";
 import { VariablesColors } from "./Variables.colors";
 
 const colors = new VariablesColors();
-const { color1, color2, color3, color6, color7 } = colors;
+const { darkBlueColor, lightGreyColor, orangeColor, whiteColor, blackColor } =
+  colors;
 
 interface ButtonsHoverProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -11,7 +12,7 @@ interface ButtonsHoverProps
 
 export const OrangeBtnWhiteHover = styled("button")<ButtonsHoverProps>(() => ({
   borderRadius: "10px",
-  backgroundColor: color3,
+  backgroundColor: orangeColor,
   color: "white",
   fontWeight: "600",
   maxWidth: "fit-content",
@@ -26,20 +27,20 @@ export const OrangeBtnWhiteHover = styled("button")<ButtonsHoverProps>(() => ({
   transition:
     "background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease",
   "&:hover": {
-    backgroundColor: color2,
-    color: color1,
-    outline: `1px solid ${color1}`,
+    backgroundColor: lightGreyColor,
+    color: darkBlueColor,
+    outline: `1px solid ${darkBlueColor}`,
   },
   "&:disabled": {
     cursor: "not-allowed",
-    backgroundColor: color1,
+    backgroundColor: darkBlueColor,
     color: "white",
   },
 }));
 
 export const OrangeBtnBlueHover = styled("button")<ButtonsHoverProps>(() => ({
   borderRadius: "10px",
-  backgroundColor: color3,
+  backgroundColor: orangeColor,
   color: "white",
   fontWeight: "600",
   maxWidth: "fit-content",
@@ -54,13 +55,13 @@ export const OrangeBtnBlueHover = styled("button")<ButtonsHoverProps>(() => ({
   transition:
     "background-color 0.4s ease, color 0.4s ease, font-weight 0.4s ease",
   "&:hover": {
-    backgroundColor: color1,
+    backgroundColor: darkBlueColor,
   },
 }));
 
 export const StepFormButton = styled("button")<ButtonsHoverProps>(() => ({
   borderRadius: "10px",
-  backgroundColor: color1,
+  backgroundColor: darkBlueColor,
   color: "white",
   fontWeight: "600",
   minWidth: "160px",
@@ -74,11 +75,11 @@ export const StepFormButton = styled("button")<ButtonsHoverProps>(() => ({
   transition:
     "background-color 0.4s ease, color 0.4s ease, font-weight 0.4s ease",
   "&:hover": {
-    backgroundColor: color3,
+    backgroundColor: orangeColor,
   },
   "&:disabled": {
     cursor: "not-allowed",
-    backgroundColor: color1,
+    backgroundColor: darkBlueColor,
   },
 }));
 
@@ -96,8 +97,8 @@ export const CardDetailsBtn = styled("button")<ButtonsHoverProps>(() => ({
   backgroundColor: "black",
   color: "white",
   "&:hover": {
-    backgroundColor: color1,
-    color: color6,
-    outline: `1px solid ${color6}`,
+    backgroundColor: darkBlueColor,
+    color: whiteColor,
+    outline: `1px solid ${whiteColor}`,
   },
 }));

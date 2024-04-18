@@ -4,7 +4,7 @@ import { Grid, Typography, useMediaQuery } from "@mui/material";
 import HeroCarousel from "../utils/Carousel";
 
 function Hero() {
-  const { color6, color7 } = new VariablesColors();
+  const { whiteColor, blackColor } = new VariablesColors();
   const matches = useMediaQuery("(max-width:599px)");
   const matchesMedium = useMediaQuery("(max-width:800px)");
 
@@ -26,7 +26,7 @@ function Hero() {
 
   const styleTitleHero = {
     fontSize: "2.5rem",
-    textShadow: `-2px 3px 5px ${color7}`,
+    textShadow: `-2px 3px 5px ${blackColor}`,
     textWrap: "balance",
     ...(matchesMedium && { fontSize: "2rem" }),
     ...(matches && { textAlign: "center", fontSize: "1.7rem" }),
@@ -49,7 +49,7 @@ function Hero() {
         direction={"column"}
         justifyContent={"flex-end"}
         alignSelf={"flex-end"}
-        color={color6}
+        color={whiteColor}
         xs={12}
         sm={6}
         sx={{ ...styleTitleHeroWrapper }}
