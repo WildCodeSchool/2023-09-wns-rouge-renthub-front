@@ -10,7 +10,16 @@ const products = [
     display: true,
     brandName: "Salomon",
     price: [50, 100, 120],
-    src: "/images/salomon1.png",
+    src: "/images/products/salomon1.png",
+  },
+  {
+    id: 1,
+    name: "Fischer PRO",
+    description: "Great product",
+    display: true,
+    brandName: "Fisher",
+    price: [50, 100, 120],
+    src: "/images/products/fischer2_mini.png",
   },
   {
     id: 2,

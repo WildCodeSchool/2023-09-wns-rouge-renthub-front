@@ -50,7 +50,9 @@ function CollapseCard({ id, list }: CollapseCardPropsType) {
           }}
           onClick={() => setExpand(!expand)}
         >
-          <Typography variant="body2">Tarif et durée de location</Typography>
+          <Typography variant="body2" marginTop={0.1}>
+            Tarif et durée de location
+          </Typography>
 
           {expand ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
         </Stack>

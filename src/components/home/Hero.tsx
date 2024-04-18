@@ -54,7 +54,7 @@ function Hero() {
         sm={6}
         sx={{ ...styleTitleHeroWrapper }}
       >
-        <Typography variant="h2" component="h1" sx={{ ...styleTitleHero }}>
+        <Typography variant="h1" sx={{ ...styleTitleHero }}>
           Louez des équipements de sport pour l&#39;hiver et profitez de la
           neige en toute sécurité !
         </Typography>
