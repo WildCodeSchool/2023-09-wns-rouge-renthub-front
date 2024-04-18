@@ -23,12 +23,12 @@ const articles = [
 ];
 
 function Articles() {
-  const { color2 } = new VariablesColors();
+  const { lightGreyColor } = new VariablesColors();
   return articles.map((article, index) => (
     <Article
       key={article.id}
       article={article}
-      {...(!(index % 2) && { bgColor: color2, odd: true })}
+      {...(!(index % 2) && { bgColor: lightGreyColor, odd: true })}
     />
   ));
 }

@@ -12,7 +12,7 @@
     margin-top: 1rem;
     font-size: 3rem;
     font-weight: 700;
-    color: $color3;
+    color: $orangeColor;
   }
 }
 
@@ -20,7 +20,7 @@
   width: 64px;
   height: 64px;
   border: 8px solid;
-  border-color: $color4 transparent $color3 transparent;
+  border-color: $lightRedColor transparent $orangeColor transparent;
   border-radius: 50%;
   animation: spin-anim 1.2s linear infinite;
 }

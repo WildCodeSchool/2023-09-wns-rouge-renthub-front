@@ -18,7 +18,7 @@ import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import LockIcon from "@mui/icons-material/Lock";
 
 const colors = new VariablesColors();
-const { color3 } = colors;
+const { orangeColor } = colors;
 
 type StepSignUpFormProps = {
   email: string;
@@ -127,7 +127,7 @@ const StepForm = (props: StepSignUpFormProps): React.ReactNode => {
         alignItems: "center",
       }}
     >
-      <StepIcon sx={{ fontSize: 50, color: color3 }} />
+      <StepIcon sx={{ fontSize: 50, color: orangeColor }} />
       <Typography variant="h5" fontWeight={700} marginTop={3} gutterBottom>
         {currentConfig.title}
       </Typography>
