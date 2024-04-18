@@ -15,13 +15,14 @@ function Home() {
     margin: "auto",
   };
 
+  const matchSize599 = useMediaQuery("(max-width:599px)");
   const styleHero = {
     position: "relative",
     background: "url('/images/heroBackground.jpg')",
     backgroundAttachment: "fixed",
     backgroundPosition: "center 30%",
     backgroundSize: "cover",
-    height: "500px",
+    height: matchSize599 ? "605px" : "500px",
   };
 
   return (
