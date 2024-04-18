@@ -18,36 +18,35 @@ function Home() {
     backgroundAttachment: "fixed",
     backgroundPosition: "center 30%",
     backgroundSize: "cover", // Use 'cover' to ensure the image covers the entire container
-    height: "500px",
+    height: "60vh",
+    minHeight: "400px",
   };
 
   return (
     <Grid
       container
+      component={"main"}
       maxWidth="xl"
       justifyContent={"center"}
       sx={{ ...styleHome }}
     >
-      <Grid item xs={12} sx={{ ...styleHero }}>
+      <Grid item xs={12} sx={{ ...styleHero }} component={"section"}>
         <Hero />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <InfoLocation />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <Promotions />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <TopLocations />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <Articles />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <Testimonials />
-      </Grid>
-      <Grid className="body" item xs={12}>
-        <Footer />
       </Grid>
     </Grid>
   );

@@ -12,13 +12,16 @@ function Hero() {
   };
 
   const styleTitleHeroWrapper = {
-    gap: "1rem",
-    padding: "50px",
+    gap: "2rem",
+    padding: "5rem",
   };
 
   const styleTitleHero = {
-    fontSize: "2rem",
+    fontSize: "2.5rem",
     textShadow: `-2px 3px 5px ${color7}`,
+    textWrap: "balance",
+    maxWidth: "20ch",
+    fontFamily: "Impact",
   };
 
   const styleCarouselHeroWrapper = {};
@@ -45,7 +48,7 @@ function Hero() {
         sm={6}
         sx={{ ...styleTitleHeroWrapper }}
       >
-        <Typography variant="h2" component="h1" sx={{ ...styleTitleHero }}>
+        <Typography variant="h1" sx={{ ...styleTitleHero }}>
           Louez des équipements de sport pour l&#39;hiver et profitez de la
           neige en toute sécurité !
         </Typography>
