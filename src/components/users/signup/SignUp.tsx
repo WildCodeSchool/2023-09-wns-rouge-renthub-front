@@ -10,7 +10,7 @@ import { UserFormData } from "@/types/UserTypes";
 import toast, { Toaster } from "react-hot-toast";
 
 const colors = new VariablesColors();
-const { color2 } = colors;
+const { lightGreyColor } = colors;
 
 const SignUp = (): React.ReactNode => {
   // FORM
@@ -102,7 +102,7 @@ const SignUp = (): React.ReactNode => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              backgroundColor: color2,
+              backgroundColor: lightGreyColor,
               height: "89vh",
               padding: "1%",
             }}

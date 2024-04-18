@@ -27,7 +27,7 @@ function ProductCard({
   price,
   src,
 }: ProductCardPropsType) {
-  const { color1, color3 } = new VariablesColors();
+  const { darkBlueColor, orangeColor } = new VariablesColors();
   const priceArray = Array.isArray(price) ? price : [price];
 
   return (
@@ -43,11 +43,11 @@ function ProductCard({
         flexDirection: "column",
         justifyContent: "space-between",
         transition: "background-color 0.3s ease",
-        "--colorBtnCard": color1,
+        "--colorBtnCard": darkBlueColor,
         "&:hover": {
-          backgroundColor: color1,
+          backgroundColor: darkBlueColor,
           color: "white",
-          "--colorBtnCard": color3,
+          "--colorBtnCard": orangeColor,
         },
       }}
     >

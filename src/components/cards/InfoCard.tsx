@@ -10,10 +10,10 @@ type InfoCardPropsType = {
 };
 
 function InfoCard({ id, title, icon, paragraphs }: InfoCardPropsType) {
-  const { color3 } = new VariablesColors();
-  const redValue = parseInt(color3.substring(1, 3), 16);
-  const greenValue = parseInt(color3.substring(3, 5), 16);
-  const blueValue = parseInt(color3.substring(5, 7), 16);
+  const { orangeColor } = new VariablesColors();
+  const redValue = parseInt(orangeColor.substring(1, 3), 16);
+  const greenValue = parseInt(orangeColor.substring(3, 5), 16);
+  const blueValue = parseInt(orangeColor.substring(5, 7), 16);
 
   return (
     <Card
