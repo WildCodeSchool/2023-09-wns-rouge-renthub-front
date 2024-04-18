@@ -6,7 +6,7 @@ import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import { VariablesColors } from "@/styles/Variables.colors";
 
 const colors = new VariablesColors();
-const { color3 } = colors;
+const { orangeColor } = colors;
 
 type StepWelcomeProps = {
   email: string;
@@ -27,7 +27,7 @@ const StepWelcome = (props: StepWelcomeProps): React.ReactNode => {
         gap: "1rem",
       }}
     >
-      <RocketLaunchIcon sx={{ fontSize: 50, color: color3 }} />
+      <RocketLaunchIcon sx={{ fontSize: 50, color: orangeColor }} />
       <Typography variant="h5" fontWeight={700} gutterBottom>
         Bienvenue !
       </Typography>

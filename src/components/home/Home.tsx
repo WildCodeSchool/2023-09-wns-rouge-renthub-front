@@ -45,9 +45,6 @@ function Home() {
       <Grid className="body" item xs={9}>
         <Testimonials />
       </Grid>
-      <Grid className="body" item xs={9}>
-        <Footer />
-      </Grid>
     </Grid>
   );
 }

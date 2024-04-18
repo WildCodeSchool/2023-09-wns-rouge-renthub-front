@@ -5,11 +5,11 @@ import { CardMedia, Grid, Stack, Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 function Promotions() {
-  const { color1, color6 } = new VariablesColors();
+  const { darkBlueColor, whiteColor } = new VariablesColors();
 
   const stylePromotions = {
     borderRadius: "20px",
-    color: color6,
+    color: whiteColor,
   };
   const matches = useMediaQuery("(max-width:800px)");
 
@@ -18,7 +18,7 @@ function Promotions() {
       container
       padding={"5rem 5rem 5rem 5rem"}
       marginTop={"5rem"}
-      sx={{ ...stylePromotions, backgroundColor: color1 }}
+      sx={{ ...stylePromotions, backgroundColor: darkBlueColor }}
       {...(matches && { direction: "column", padding: "4rem", gap: "2rem" })}
     >
       <Grid item xs={5} alignContent={"center"}>

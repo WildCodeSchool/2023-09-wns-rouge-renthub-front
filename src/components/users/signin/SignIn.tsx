@@ -17,7 +17,7 @@ import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { VariablesColors } from "@/styles/Variables.colors";
 
 const colors = new VariablesColors();
-const { color2, successColor, errorColor } = colors;
+const { lightGreyColor, successColor, errorColor } = colors;
 
 const UserConnection = (): React.ReactNode => {
   const [email, setEmail] = useState<string>("");
@@ -34,14 +34,14 @@ const UserConnection = (): React.ReactNode => {
       });
       if ("id" in data.item) {
         toast(`Connexion réussie, bienvenue ${data.item.firstName}`, {
-          style: { background: successColor, color: color2 },
+          style: { background: successColor, color: lightGreyColor },
         });
         setEmail("");
         setPassword("");
       }
     } catch (error) {
       toast(error.message, {
-        style: { background: errorColor, color: color2 },
+        style: { background: errorColor, color: lightGreyColor },
       });
       setEmail("");
       setPassword("");

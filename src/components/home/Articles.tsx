@@ -24,12 +24,12 @@ const articles = [
 ];
 
 function Articles() {
-  const { color2 } = new VariablesColors();
+  const { lightGreyColor } = new VariablesColors();
   return articles.map((article, index) => (
     <Box key={article.id} marginTop="5rem">
       <Article
         article={article}
-        {...(!(index % 2) && { bgColor: color2, odd: true })}
+        {...(!(index % 2) && { bgColor: lightGreyColor, odd: true })}
       />
     </Box>
   ));

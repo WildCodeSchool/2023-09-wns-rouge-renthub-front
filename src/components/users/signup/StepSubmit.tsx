@@ -6,7 +6,7 @@ import { VariablesColors } from "@/styles/Variables.colors";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const colors = new VariablesColors();
-const { color3 } = colors;
+const { orangeColor } = colors;
 
 type StepSubmitProps = {
   onSubmit: () => void;
@@ -32,7 +32,7 @@ const StepSubmit = (props: StepSubmitProps): React.ReactNode => {
         gap: "1rem",
       }}
     >
-      <CheckCircleIcon sx={{ fontSize: 50, color: color3 }} />
+      <CheckCircleIcon sx={{ fontSize: 50, color: orangeColor }} />
       <Typography variant="h5" fontWeight={700} gutterBottom>
         Tout est ok ?
       </Typography>
