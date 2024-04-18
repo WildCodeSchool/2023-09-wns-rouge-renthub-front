@@ -1,3 +1,4 @@
+import { useMediaQuery } from "@mui/material";
 import ProductCard from "../cards/ProductCard";
 import MultiCarousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -93,12 +94,12 @@ type CarouselProps = {
 function Carousel({ type }: CarouselProps) {
   const responsiveHero = {
     xxxxl: {
-      breakpoint: { max: 4000, min: 1275 },
-      items: 2,
-      partialVisibilityGutter: 20,
+      breakpoint: { max: 4000, min: 1200 },
+      items: 1,
+      partialVisibilityGutter: 150,
     },
     xxxl: {
-      breakpoint: { max: 1274, min: 1005 },
+      breakpoint: { max: 1199, min: 1005 },
       items: 1,
       partialVisibilityGutter: 200,
     },
@@ -147,16 +148,59 @@ function Carousel({ type }: CarouselProps) {
     },
   };
 
-  const responsive = type === "Hero" ? responsiveHero : {};
+  const responsiveTopLocation = {
+    largeDesktop: {
+      breakpoint: { max: 4000, min: 1200 },
+      items: 3,
+    },
+    desktop: {
+      breakpoint: { max: 1199, min: 801 },
+      items: 2,
+    },
+    tablet: {
+      breakpoint: { max: 800, min: 745 },
+      items: 1,
+      partialVisibilityGutter: 250,
+    },
+    mobile: {
+      breakpoint: { max: 744, min: 650 },
+      items: 1,
+      partialVisibilityGutter: 180,
+    },
+    small: {
+      breakpoint: { max: 649, min: 465 },
+      items: 1,
+      partialVisibilityGutter: 100,
+    },
+    extraSmall: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      partialVisibilityGutter: 50,
+    },
+  };
 
-  const classNameCarousel = type === "Hero" ? " carousel-hero" : "";
+  const matchSize800 = useMediaQuery("(max-width:800px)");
+
+  const responsive =
+    type === "TopLocations"
+      ? responsiveTopLocation
+      : type === "Hero"
+        ? responsiveHero
+        : {};
+
+  const classNameCarousel =
+    type === "Hero"
+      ? " carousel-hero"
+      : type === "TopLocations"
+        ? " carousel-top-locations"
+        : "";
 
   return (
     <MultiCarousel
       responsive={responsive}
       infinite
       showDots={false}
-      partialVisible={type === "Hero" ? true : false}
+      partialVisible={type === "Hero" || matchSize800 ? true : false}
       keyBoardControl={true}
       containerClass={"carousel-container" + classNameCarousel}
     >

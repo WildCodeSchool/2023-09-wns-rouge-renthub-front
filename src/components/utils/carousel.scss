@@ -33,6 +33,24 @@
       }
     }
   }
+  &.carousel-top-locations {
+    .react-multi-carousel-item {
+      display: flex;
+      justify-content: center;
+    }
+    .react-multiple-carousel__arrow {
+      bottom: 0;
+
+      &.react-multiple-carousel__arrow--left {
+        left: 50%;
+        transform: translateX(-110%);
+      }
+      &.react-multiple-carousel__arrow--right {
+        right: 50%;
+        transform: translateX(110%);
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 599px) {
@@ -56,6 +74,16 @@
         }
       }
     }
+
+    // TEST
+    &.carousel-top-locations {
+      .react-multi-carousel-item {
+        background-color: red;
+        display: flex;
+        justify-content: start;
+      }
+    }
+    // ====================
   }
 }
 
