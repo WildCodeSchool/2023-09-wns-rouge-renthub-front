@@ -14,9 +14,9 @@ import { queryMeContext } from "@/components/graphql/Users";
 import { Suspense, useEffect } from "react";
 import { useRouter } from "next/router";
 import { UserContextTypes } from "@/types/UserTypes";
-import Header from "@/components/appBar/AppBar";
 import { API_URL } from "@/api/configApi";
 import Footer from "@/components/footer/Footer";
+import Navbar from "@/components/appBar/Navbar";
 
 const theme = createTheme({
   typography: {
@@ -125,7 +125,7 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <AuthProvider>
           <CssBaseline />
-          <Header />
+          <Navbar />
           <Component {...pageProps} />
           <Footer />
         </AuthProvider>
