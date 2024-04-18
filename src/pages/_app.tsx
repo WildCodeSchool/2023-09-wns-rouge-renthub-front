@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import { UserContextTypes } from "@/types/UserTypes";
 import Header from "@/components/appBar/AppBar";
 import { API_URL } from "@/api/configApi";
+import Footer from "@/components/footer/Footer";
 
 const theme = createTheme({
   typography: {
@@ -66,7 +67,7 @@ const theme = createTheme({
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: API_URL || "http://localhost:5000/",
+    uri: API_URL || "/api",
     credentials: "include",
   }),
   cache: new InMemoryCache(),
@@ -126,6 +127,7 @@ function App({ Component, pageProps }: AppProps) {
           <CssBaseline />
           <Header />
           <Component {...pageProps} />
+          <Footer />
         </AuthProvider>
       </ThemeProvider>
     </ApolloProvider>
