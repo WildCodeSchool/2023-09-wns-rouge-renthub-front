@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import Hero from "./Hero";
 import InfoLocation from "./InfoLocation";
 import Promotions from "./Promotions";
@@ -8,6 +8,9 @@ import Footer from "../footer/Footer";
 import TopLocations from "./TopLocations";
 
 function Home() {
+  const matchesSmall = useMediaQuery("(max-width:599px)");
+  const matchesSuperSmall = useMediaQuery("(max-width:359px)");
+
   const styleHome = {
     margin: "auto",
   };
@@ -35,7 +38,7 @@ function Home() {
       <Grid className="body" item xs={9}>
         <TopLocations />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <Articles />
       </Grid>
       <Grid className="body" item xs={9}>
