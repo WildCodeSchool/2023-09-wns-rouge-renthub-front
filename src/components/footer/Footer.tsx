@@ -1,12 +1,12 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Stack, Typography } from "@mui/material";
 
 function Footer() {
   return (
-    <Grid className="body" item xs={12} sx={{ width: "fit-content" }}>
+    <Stack maxWidth="xl" alignItems={"center"}>
       <Typography variant="h2" component="h1">
         Footer
       </Typography>
-    </Grid>
+    </Stack>
   );
 }
 

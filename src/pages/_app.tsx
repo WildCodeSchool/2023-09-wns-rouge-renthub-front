@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import { UserContextTypes } from "@/types/UserTypes";
 import Header from "@/components/appBar/AppBar";
 import { API_URL } from "@/api/configApi";
+import Footer from "@/components/footer/Footer";
 
 const theme = createTheme({
   typography: {
@@ -126,6 +127,7 @@ function App({ Component, pageProps }: AppProps) {
           <CssBaseline />
           <Header />
           <Component {...pageProps} />
+          <Footer />
         </AuthProvider>
       </ThemeProvider>
     </ApolloProvider>
