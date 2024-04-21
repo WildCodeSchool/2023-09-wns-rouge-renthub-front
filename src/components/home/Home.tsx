@@ -41,10 +41,10 @@ function Home() {
       <Grid item xs={12} component={"section"}>
         <Articles />
       </Grid>
-      <Grid className="body" item xs={9}>
+      <Grid item xs={12}>
         <Testimonials />
       </Grid>
-      <Grid className="body" item xs={9}>
+      <Grid item xs={12} component={"footer"}>
         <Footer />
       </Grid>
     </Grid>
