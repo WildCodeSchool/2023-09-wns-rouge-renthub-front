@@ -33,6 +33,19 @@
       }
     }
   }
+  &.carousel-testimonials {
+    .react-multiple-carousel__arrow {
+      bottom: 20px;
+
+      &.react-multiple-carousel__arrow--left {
+        left: 0;
+      }
+
+      &.react-multiple-carousel__arrow--right {
+        right: calc(100% - 4.5rem);
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 599px) {

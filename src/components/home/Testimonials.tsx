@@ -1,29 +1,15 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  IconButton,
-  Stack,
-  styled,
-  Typography,
-} from "@mui/material";
-import FormatQuoteSharpIcon from "@mui/icons-material/FormatQuoteSharp";
+import { Box, Typography } from "@mui/material";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 import { VariablesColors } from "@/styles/Variables.colors";
 
-import { NextButton, PreviousButton } from "../utils/OrangeNextButton";
-import { ArrowBackIos } from "@mui/icons-material";
 import { useState } from "react";
-interface TestimonialCardPropsType {
-  id: number;
-  author: string;
-  company?: string;
-  domain?: string;
-  description: string[];
-}
+import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
+import type TestimonialCardPropsType from "@/types/TestimonialsTypes";
+import CardsTestimials from "@/components/cards/Testimonials";
 
-const testimonialCards = [
+const testimonialCards: TestimonialCardPropsType[] = [
   {
     id: 1,
     author: "Jean Bertot",
@@ -58,15 +44,15 @@ const testimonialCards = [
     ],
   },
 
-  // {
-  //   id: 4,
-  //   author: "Olivier FRETAY",
-  //   company: "DG Code Rousseau",
-  //   domain: "location del tel materile de sport",
-  //   description: [
-  //     "“Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam, ad Mesopotamiam missusbus apollinarispaulo ante.”",
-  //   ],
-  // },
+  {
+    id: 4,
+    author: "Olivier FRETAY",
+    company: "DG Code Rousseau",
+    domain: "location del tel materile de sport",
+    description: [
+      "“Isdem diebus Apollinaris Domitiani gener, paulo ante agens palatii Caesaris curam, ad Mesopotamiam missusbus apollinarispaulo ante.”",
+    ],
+  },
 ];
 
 function Testimonials() {
@@ -92,20 +78,76 @@ function Testimonials() {
       setCurrentIndex(currentIndex - 1);
     }
   };
+  const responsive = {
+    xxxxl: {
+      breakpoint: { max: 4000, min: 2300 },
+      items: 3,
+      partialVisibilityGutter: 150,
+    },
+    xxxl: {
+      breakpoint: { max: 2300, min: 1274 },
+      items: 3,
+      partialVisibilityGutter: 0,
+    },
+    xxl: {
+      breakpoint: { max: 1274, min: 865 },
+      items: 1,
+      partialVisibilityGutter: 150,
+    },
+    xl: {
+      breakpoint: { max: 864, min: 725 },
+      items: 1,
+      partialVisibilityGutter: 60,
+    },
+    l: {
+      breakpoint: { max: 724, min: 660 },
+      items: 1,
+      partialVisibilityGutter: 30,
+    },
+    m: {
+      breakpoint: { max: 659, min: 600 },
+      items: 1,
+    },
+    s: {
+      breakpoint: { max: 599, min: 525 },
+      items: 2,
+      partialVisibilityGutter: 0,
+    },
+    xs: {
+      breakpoint: { max: 524, min: 455 },
+      items: 1,
+      partialVisibilityGutter: 200,
+    },
+    xxs: {
+      breakpoint: { max: 454, min: 404 },
+      items: 1,
+      partialVisibilityGutter: 150,
+    },
+    xxxs: {
+      breakpoint: { max: 403, min: 360 },
+      items: 1,
+      partialVisibilityGutter: 0,
+    },
+    smallest: {
+      breakpoint: { max: 359, min: 0 },
+      items: 1,
+    },
+  };
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
+    // <Box
+    //   sx={{
+    //     // display: "flex",
+    //     // flexDirection: "column",
+    //     // gap: 2,
 
-        alignItems: "center",
+    //     // alignItems: "center",
 
-        padding: { xs: "1.5rem 0.5rem", md: "5rem" },
+    //     padding: { xs: "1.5rem 0.5rem", md: "5rem" },
 
-        bgcolor: `rgba(${redValue}, ${greenValue}, ${blueValue}, .1)`,
-      }}
-    >
+    //     bgcolor: `rgba(${redValue}, ${greenValue}, ${blueValue}, .1)`,
+    //   }}
+    // >
+    <div className="testimonials-container">
       <Typography
         variant="h4"
         component="h2"
@@ -123,18 +165,17 @@ function Testimonials() {
       >
         Nos témoignages
       </Typography>
-
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: { xs: "column", md: "column" },
 
           gap: 2,
           justifyContent: "center",
         }}
       >
         <>
-          <Box
+          {/* <Box
             sx={{
               display: "flex",
               flexDirection: "row",
@@ -143,70 +184,38 @@ function Testimonials() {
               alignItems: "center",
             }}
           >
-            <PreviousButton key={0} onClick={handleNext} disabled={false} />
-          </Box>
-          {testimonialCards?.map((card) => (
-            <Card
-              key={card.id}
-              sx={{
-                width: { xs: "100%", md: "400px" },
-                padding: { xs: "rem", md: "1.5rem" },
-                overflow: "hidden",
-                borderRadius: "20px",
-                boxShadow: "none",
-                backgroundColor: `rgba(${redValue}, ${greenValue}, ${blueValue}, .2)`,
-              }}
-            >
-              <CardContent
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Box sx={{ flexDirection: "column" }}>
-                  {card.description.map((paragraph, index) => (
-                    <Typography key={index} variant="body2" fontStyle="italic">
-                      {paragraph}
-                    </Typography>
-                  ))}
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "flex-end",
-                    paddingTop: 4,
-                  }}
-                >
-                  <div>
-                    <Typography variant="body2">
-                      {card.author} - {card.company}
-                    </Typography>
-                    <Typography variant="body2" fontWeight={700}>
-                      {card.domain}
-                    </Typography>
-                  </div>
+           <PreviousButton key={0} onClick={handleNext} disabled={false} /> 
+          </Box> */}
+          <Carousel
+            responsive={responsive}
+            infinite
+            showDots={false}
+            autoPlay={true}
+            partialVisible={true}
+            keyBoardControl={true}
+            containerClass={"testimonials-carousel"}
+          >
+            {testimonialCards?.map((card) => (
+              <CardsTestimials card={card} key={card.id} />
+            ))}
+          </Carousel>
 
-                  <FormatQuoteSharpIcon sx={{ fontSize: 54 }} color="primary" />
-                </Box>
-              </CardContent>
-            </Card>
-          ))}
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "column",
               gap: 2,
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <NextButton key={0} onClick={handleNext} disabled={false} />
+            <OrangeBtnWhiteHover>
+              Découvrir tous les témoignages
+            </OrangeBtnWhiteHover>
           </Box>
         </>
       </Box>
-    </Box>
+    </div>
   );
 }
 

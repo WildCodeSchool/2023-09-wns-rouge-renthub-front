@@ -16,7 +16,7 @@ const articles = [
     title: "Savoie Hivernale : Évasion Magique entre Neige, Aventure",
     image: "/images/article_2.png",
     content: [
-      "La Savoie, véritable joyau hivernal, offre une multitude d'activités enchanteuses pour tous les amateurs de montagne. Imaginez-vous glissant sur les vastes étendues enneigées de ses domaines skiables réputés, où débutants et experts trouvent leur bonheur entre pistes vertes et noires vertigineuses.  Au-delà du ski, la Savoie invite à des escapades en raquettes à travers des forêts silencieuses, où la neige étincelle sous les rayons du soleil. Les plus aventureux pourront s'essayer au ski de randonnée ou au parapente hivernal, pour survoler des paysages à couper le souffle. ",
+      "La Savoie, véritable joyau hivernal, offre une multitude d'activités enchanteuses pour tous les amateurs de montagne. Imaginez-vous glissant sur les vastes étendues enneigées de ses domaines skiables réputés, où débutants et experts trouvent leur bonheur entre pistes vertes et noires vertigineuses. Au-delà du ski, la Savoie invite à des escapades en raquettes à travers des forêts silencieuses, où la neige étincelle sous les rayons du soleil. Les plus aventureux pourront s'essayer au ski de randonnée ou au parapente hivernal, pour survoler des paysages à couper le souffle. ",
       "Sans oublier les moments de détente dans les spas et centres thermaux, où le bien-être se trouve au cœur de la montagne. ",
     ],
   },
