@@ -4,7 +4,7 @@ import ServiceOfferingsProps from "@/types/ServiceOfferingsType";
 import { VariablesColors } from "@/styles/Variables.colors";
 import ServiceOfferingsCard from "../cards/ServiceOfferingsCard";
 
-const ServiceOfferings: React.FC = () => {
+export function ServiceOfferings() {
   const { darkBlueColor } = new VariablesColors();
   const redValue = parseInt(darkBlueColor.substring(1, 3), 16);
   const greenValue = parseInt(darkBlueColor.substring(3, 5), 16);
@@ -80,6 +80,6 @@ const ServiceOfferings: React.FC = () => {
       </Grid>
     </Box>
   );
-};
+}
 
 export default ServiceOfferings;
