@@ -7,7 +7,7 @@ import { VariablesColors } from "@/styles/Variables.colors";
 import { useState } from "react";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import type TestimonialCardPropsType from "@/types/TestimonialsTypes";
-import CardsTestimials from "@/components/cards/Testimonials";
+import CardsTestimials from "@/components/cards/TestimonialsCard";
 
 const testimonialCards: TestimonialCardPropsType[] = [
   {
@@ -56,10 +56,10 @@ const testimonialCards: TestimonialCardPropsType[] = [
 ];
 
 function Testimonials() {
-  const { orangeColor } = new VariablesColors();
-  const redValue = parseInt(orangeColor.substring(1, 3), 16);
-  const greenValue = parseInt(orangeColor.substring(3, 5), 16);
-  const blueValue = parseInt(orangeColor.substring(5, 7), 16);
+  // const { orangeColor } = new VariablesColors();
+  // const redValue = parseInt(orangeColor.substring(1, 3), 16);
+  // const greenValue = parseInt(orangeColor.substring(3, 5), 16);
+  // const blueValue = parseInt(orangeColor.substring(5, 7), 16);
 
   function viewAll() {
     console.warn("view all testimonials");
@@ -80,18 +80,18 @@ function Testimonials() {
   };
   const responsive = {
     xxxxl: {
-      breakpoint: { max: 4000, min: 2300 },
+      breakpoint: { max: 4000, min: 1730 },
       items: 3,
-      partialVisibilityGutter: 150,
+      partialVisibilityGutter: 140,
     },
     xxxl: {
-      breakpoint: { max: 2300, min: 1274 },
+      breakpoint: { max: 1730, min: 1730 },
       items: 3,
-      partialVisibilityGutter: 0,
+      partialVisibilityGutter: 120,
     },
     xxl: {
       breakpoint: { max: 1274, min: 865 },
-      items: 1,
+      items: 2,
       partialVisibilityGutter: 150,
     },
     xl: {
@@ -205,6 +205,7 @@ function Testimonials() {
               display: "flex",
               flexDirection: "column",
               gap: 2,
+              padding: "1rem",
               justifyContent: "center",
               alignItems: "center",
             }}

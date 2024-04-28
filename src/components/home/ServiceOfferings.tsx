@@ -57,7 +57,7 @@ const ServiceOfferings: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "start",
-        backgroundColor: "white",
+        backgroundColor: backgroundColor,
         height: "fit-content",
       }}
     >
@@ -72,7 +72,10 @@ const ServiceOfferings: React.FC = () => {
         rowGap={"1.7rem"}
       >
         {serviceOfferingsData.map((serviceOffering, index) => (
-          <div key={index}>rzqr</div>
+          <ServiceOfferingsCard
+            key={serviceOffering.id}
+            card={serviceOffering}
+          />
         ))}
       </Grid>
     </Box>

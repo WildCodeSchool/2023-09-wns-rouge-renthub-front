@@ -1,26 +1,40 @@
 .testimonials-container{
-padding : 0 15rem;
+padding : 2rem 15rem;
   background-color: #FFE8D8;
   height: auto;
 
 }
 .testimonials-carousel {
   &-container{
-padding-left: 5rem;
+padding-left: 0rem;
     height: 450px;
+   
   }
 
   .react-multiple-carousel__arrow {
     min-width: 2rem;
     min-height: 2rem;
-   
+
+    // bottom: -10px;
+    // overflow: visible;
+    // z-index:1;
+      &.react-multiple-carousel__arrow--left {
+        left: 0%;
+       transform: translateX(15%);
+      }
+      &.react-multiple-carousel__arrow--right {
+        right: 4rem;
+        transform: translateX(120%);
+      }
     background-color: $orangeColor;
 
     &:before {
       font-size: 1rem;
    
     }
-
+   
+     
+    
     &:hover {
       background-color: $whiteColor;
       box-shadow: inset 0 0 2px $orangeColor;
@@ -64,19 +78,19 @@ width:80%;
       scale: 0.8;
     }
 
-    // &.carousel-hero {
-    //   .react-multiple-carousel__arrow {
-    //     bottom: 0px;
-    //     &.react-multiple-carousel__arrow--left {
-    //       left: 50%;
-    //       transform: translateX(-110%);
-    //     }
-    //     &.react-multiple-carousel__arrow--right {
-    //       right: 50%;
-    //       transform: translateX(110%);
-    //     }
-    //   }
-    // }
+    &.carousel-hero {
+      .react-multiple-carousel__arrow {
+        bottom: 0px;
+        &.react-multiple-carousel__arrow--left {
+          left: 50%;
+          transform: translateX(-110%);
+        }
+        &.react-multiple-carousel__arrow--right {
+          right: 50%;
+          transform: translateX(110%);
+        }
+      }
+    }
   }
 }
 
