@@ -63,6 +63,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: "#FF8E3C",
+        },
+      },
+    },
   },
 });
 
