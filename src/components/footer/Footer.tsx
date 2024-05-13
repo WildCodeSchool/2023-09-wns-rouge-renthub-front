@@ -6,7 +6,7 @@ import ServiceOfferingsCard from "../cards/ServiceOfferingsCard";
 import FooterMenuCard from "../cards/FooterMenuCard";
 import { BorderTop } from "@mui/icons-material";
 import SubscribeNewsLetterCard from "../cards/SubscribeNewsLetterCard";
-import ServiceOfferings from "../home/ServiceOfferings";
+import ServiceOfferings from "./ServiceOfferings";
 
 const Footer: React.FunctionComponent = () => {
   const { darkBlueColor } = new VariablesColors();
