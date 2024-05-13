@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, Typography } from "@mui/material";
-import { queryMe } from "@/components/graphql/Users";
+import { queryMe } from "@/graphql/Users";
 import { useQuery } from "@apollo/client";
 import { UserTypes } from "@/types/UserTypes";
 

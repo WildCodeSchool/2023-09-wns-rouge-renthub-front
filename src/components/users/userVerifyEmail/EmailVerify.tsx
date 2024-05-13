@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import toast, { Toaster } from "react-hot-toast";
-import { mutationVerifyEmail } from "@/components/graphql/Users";
+import { mutationVerifyEmail } from "@/graphql/Users";
 
 type UserEmailVerify = {
   success: boolean;

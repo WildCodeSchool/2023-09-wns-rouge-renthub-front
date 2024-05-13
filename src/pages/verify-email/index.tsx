@@ -1,7 +1,4 @@
-import {
-  mutationReSendCode,
-  mutationVerifyEmail,
-} from "@/components/graphql/Users";
+import { mutationReSendCode, mutationVerifyEmail } from "@/graphql/Users";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { useMutation } from "@apollo/client";
 import {

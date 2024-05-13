@@ -5,7 +5,7 @@ import StepWelcome from "./StepWelcome";
 import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { useMutation } from "@apollo/client";
-import { mutationCreateUser } from "@/components/graphql/Users";
+import { mutationCreateUser } from "@/graphql/Users";
 import { UserFormData } from "@/types/UserTypes";
 import toast, { Toaster } from "react-hot-toast";
 
