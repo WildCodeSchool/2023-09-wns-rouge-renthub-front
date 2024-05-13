@@ -37,7 +37,7 @@ function InfoLocation() {
       direction={"column"}
       flexWrap={"wrap"}
       gap={"2rem"}
-      paddingTop={"5rem"}
+      marginTop={"5rem"}
     >
       <Stack direction={"column"} gap={2}>
         <Typography

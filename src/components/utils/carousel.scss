@@ -33,16 +33,22 @@
       }
     }
   }
-  &.carousel-testimonials {
+
+  &.carousel-top-locations {
+    .react-multi-carousel-item {
+      display: flex;
+      justify-content: center;
+    }
     .react-multiple-carousel__arrow {
-      bottom: 20px;
+      bottom: 0;
 
       &.react-multiple-carousel__arrow--left {
-        left: 0;
+        left: 50%;
+        transform: translateX(-110%);
       }
-
       &.react-multiple-carousel__arrow--right {
-        right: calc(100% - 4.5rem);
+        right: 50%;
+        transform: translateX(110%);
       }
     }
   }
@@ -67,6 +73,13 @@
           right: 50%;
           transform: translateX(110%);
         }
+      }
+    }
+
+    &.carousel-top-locations {
+      .react-multi-carousel-item {
+        display: flex;
+        justify-content: flex-start;
       }
     }
   }

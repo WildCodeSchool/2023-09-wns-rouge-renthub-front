@@ -17,6 +17,7 @@ function Promotions() {
     <Grid
       container
       padding={"5rem 5rem 5rem 5rem"}
+      marginTop={"5rem"}
       sx={{ ...stylePromotions, backgroundColor: darkBlueColor }}
       {...(matches && { direction: "column", padding: "4rem", gap: "2rem" })}
     >

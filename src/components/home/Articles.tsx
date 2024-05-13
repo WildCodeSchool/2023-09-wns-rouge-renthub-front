@@ -1,5 +1,6 @@
 import { VariablesColors } from "@/styles/Variables.colors";
 import Article from "./Article";
+import { Box } from "@mui/material";
 
 const articles = [
   {
@@ -25,11 +26,12 @@ const articles = [
 function Articles() {
   const { lightGreyColor } = new VariablesColors();
   return articles.map((article, index) => (
-    <Article
-      key={article.id}
-      article={article}
-      {...(!(index % 2) && { bgColor: lightGreyColor, odd: true })}
-    />
+    <Box key={article.id} marginTop="5rem">
+      <Article
+        article={article}
+        {...(!(index % 2) && { bgColor: lightGreyColor, odd: true })}
+      />
+    </Box>
   ));
 }
 
