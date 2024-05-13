@@ -7,7 +7,7 @@ import Head from "next/head";
 const colors = new VariablesColors();
 const { lightGreyColor } = colors;
 
-const BackOfficeLayout = ({ children }) => {
+const BackOfficeLayout = ({ children }): React.ReactNode => {
   return (
     <Box sx={{ display: "flex", width: "100%" }}>
       <Head>

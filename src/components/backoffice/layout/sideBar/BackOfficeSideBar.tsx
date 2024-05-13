@@ -12,7 +12,6 @@ import {
   Toolbar,
 } from "@mui/material";
 import { useState } from "react";
-import Link from "@mui/material/Link";
 import { useRouter } from "next/router";
 import BackOfficeAppBar from "../appBar/BackOfficeAppBar";
 import { menuItems } from "./MenuList";
@@ -22,7 +21,7 @@ import { VariablesColors } from "@/styles/Variables.colors";
 const colors = new VariablesColors();
 const { whiteColor, orangeColor } = colors;
 
-const BackOfficeSidebar = () => {
+const BackOfficeSidebar = (): React.ReactNode => {
   const router = useRouter();
   const [open, setOpen] = useState({});
 
@@ -66,9 +65,14 @@ const BackOfficeSidebar = () => {
               <ListItemIcon sx={{ color: orangeColor }}>
                 {React.createElement(DashboardIcon)}
               </ListItemIcon>
-              <Link href="/renthub-backoffice" underline="none" color="inherit">
+              <Box
+                sx={{ cursor: "pointer" }}
+                onClick={() => {
+                  router.replace(`/renthub-backoffice`);
+                }}
+              >
                 <ListItemText primary="Dashboard" />
-              </Link>
+              </Box>
             </ListItemButton>
           </ListItem>
           <Divider />
@@ -88,9 +92,13 @@ const BackOfficeSidebar = () => {
                   <List component="div" disablePadding>
                     {item.subMenus.map((sub) => (
                       <ListItem key={sub.text} disablePadding>
-                        <Link href={sub.href} underline="none" color="inherit">
+                        <Box
+                          sx={{ cursor: "pointer" }}
+                          onClick={() => {
+                            router.replace(`/${sub.href}`);
+                          }}
+                        >
                           <ListItemButton
-                            component="a"
                             sx={{
                               pl: 4,
                             }}
@@ -100,7 +108,7 @@ const BackOfficeSidebar = () => {
                             </ListItemIcon>
                             <ListItemText primary={sub.text} />
                           </ListItemButton>
-                        </Link>
+                        </Box>
                       </ListItem>
                     ))}
                   </List>

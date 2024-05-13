@@ -1,5 +1,4 @@
 import { AppBar, CardMedia } from "@mui/material";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { API_URL } from "@/api/configApi";
