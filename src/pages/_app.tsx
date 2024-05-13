@@ -15,9 +15,11 @@ import { queryMeContext } from "@/components/graphql/Users";
 import { Suspense, useEffect } from "react";
 import { useRouter } from "next/router";
 import { UserContextTypes } from "@/types/UserTypes";
-import Header from "@/components/appBar/AppBar";
 import { API_URL } from "@/api/configApi";
 import Footer from "@/components/footer/Footer";
+import Navbar from "@/components/appBar/Navbar";
+import BackOfficeLayout from "@/components/backoffice/layout/BackOfficeLayout";
+import React from "react";
 
 const theme = createTheme({
   typography: {
@@ -128,14 +130,20 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 }
 
 function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const isBackOffice = router.pathname.startsWith("/renthub-backoffice");
+  const Layout = isBackOffice ? BackOfficeLayout : React.Fragment;
+
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <AuthProvider>
           <CssBaseline />
-          <Header />
-          <Component {...pageProps} />
-          <Footer />
+          {!isBackOffice && <Navbar />}
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          {!isBackOffice && <Footer />}
         </AuthProvider>
       </ThemeProvider>
     </ApolloProvider>

@@ -1,7 +1,7 @@
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { Grid, Typography, useMediaQuery } from "@mui/material";
-import HeroCarousel from "../utils/Carousel";
+import Carousel from "../utils/Carousel";
 
 function Hero() {
   const { whiteColor, blackColor } = new VariablesColors();
@@ -68,7 +68,7 @@ function Hero() {
         xs={12}
         sm={6}
       >
-        <HeroCarousel type="Hero" />
+        <Carousel type="Hero" />
       </Grid>
     </Grid>
   );
