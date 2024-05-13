@@ -45,9 +45,6 @@ function Home() {
       <Grid item xs={12}>
         <Testimonials />
       </Grid>
-      <Grid item xs={12}>
-        <ServiceOfferings />
-      </Grid>
     </Grid>
   );
 }

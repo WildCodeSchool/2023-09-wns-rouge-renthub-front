@@ -6,6 +6,7 @@ import ServiceOfferingsCard from "../cards/ServiceOfferingsCard";
 import FooterMenuCard from "../cards/FooterMenuCard";
 import { BorderTop } from "@mui/icons-material";
 import SubscribeNewsLetterCard from "../cards/SubscribeNewsLetterCard";
+import ServiceOfferings from "../home/ServiceOfferings";
 
 const Footer: React.FunctionComponent = () => {
   const { darkBlueColor } = new VariablesColors();
@@ -58,6 +59,9 @@ const Footer: React.FunctionComponent = () => {
   return (
     <>
       {/* top footer */}
+      <Grid item xs={12}>
+        <ServiceOfferings />
+      </Grid>
       <Box
         padding={{ xs: "2rem 0", md: "1rem 0" }}
         sx={{
