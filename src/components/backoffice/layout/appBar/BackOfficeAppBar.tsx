@@ -1,7 +1,7 @@
 import { AppBar, CardMedia } from "@mui/material";
 import { useRouter } from "next/router";
 import { VariablesColors } from "@/styles/Variables.colors";
-import { API_URL } from "@/api/configApi";
+import { API_URL } from "@/components/api/configApi";
 
 const colors = new VariablesColors();
 const { whiteColor } = colors;

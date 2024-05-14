@@ -14,11 +14,11 @@ import { queryMeContext } from "@/components/graphql/Users";
 import { Suspense, useEffect } from "react";
 import { useRouter } from "next/router";
 import { UserContextTypes } from "@/types/UserTypes";
-import { API_URL } from "@/api/configApi";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/appBar/Navbar";
 import BackOfficeLayout from "@/components/backoffice/layout/BackOfficeLayout";
 import React from "react";
+import { API_URL } from "@/components/api/configApi";
 
 const theme = createTheme({
   typography: {
