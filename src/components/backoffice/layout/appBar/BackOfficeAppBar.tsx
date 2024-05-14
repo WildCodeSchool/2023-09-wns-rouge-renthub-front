@@ -1,7 +1,7 @@
 import { AppBar, CardMedia } from "@mui/material";
 import { useRouter } from "next/router";
 import { VariablesColors } from "@/styles/Variables.colors";
-import { API_URL } from "@/api/configApi";
+import { PATH_IMAGE } from "@/api/configApi";
 
 const colors = new VariablesColors();
 const { whiteColor } = colors;
@@ -25,7 +25,7 @@ const BackOfficeAppBar = (): React.ReactNode => {
           cursor: "pointer",
           margin: "auto",
         }}
-        image={`${API_URL}assets/images/general/renthub-logo.png`}
+        image={`${PATH_IMAGE}/general/renthub-logo.png`}
         title="logo renthub"
         onClick={() => {
           router.push("/renthub-backoffice");
