@@ -5,7 +5,7 @@ import UserPhone from "../components/UserPhone";
 import UserPassword from "../components/UserPassword";
 import { StepFormButton } from "@/styles/MuiButtons";
 import { VariablesColors } from "@/styles/Variables.colors";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
 import {
   isValidEmailRegex,
   isValidNameRegex,
@@ -36,6 +36,7 @@ type StepSignUpFormProps = {
 };
 
 const StepForm = (props: StepSignUpFormProps): React.ReactNode => {
+  const theme = useTheme();
   const stepConfig = {
     email: {
       title: "Votre email ?",
@@ -114,10 +115,10 @@ const StepForm = (props: StepSignUpFormProps): React.ReactNode => {
     <Grid
       container
       item
-      xs={11}
-      sm={10}
-      md={5}
-      lg={3.5}
+      xs={9}
+      sm={8}
+      md={7}
+      lg={5}
       sx={{
         display: "flex",
         margin: "auto",
@@ -125,13 +126,23 @@ const StepForm = (props: StepSignUpFormProps): React.ReactNode => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        [theme.breakpoints.down("sm")]: {
+          p: 1,
+          minHeight: "370px",
+        },
       }}
     >
       <StepIcon sx={{ fontSize: 50, color: orangeColor }} />
-      <Typography variant="h5" fontWeight={700} marginTop={3} gutterBottom>
+      <Typography
+        variant="h5"
+        textAlign="center"
+        fontWeight={700}
+        marginTop={3}
+        gutterBottom
+      >
         {currentConfig.title}
       </Typography>
-      <Typography variant="subtitle2" gutterBottom>
+      <Typography variant="subtitle2" textAlign="center" gutterBottom>
         {currentConfig.subtitle}
       </Typography>
       <Box sx={{ marginTop: "20px", marginBottom: "30px", width: "100%" }}>
