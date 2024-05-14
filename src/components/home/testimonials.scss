@@ -2,52 +2,53 @@
   padding : 2rem 12%;
   background-color: #FFE8D8;
   height: auto;
-
-}
-.react-multi-carousel-item {
-  margin:1rem;
-}
-.testimonials-carousel {
-  &-container{
-    padding-left: 0rem;
-    height: 450px;
+  .react-multi-carousel-item {
+    margin:1rem;
   }
-
-  .react-multiple-carousel__arrow {
-    min-width: 2rem;
-    min-height: 2rem;
-
-      &.react-multiple-carousel__arrow--left {
-        left: 0%;
-       transform: translateX(15%);
+  .testimonials-carousel {
+    &-container{
+      padding-left: 0rem;
+      height: 450px;
+    }
+  
+    .react-multiple-carousel__arrow {
+      min-width: 2rem;
+      min-height: 2rem;
+  
+        &.react-multiple-carousel__arrow--left {
+          left: 0%;
+         transform: translateX(15%);
+        }
+        &.react-multiple-carousel__arrow--right {
+          right: 4rem;
+          transform: translateX(120%);
+        }
+      background-color: $orangeColor;
+  
+      &:before {
+        font-size: 1rem;
+     
       }
-      &.react-multiple-carousel__arrow--right {
-        right: 4rem;
-        transform: translateX(120%);
+      &:hover {
+        background-color: $whiteColor;
+        box-shadow: inset 0 0 2px $orangeColor;
       }
-    background-color: $orangeColor;
-
-    &:before {
-      font-size: 1rem;
-   
+  
+      &:hover::before {
+        color: $orangeColor;
+      }
     }
-    &:hover {
-      background-color: $whiteColor;
-      box-shadow: inset 0 0 2px $orangeColor;
-    }
-
-    &:hover::before {
-      color: $orangeColor;
-    }
+  
+   .react-multi-carousel-list {
+      width:80%;
+     }
+  
+    .react-multi-carousel-dot--active >button { 
+      background-color: orange;
+      }
+  
   }
-
- .react-multi-carousel-list {
-    width:80%;
-   }
-
-  .react-multi-carousel-dot--active >button { 
-    background-color: orange;
-    }
+  
 
 }
 
