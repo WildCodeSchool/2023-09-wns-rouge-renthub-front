@@ -96,7 +96,7 @@ const SignUp = (): React.ReactNode => {
           <Grid
             item
             xs={12}
-            sm={4}
+            sm={5}
             md={3.5}
             lg={3}
             sx={{
@@ -155,7 +155,7 @@ const SignUp = (): React.ReactNode => {
               </Box>
             ))}
           </Grid>
-          <Grid item xs={12} sm={8} md={8.5} lg={9}>
+          <Grid item xs={12} sm={7} md={8.5} lg={9}>
             {currentStep === "submit" ? (
               <StepSubmit onSubmit={onSubmit} loading={loading.loading} />
             ) : (
