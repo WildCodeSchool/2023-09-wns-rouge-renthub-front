@@ -11,12 +11,12 @@ function SubMenuProduct({
   listProducts,
 }: SubMenuProductProps): React.ReactNode {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-      <Typography textAlign={"center"} color={"white"}>
+    <Box marginTop={3} flexDirection={"column"} gap={2} display={"flex"}>
+      <Typography textAlign={"left"} color={"black"}>
         {title}
       </Typography>
 
-      <Box display={"flex"} flexDirection={"column"} gap={2}>
+      <Box display={"flex"} flexDirection={"column"} gap={1.5}>
         {listProducts?.map((product) => (
           <li key={product.id}>
             <Link href={`/pages/product/${product.id}`}>
