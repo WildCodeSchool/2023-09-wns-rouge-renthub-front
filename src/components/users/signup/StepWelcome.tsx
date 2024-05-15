@@ -1,6 +1,6 @@
 import React from "react";
 import router from "next/router";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 import { StepFormButton } from "@/styles/MuiButtons";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import { VariablesColors } from "@/styles/Variables.colors";
@@ -13,6 +13,7 @@ type StepWelcomeProps = {
 };
 
 const StepWelcome = (props: StepWelcomeProps): React.ReactNode => {
+  const theme = useTheme();
   return (
     <Grid
       container
@@ -25,6 +26,10 @@ const StepWelcome = (props: StepWelcomeProps): React.ReactNode => {
         justifyContent: "center",
         alignItems: "center",
         gap: "1rem",
+        [theme.breakpoints.down("sm")]: {
+          minHeight: "370px",
+          height: "100%",
+        },
       }}
     >
       <RocketLaunchIcon sx={{ fontSize: 50, color: orangeColor }} />
