@@ -3,26 +3,26 @@ import {
   Box,
   Button,
   Container,
-  FormControl,
   IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
   Toolbar,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import ExpandCircleDownOutlinedIcon from "@mui/icons-material/ExpandCircleDownOutlined";
 import * as React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import ResponsiveMenu from "./ResponsiveMenu";
 import { VariablesColors } from "@/styles/Variables.colors";
+import MenuCategoriesProduct from "./MenuCategoriesProduct";
+import SearchBar from "./SearchBar";
 
-function Navbar() {
+function Navbar(): React.ReactNode {
   const [globalFilterValue, setGlobalFilterValue] =
     React.useState<string>(""); /* global filter for search field */
   const router = useRouter();
   const { orangeColor } = new VariablesColors();
+
+  const [showMenuCategories, setShowMenuCategories] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   /* Menu item, redirect to the well path */
   const pages = [
@@ -31,110 +31,118 @@ function Navbar() {
     { title: "Mon panier", path: "/cart" },
   ];
 
+  const HandleMenuCategoriesClick = (event: React.MouseEvent<HTMLElement>) => {
+    setShowMenuCategories(!showMenuCategories);
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+  const handleMenuCategoriesClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popper" : undefined;
+
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: "#fff" }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box
-            display={"flex"}
-            gap={2}
-            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
-          >
-            <Image
-              src={"/images/renthub-logo.png"}
-              alt="logo"
-              width={201}
-              height={38.74}
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                router.push("/");
-              }}
-            />
-            <Button
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "white",
-              }}
-              variant="contained"
-              size="large"
+    <>
+      <AppBar position="sticky" sx={{ backgroundColor: "#fff" }}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Box
+              display={"flex"}
+              gap={2}
+              sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
             >
-              Nos matériels
-            </Button>
-          </Box>
-          {/* Responsive */}
-          {/* Display favicon logo on mobile */}
-          <Box
-            sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}
-          >
-            <Image
-              src="/images/favicon.png"
-              alt="logo"
-              width={40}
-              height={40}
-            />
-            {/* @TODO: set modal in responsive menu */}
-            <IconButton
-              aria-label="materiels"
-              size="large"
-              sx={{
-                color: orangeColor,
-              }}
-              onClick={() => {
-                // displaying the modal...
-              }}
-            >
-              <ExpandCircleDownOutlinedIcon fontSize="inherit" />
-            </IconButton>
-          </Box>
-          <FormControl sx={{ mx: "auto", width: "30ch" }} variant="outlined">
-            <InputLabel htmlFor="search" size="small">
-              Rechercher
-            </InputLabel>
-            <OutlinedInput
-              id="search"
-              type="text"
-              size="small"
-              onClick={(e) => {
-                const inputElement = e.target as HTMLInputElement;
-                setGlobalFilterValue(inputElement.value);
-              }}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton aria-label="search">
-                    <SearchIcon />
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Rechercher"
-            />
-          </FormControl>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              justifyContent: "flex-end",
-            }}
-            gap={2}
-          >
-            {pages.map((page, idx) => (
-              <Button
-                key={idx}
+              <Image
+                src={"/images/renthub-logo.png"}
+                alt="logo"
+                width={201}
+                height={38.74}
+                style={{ cursor: "pointer" }}
                 onClick={() => {
-                  router.push(page.path);
+                  router.push("/");
                 }}
-                sx={{ my: 2, color: "black", display: "block" }}
+              />
+              <Button
+                aria-describedby={id}
+                type="button"
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "white",
+                }}
+                variant="contained"
+                size="large"
+                onClick={HandleMenuCategoriesClick}
               >
-                {page.title}
+                Nos matériels
               </Button>
-            ))}
-          </Box>
-          {/* Responsive Component usefull for displaying menu item {page} with menu icon icon  */}
-          <ResponsiveMenu pages={pages} router={router} />
-        </Toolbar>
-      </Container>
-    </AppBar>
+              {/* composant pop over */}
+              <MenuCategoriesProduct
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                handleMenuCategoriesClose={handleMenuCategoriesClose}
+              />
+            </Box>
+            {/* Responsive */}
+            {/* Display favicon logo on mobile */}
+            <Box
+              sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}
+            >
+              <Image
+                src="/images/favicon.png"
+                alt="logo"
+                width={40}
+                height={40}
+              />
+              {/* @TODO: set modal in responsive menu */}
+              <IconButton
+                aria-label="materiels"
+                size="large"
+                sx={{
+                  color: orangeColor,
+                }}
+                onClick={() => {
+                  // displaying the modal...
+                }}
+              >
+                <ExpandCircleDownOutlinedIcon fontSize="inherit" />
+              </IconButton>
+            </Box>
+
+            <SearchBar
+              backgroundColor="white"
+              outerColor="orange"
+              colorText="orange"
+            />
+
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                justifyContent: "flex-end",
+              }}
+              gap={2}
+            >
+              {pages.map((page, idx) => (
+                <Button
+                  key={idx}
+                  onClick={() => {
+                    router.push(page.path);
+                  }}
+                  sx={{ my: 2, color: "black", display: "block" }}
+                >
+                  {page.title}
+                </Button>
+              ))}
+            </Box>
+            {/* Responsive Component usefull for displaying menu item {page} with menu icon icon  */}
+            <ResponsiveMenu pages={pages} router={router} />
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </>
   );
 }
 export default Navbar;
