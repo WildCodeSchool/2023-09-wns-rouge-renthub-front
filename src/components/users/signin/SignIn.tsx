@@ -56,6 +56,7 @@ const UserConnection = (): React.ReactNode => {
       xs={12}
       sx={{
         margin: 2,
+        width: 370,
         [theme.breakpoints.down("sm")]: {
           marginRight: "auto",
           marginLeft: "auto",
@@ -77,7 +78,7 @@ const UserConnection = (): React.ReactNode => {
               flexDirection: "column",
               alignItems: "center",
               gap: 1,
-              padding: 5,
+              padding: 4,
             }}
           >
             <Grid
