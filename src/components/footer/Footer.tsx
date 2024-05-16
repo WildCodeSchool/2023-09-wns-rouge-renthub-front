@@ -1,13 +1,101 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
+import React from "react";
+import FooterMenuCard from "../cards/FooterMenuCard";
+import SubscribeNewsLetterCard from "../cards/SubscribeNewsLetterCard";
+import ServiceOfferings from "./ServiceOfferings";
 
-function Footer() {
+const Footer: React.FunctionComponent = () => {
+  const data = [
+    {
+      id: 1,
+      title: "La société",
+      links: [
+        { id: 1, name: "Qui sommes-nous ?", url: "/qui-sommes-nous" },
+        { id: 2, name: "témoignages clietns", url: "/temoignages" },
+      ],
+    },
+    {
+      id: 2,
+      title: "Nos Services",
+      links: [
+        { id: 1, name: "RenHub Service", url: "/renhub-service" },
+        { id: 2, name: "RenHub Event", url: "/renhub-event" },
+      ],
+    },
+    {
+      id: 3,
+      title: "Nos matériels",
+      links: [
+        { id: 1, name: "Catalogue", url: "/catalogue" },
+        {
+          id: 2,
+          name: "Documentation technique",
+          url: "/documentation-technique",
+        },
+        { id: 3, name: "Faq", url: "/faq" },
+      ],
+    },
+    {
+      id: 4,
+      title: "Nos agences",
+      links: [
+        { id: 1, name: "France", url: "/fr" },
+        { id: 2, name: "Allemagne", url: "/de" },
+        { id: 3, name: "Portugal", url: "/pt" },
+      ],
+    },
+  ];
   return (
-    <Stack maxWidth="xl" alignItems={"center"}>
-      <Typography variant="h2" component="h1">
-        Footer
-      </Typography>
-    </Stack>
+    <>
+      {/* top footer */}
+      <Grid item xs={12}>
+        <ServiceOfferings />
+      </Grid>
+      <Box
+        padding={{ xs: "2rem 0", md: "1rem 0" }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "start",
+          height: "fit-content",
+        }}
+      >
+        <Grid
+          container
+          item
+          maxWidth="xl"
+          justifyContent={"space-between"}
+          alignItems="start"
+          xs={9}
+          direction={{ xs: "row", md: "row" }}
+          rowGap={"1.7rem"}
+        >
+          {data.map((menuCard) => (
+            <FooterMenuCard key={menuCard.id} menuCard={menuCard} />
+          ))}
+          <SubscribeNewsLetterCard />
+        </Grid>
+      </Box>
+      {/* middle footer */}
+
+      {/* bottom footer */}
+      <Grid
+        container
+        item
+        maxWidth="xl"
+        justifyContent={"center"}
+        alignItems="center"
+        xs={12}
+        direction={{ xs: "row", md: "row" }}
+        rowGap={"1.rem"}
+        borderTop={"1px solid black"}
+      >
+        <Typography textAlign={"center"} fontSize={"0.8rem"} padding={"0.6rem"}>
+          Mentions légales - Données personnelles - CGL - Plan du site
+        </Typography>
+      </Grid>
+    </>
   );
-}
+};
 
 export default Footer;

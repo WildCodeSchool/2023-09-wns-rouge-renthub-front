@@ -6,6 +6,7 @@ import Articles from "./Articles";
 import Testimonials from "./Testimonials";
 import Footer from "../footer/Footer";
 import TopLocations from "./TopLocations";
+import ServiceOfferings from "../footer/ServiceOfferings";
 
 function Home() {
   const matchesSmall = useMediaQuery("(max-width:599px)");
@@ -42,7 +43,7 @@ function Home() {
       <Grid item xs={12} component={"section"}>
         <Articles />
       </Grid>
-      <Grid className="body" item xs={9}>
+      <Grid item xs={12}>
         <Testimonials />
       </Grid>
     </Grid>

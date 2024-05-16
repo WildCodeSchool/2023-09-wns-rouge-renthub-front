@@ -5,8 +5,8 @@ import { VariablesColors } from "@/styles/Variables.colors";
 type InfoCardPropsType = {
   id: number;
   title: string;
-  icon: string;
-  paragraphs: string[];
+  icon?: string;
+  paragraphs?: string[];
 };
 
 function InfoCard({ id, title, icon, paragraphs }: InfoCardPropsType) {
@@ -46,7 +46,7 @@ function InfoCard({ id, title, icon, paragraphs }: InfoCardPropsType) {
               {title}
             </Typography>
           </Stack>
-          {paragraphs.map((paragraph, index) => (
+          {paragraphs?.map((paragraph, index) => (
             <Stack key={index} direction={"row"} gap={1}>
               <ArrowForwardIcon sx={{ width: "1rem" }} />
               <Typography variant="body2">{paragraph}</Typography>

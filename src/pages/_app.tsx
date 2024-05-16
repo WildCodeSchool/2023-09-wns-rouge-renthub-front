@@ -1,4 +1,5 @@
 import "@/styles/index.scss";
+
 import {
   ApolloClient,
   ApolloProvider,
@@ -62,6 +63,13 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "#F8F8F8",
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: "#FF8E3C",
         },
       },
     },

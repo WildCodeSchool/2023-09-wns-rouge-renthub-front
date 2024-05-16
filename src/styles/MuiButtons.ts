@@ -1,5 +1,7 @@
 import { styled } from "@mui/material";
 import { VariablesColors } from "./Variables.colors";
+import { Opacity } from "@mui/icons-material";
+import { deepOrange } from "@mui/material/colors";
 
 const colors = new VariablesColors();
 const { darkBlueColor, lightGreyColor, orangeColor, whiteColor, blackColor } =
@@ -39,7 +41,7 @@ export const OrangeBtnWhiteHover = styled("button")<ButtonsHoverProps>(() => ({
 }));
 
 export const OrangeBtnBlueHover = styled("button")<ButtonsHoverProps>(() => ({
-  borderRadius: "10px",
+  borderRadius: "40px",
   backgroundColor: orangeColor,
   color: "white",
   fontWeight: "600",
@@ -59,13 +61,37 @@ export const OrangeBtnBlueHover = styled("button")<ButtonsHoverProps>(() => ({
   },
 }));
 
+export const OrangeBtnRoundedWhiteHover = styled("button")<ButtonsHoverProps>(
+  () => ({
+    borderRadius: "50%",
+    backgroundColor: orangeColor,
+    color: "white",
+    fontWeight: "600",
+    maxWidth: "fit-content",
+    width: "25px",
+    height: "25px",
+    border: "none",
+    outline: "none",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+
+    transition:
+      "background-color 0.4s ease, color 0.4s ease, font-weight 0.4s ease",
+    "&:hover": {
+      backgroundColor: whiteColor,
+    },
+  }),
+);
+
 export const StepFormButton = styled("button")<ButtonsHoverProps>(() => ({
   borderRadius: "10px",
   backgroundColor: darkBlueColor,
   color: "white",
   fontWeight: "600",
-  minWidth: "160px",
-  minHeight: "40px",
+  minWidth: "2rem",
+  minHeight: "2rem",
   border: "none",
   outline: "none",
   cursor: "pointer",
@@ -88,6 +114,7 @@ export const CardDetailsBtn = styled("button")<ButtonsHoverProps>(() => ({
   alignItems: "center",
   borderRadius: "20px",
   height: "25px",
+
   padding: "0px 20px",
   outline: "1px solid #000000",
   border: "none",
