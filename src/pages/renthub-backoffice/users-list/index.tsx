@@ -1,4 +1,5 @@
 import BackOfficeUsersList from "@/components/backoffice/users/BackOfficeUsersList";
+import AdminProtection from "@/components/backoffice/AdminProtection";
 
 const BackUserListPage = (): React.ReactNode => {
   return (
@@ -8,4 +9,4 @@ const BackUserListPage = (): React.ReactNode => {
   );
 };
 
-export default BackUserListPage;
+export default AdminProtection(BackUserListPage);

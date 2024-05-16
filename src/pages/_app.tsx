@@ -19,6 +19,7 @@ import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/appBar/Navbar";
 import BackOfficeLayout from "@/components/backoffice/layout/BackOfficeLayout";
 import React from "react";
+import LoadingApp from "@/styles/LoadingApp";
 
 const theme = createTheme({
   typography: {
@@ -98,25 +99,11 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (privatePages.includes(router.pathname) && error) {
-      router.replace("/signin");
+      router.push("/signin");
     }
   }, [router, error]);
 
-  if (loading) {
-    return (
-      <div>
-        {" "}
-        <Suspense
-          fallback={
-            <div className="loader-container">
-              <div className="spinner" />
-              <p>Chargement</p>
-            </div>
-          }
-        />
-      </div>
-    );
-  }
+  if (loading) return <LoadingApp />;
 
   return children;
 }

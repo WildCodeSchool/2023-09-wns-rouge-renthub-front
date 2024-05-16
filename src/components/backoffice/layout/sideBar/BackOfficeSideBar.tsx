@@ -68,7 +68,7 @@ const BackOfficeSidebar = (): React.ReactNode => {
               <Box
                 sx={{ cursor: "pointer" }}
                 onClick={() => {
-                  router.replace(`/renthub-backoffice`);
+                  router.push(`/renthub-backoffice`);
                 }}
               >
                 <ListItemText primary="Dashboard" />
@@ -95,7 +95,7 @@ const BackOfficeSidebar = (): React.ReactNode => {
                         <Box
                           sx={{ cursor: "pointer" }}
                           onClick={() => {
-                            router.replace(`/${sub.href}`);
+                            router.push(`/${sub.href}`);
                           }}
                         >
                           <ListItemButton

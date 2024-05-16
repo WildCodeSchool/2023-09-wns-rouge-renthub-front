@@ -1,3 +1,4 @@
+import AdminProtection from "@/components/backoffice/AdminProtection";
 const BackOfficeCategoriesListPage = (): React.ReactNode => {
   return (
     <>
@@ -6,4 +7,4 @@ const BackOfficeCategoriesListPage = (): React.ReactNode => {
   );
 };
 
-export default BackOfficeCategoriesListPage;
+export default AdminProtection(BackOfficeCategoriesListPage);
