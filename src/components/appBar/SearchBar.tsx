@@ -10,13 +10,13 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export interface SearchBarProps {
   backgroundColor: string;
-  outerColor: string;
+  borderColor: string;
   colorText: string;
 }
 
 function SearchBar({
   backgroundColor,
-  outerColor,
+  borderColor,
   colorText,
 }: SearchBarProps): React.ReactNode {
   const [globalFilterValue, setGlobalFilterValue] = React.useState<string>("");
@@ -37,9 +37,6 @@ function SearchBar({
         sx={{
           backgroundColor: { backgroundColor },
           color: { colorText },
-          "&:hover": {
-            backgroundColor: { backgroundColor },
-          },
         }}
         id="search"
         type="text"

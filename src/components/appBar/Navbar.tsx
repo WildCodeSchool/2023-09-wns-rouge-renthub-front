@@ -113,7 +113,7 @@ function Navbar(): React.ReactNode {
 
             <SearchBar
               backgroundColor="white"
-              outerColor="orange"
+              borderColor="white"
               colorText="orange"
             />
 

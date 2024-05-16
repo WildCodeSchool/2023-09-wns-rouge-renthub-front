@@ -1,36 +1,46 @@
-import { Box, Link, Typography } from "@mui/material";
-import React from "react";
+import { GET_ALL_CATEGORIES } from "@/graphql/queryAllCategories";
+import { ICategory } from "@/types/ICategory";
+import { useQuery } from "@apollo/client";
+import { Box, Icon, Link, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
 export interface SubMenuCategoriesProps {
   idActive: number | null;
   title: string;
-  listCategories: { id: number; title: string; description: string }[];
+  listCategories: ICategory[];
+  onCategorySelected: (categoryId: string) => void;
 }
+
 function SubMenuCategories({
   idActive,
   title,
   listCategories,
-}: SubMenuCategoriesProps): React.ReactNode {
+  onCategorySelected,
+}: SubMenuCategoriesProps) {
+  function handleClick(categoryId: string) {
+    if (onCategorySelected) {
+      onCategorySelected(categoryId);
+    }
+  }
+
+  const isActived = useState(false);
   return (
-    <Box>
-      <Typography textAlign={"left"} color={"white"}>
-        {title}
-      </Typography>
-      <div className="submenu-product">
-        <ul>
-          <li>
-            <a href="#">{title}</a>
-          </li>
-          {listCategories?.map((category) => (
-            <li key={category.id}>
-              <Link href={`/pages/category/${category.id}`}>
-                <a>{category.title}</a>
-              </Link>
+    <div className="submenu-categories">
+      <Box>
+        <Typography textAlign={"left"} color={"white"}>
+          {title}
+          {listCategories.map((category) => (
+            <li
+              key={category.id}
+              className="isActive"
+              onClick={(e) => handleClick(category.id)}
+            >
+              <p>{category.name}</p>
             </li>
           ))}
-        </ul>
-      </div>
-    </Box>
+        </Typography>
+      </Box>
+    </div>
   );
 }
 

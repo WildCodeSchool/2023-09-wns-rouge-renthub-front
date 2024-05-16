@@ -1,9 +1,10 @@
+import { IProductReference } from "@/types/IProductReference";
 import { Box, Link, Typography } from "@mui/material";
 import React from "react";
 
 export interface SubMenuProductProps {
   title: string;
-  listProducts: { id: number; title: string; description: string }[]; // Définir le type de listProducts
+  listProducts: IProductReference[] | null;
 }
 
 function SubMenuProduct({
@@ -20,7 +21,7 @@ function SubMenuProduct({
         {listProducts?.map((product) => (
           <li key={product.id}>
             <Link href={`/pages/product/${product.id}`}>
-              <a>{product.title}</a>
+              <a>{product.name}</a>
             </Link>
           </li>
         ))}

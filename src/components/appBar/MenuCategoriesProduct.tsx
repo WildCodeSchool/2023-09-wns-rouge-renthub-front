@@ -1,11 +1,13 @@
 import { Box, Link, Popover, Popper, withTheme } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { use, useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import { VariablesColors } from "@/styles/Variables.colors";
-import { blue } from "@mui/material/colors";
-import { WidthFull } from "@mui/icons-material";
+
 import SubMenuProduct from "./SubMenuProduct";
 import SubMenuCategories from "./SubMenuCategories";
+import { useQuery } from "@apollo/client";
+import { ICategory } from "@/types/ICategory";
+import { GET_ALL_CATEGORIES } from "@/graphql/queryAllCategories";
 
 export interface MenuCategoriesProductProps {
   id: string;
@@ -53,14 +55,41 @@ function MenuCategoriesProduct({
   anchorEl,
   handleMenuCategoriesClose,
 }: MenuCategoriesProductProps): React.ReactNode {
-  const { darkBlueColor, lightBlueColor } = new VariablesColors();
+  const { darkBlueColor } = new VariablesColors();
 
   const colorBlue = "#152535";
+
+  const { data, loading, error } = useQuery<{ items: ICategory[] }>(
+    GET_ALL_CATEGORIES,
+  );
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+    null,
+  );
+
+  /** sort data alphabetical **/
+  const sortedCategories = data?.items.slice().sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
 
   useEffect(() => {
     console.warn("isActive menu component", open);
   }, [open]);
 
+  // Fonction pour traiter la catégorie sélectionnée
+  function handleCategorySelect(categoryId: string) {
+    setSelectedCategoryId(categoryId);
+  }
+
+  useEffect(() => {
+    console.debug(
+      "Selected category ID in component is : ",
+      selectedCategoryId,
+    );
+  }, [selectedCategoryId]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error...</p>;
   return (
     <Popover
       id={id}
@@ -73,7 +102,6 @@ function MenuCategoriesProduct({
       }}
       transformOrigin={{ vertical: -30, horizontal: 200 }}
     >
-      {" "}
       <Box
         display={"flex"}
         flexDirection={"row"}
@@ -101,15 +129,16 @@ function MenuCategoriesProduct({
               marginBlockEnd={"2rem"}
             >
               <SearchBar
-                backgroundColor={"white"}
-                outerColor={"white"}
+                backgroundColor={colorBlue}
+                borderColor={"white"}
                 colorText={"white"}
               />
             </Box>
             <SubMenuCategories
-              listCategories={listProducts}
+              listCategories={sortedCategories}
               idActive={1}
               title="test"
+              onCategorySelected={handleCategorySelect}
             />
           </Box>
         </Box>
@@ -122,7 +151,7 @@ function MenuCategoriesProduct({
           borderRadius={"0 2rem 2rem 0"}
           bgcolor={"white"}
         >
-          <SubMenuProduct title="Categories" listProducts={listProducts} />
+          <SubMenuProduct title="Produits" listProducts={sortedCategories} />
         </Box>
       </Box>
     </Popover>
