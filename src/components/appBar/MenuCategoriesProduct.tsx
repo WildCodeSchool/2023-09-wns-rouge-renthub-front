@@ -82,10 +82,7 @@ function MenuCategoriesProduct({
   }
 
   useEffect(() => {
-    console.debug(
-      "Selected category ID in component is : ",
-      selectedCategoryId,
-    );
+    console.warn("Selected category ID in component is : ", selectedCategoryId);
   }, [selectedCategoryId]);
 
   if (loading) return <p>Loading...</p>;
