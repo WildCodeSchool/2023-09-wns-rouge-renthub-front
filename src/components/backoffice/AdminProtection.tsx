@@ -5,45 +5,36 @@ import { queryMeContext } from "@/components/graphql/Users";
 import SignIn from "@/components/users/signin/SignIn";
 import { UserContextTypes } from "@/types/UserTypes";
 import LoadingApp from "@/styles/LoadingApp";
+import { useUserContext } from "@/context/UserContext";
 
 const AdminProtection = (WrappedComponent: React.ComponentType) => {
   const ProtectedComponent = () => {
-    const { data, error, loading, refetch } = useQuery<{
-      item: UserContextTypes;
-    }>(queryMeContext);
     const router = useRouter();
-    const user = data ? data.item : null;
+    // Get user context
+    const { user } = useUserContext();
 
     useEffect(() => {
-      if (error) {
-        return;
-      }
       // If user connected with role USER, redirect to home page
       if (user && user.role === "USER") {
         router.push("/");
       }
-    }, [user, error, router]);
-
-    // Handle sign in to refetch the userContext
-    const handleSignIn = async () => {
-      await refetch();
-    };
+    }, [user, router]);
 
     // If loading, show loading component
-    if (loading) {
+    if (user === undefined) {
       return <LoadingApp />;
     }
 
     // If user not connected, show the sign in component
-    if (error) {
-      return <SignIn onSignIn={handleSignIn} />;
+    if (!user) {
+      return <SignIn />;
     }
     // If user connected with role ADMIN, show the wrapped component
-    if (user && user.role === "ADMIN") {
+    if (user.role === "ADMIN") {
       return <WrappedComponent />;
     }
     // Otherwise, show the sign in component
-    return <SignIn onSignIn={handleSignIn} />;
+    return <SignIn />;
   };
 
   return ProtectedComponent;
