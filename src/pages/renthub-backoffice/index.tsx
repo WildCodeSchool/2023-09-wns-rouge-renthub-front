@@ -1,7 +1,7 @@
 import BackOfficeDashboard from "@/components/backoffice/dashboard/BackOfficeDashboard";
+import AdminProtection from "@/components/backoffice/AdminProtection";
 
 const BackOfficePage = (): React.ReactNode => {
-  // TODO: Ajouter la logique pour afficher le bon composant en fonction du token et du rôle
   return (
     <>
       <BackOfficeDashboard />
@@ -9,4 +9,4 @@ const BackOfficePage = (): React.ReactNode => {
   );
 };
 
-export default BackOfficePage;
+export default AdminProtection(BackOfficePage);
