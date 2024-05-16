@@ -1,11 +1,11 @@
 .submenu-categories{
-  & li.isActive :hover{
+  & li:hover{
     background-color: #ffffff;
-    padding:0.4rem;
     color: black;
     border: 1px solid #12637e;
     border-radius: 5px;
     cursor: pointer;
+
 }
 
 

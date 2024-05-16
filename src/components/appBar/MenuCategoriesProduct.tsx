@@ -16,39 +16,6 @@ export interface MenuCategoriesProductProps {
   handleMenuCategoriesClose: () => void;
 }
 
-const listProducts = [
-  {
-    id: 1,
-    title: "Véhicules",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.",
-  },
-  {
-    id: 2,
-    title: "Véhicules",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.",
-  },
-  {
-    id: 3,
-    title: "Véhicules",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.",
-  },
-  {
-    id: 4,
-    title: "Véhicules",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.",
-  },
-  {
-    id: 5,
-    title: "Véhicules",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.",
-  },
-];
-
 function MenuCategoriesProduct({
   id,
   open,
@@ -56,8 +23,6 @@ function MenuCategoriesProduct({
   handleMenuCategoriesClose,
 }: MenuCategoriesProductProps): React.ReactNode {
   const { darkBlueColor } = new VariablesColors();
-
-  const colorBlue = "#152535";
 
   const { data, loading, error } = useQuery<{ items: ICategory[] }>(
     GET_ALL_CATEGORIES,
@@ -74,6 +39,9 @@ function MenuCategoriesProduct({
 
   useEffect(() => {
     console.warn("isActive menu component", open);
+    if (!open) {
+      setSelectedCategoryId(null);
+    }
   }, [open]);
 
   // Fonction pour traiter la catégorie sélectionnée
@@ -102,7 +70,7 @@ function MenuCategoriesProduct({
       <Box
         display={"flex"}
         flexDirection={"row"}
-        width={"800px"}
+        width={"auto"}
         gap={0}
         sx={{ display: { xs: "none", md: "flex" } }}
       >
@@ -126,7 +94,7 @@ function MenuCategoriesProduct({
               marginBlockEnd={"2rem"}
             >
               <SearchBar
-                backgroundColor={colorBlue}
+                backgroundColor={darkBlueColor}
                 borderColor={"white"}
                 colorText={"white"}
               />
@@ -134,22 +102,23 @@ function MenuCategoriesProduct({
             <SubMenuCategories
               listCategories={sortedCategories}
               idActive={1}
-              title="test"
+              title="Catégories"
               onCategorySelected={handleCategorySelect}
             />
           </Box>
         </Box>
-
-        <Box
-          flexGrow={4}
-          display="flex"
-          flexDirection="column"
-          padding={"1rem"}
-          borderRadius={"0 2rem 2rem 0"}
-          bgcolor={"white"}
-        >
-          <SubMenuProduct title="Produits" listProducts={sortedCategories} />
-        </Box>
+        {selectedCategoryId && (
+          <Box
+            flexGrow={4}
+            display="flex"
+            flexDirection="column"
+            padding={"1rem"}
+            borderRadius={"0 2rem 2rem 0"}
+            bgcolor={"white"}
+          >
+            <SubMenuProduct title="Produits" idCategory={selectedCategoryId} />
+          </Box>
+        )}
       </Box>
     </Popover>
   );

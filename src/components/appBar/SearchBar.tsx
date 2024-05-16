@@ -35,7 +35,7 @@ function SearchBar({
       </InputLabel>
       <OutlinedInput
         sx={{
-          backgroundColor: { backgroundColor },
+          backgroundColor: "white", // { backgroundColor },
           color: { colorText },
         }}
         id="search"
