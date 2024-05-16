@@ -19,7 +19,11 @@ import { VariablesColors } from "@/styles/Variables.colors";
 const colors = new VariablesColors();
 const { lightGreyColor, successColor, errorColor } = colors;
 
-const UserConnection = (): React.ReactNode => {
+type UserConnectionProps = {
+  onSignIn?: () => void;
+};
+
+const UserConnection = (props: UserConnectionProps): React.ReactNode => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -36,6 +40,7 @@ const UserConnection = (): React.ReactNode => {
         toast(`Connexion réussie, bienvenue ${data.item.firstName}`, {
           style: { background: successColor, color: lightGreyColor },
         });
+        props.onSignIn();
         setEmail("");
         setPassword("");
       }
