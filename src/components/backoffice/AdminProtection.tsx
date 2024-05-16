@@ -18,27 +18,31 @@ const AdminProtection = (WrappedComponent: React.ComponentType) => {
       if (error) {
         return;
       }
-
+      // If user connected with role USER, redirect to home page
       if (user && user.role === "USER") {
         router.push("/");
       }
     }, [user, error, router]);
 
+    // Handle sign in to refetch the userContext
     const handleSignIn = async () => {
       await refetch();
     };
 
+    // If loading, show loading component
     if (loading) {
       return <LoadingApp />;
     }
 
+    // If user not connected, show the sign in component
     if (error) {
       return <SignIn onSignIn={handleSignIn} />;
     }
-
+    // If user connected with role ADMIN, show the wrapped component
     if (user && user.role === "ADMIN") {
       return <WrappedComponent />;
     }
+    // Otherwise, show the sign in component
     return <SignIn onSignIn={handleSignIn} />;
   };
 
