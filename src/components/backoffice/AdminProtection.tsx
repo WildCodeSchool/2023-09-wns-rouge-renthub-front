@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { queryMeContext } from "@/components/graphql/Users";
 import SignIn from "@/components/users/signin/SignIn";
-import { UserContextTypes } from "@/types/UserTypes";
 import LoadingApp from "@/styles/LoadingApp";
 import { useUserContext } from "@/context/UserContext";
 
@@ -11,6 +8,9 @@ const AdminProtection = (WrappedComponent: React.ComponentType) => {
   const ProtectedComponent = () => {
     const router = useRouter();
     // Get user context
+    // If user is connected, user is an object with the user data
+    // If user is not connected, user is null
+    // If user is loading, user is undefined
     const { user } = useUserContext();
 
     useEffect(() => {
