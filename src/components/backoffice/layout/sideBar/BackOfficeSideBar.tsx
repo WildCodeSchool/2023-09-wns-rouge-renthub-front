@@ -95,7 +95,7 @@ const BackOfficeSidebar = (): React.ReactNode => {
                         <Box
                           sx={{ cursor: "pointer" }}
                           onClick={() => {
-                            router.push(`/${sub.href}`);
+                            router.push(`${sub.href}`);
                           }}
                         >
                           <ListItemButton

@@ -9,8 +9,9 @@ export const LoadingApp = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
-        width: "100vw",
+        height: "100%",
+        width: "100%",
+        margin: "auto",
       }}
     >
       <CircularProgress size={120} />

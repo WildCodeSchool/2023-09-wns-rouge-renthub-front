@@ -11,8 +11,9 @@ import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import { UserProvider } from "@/context/UserContext";
 import { queryMeContext } from "@/components/graphql/Users";
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { UserContextTypes } from "@/types/UserTypes";
 import { API_URL } from "@/api/configApi";
@@ -124,14 +125,16 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <CssBaseline />
-          {!isBackOffice && <Navbar />}
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-          {!isBackOffice && <Footer />}
-        </AuthProvider>
+        <UserProvider>
+          <AuthProvider>
+            <CssBaseline />
+            {!isBackOffice && <Navbar />}
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+            {!isBackOffice && <Footer />}
+          </AuthProvider>
+        </UserProvider>
       </ThemeProvider>
     </ApolloProvider>
   );
