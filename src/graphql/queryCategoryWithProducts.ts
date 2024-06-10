@@ -12,10 +12,13 @@ export const GET_CATEGORY_PRODUCT = gql`
       createdAt
       updatedAt
       parentCategory {
+        id
         index
         name
       }
       childCategories {
+        id
+        index
         name
       }
       picture {

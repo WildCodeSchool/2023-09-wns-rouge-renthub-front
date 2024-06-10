@@ -12,7 +12,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import ResponsiveMenu from "./ResponsiveMenu";
 import { VariablesColors } from "@/styles/Variables.colors";
-import MenuCategoriesProduct from "./MenuCategoriesProduct";
+import MenuCategoriesProduct from "./menuMaterials/MenuCategoriesProduct";
 import SearchBar from "./SearchBar";
 
 function Navbar(): React.ReactNode {

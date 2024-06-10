@@ -2,7 +2,8 @@ import { GET_CATEGORY_PRODUCT } from "@/graphql/queryCategoryWithProducts";
 import { ICategory } from "@/types/ICategory";
 import { IProductReference } from "@/types/IProductReference";
 import { useQuery } from "@apollo/client";
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import Link from "next/link";
 import React from "react";
 
 export interface SubMenuProductProps {
@@ -14,7 +15,6 @@ export interface SubMenuProductProps {
 function SubMenuProduct({
   idCategory,
   title,
-  listProducts,
 }: SubMenuProductProps): React.ReactNode {
   const { data, loading, error } = useQuery<{ item: ICategory }>(
     GET_CATEGORY_PRODUCT,
@@ -27,7 +27,6 @@ function SubMenuProduct({
       })
     : [];
 
-  console.warn("SubMenuProduct", { data, loading, error });
   return (
     <Box
       minWidth={"400px"}
@@ -44,9 +43,7 @@ function SubMenuProduct({
         {sortedProducts &&
           sortedProducts?.map((product: IProductReference) => (
             <li key={product.id}>
-              <Link href={`/pages/product/${product.id}`}>
-                <a>{product.name}</a>
-              </Link>
+              <Link href={`/product/${idCategory}`}>{product.name}</Link>
             </li>
           ))}
       </Box>

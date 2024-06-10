@@ -1,13 +1,15 @@
-import { Box, Link, Popover, Popper, withTheme } from "@mui/material";
-import React, { use, useEffect, useState } from "react";
-import SearchBar from "./SearchBar";
+import { Box, Popover } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import SearchBar from "../SearchBar";
 import { VariablesColors } from "@/styles/Variables.colors";
 
-import SubMenuProduct from "./SubMenuProduct";
+import SubMenuProduct from "./SubMenuProduct"; // first version
 import SubMenuCategories from "./SubMenuCategories";
 import { useQuery } from "@apollo/client";
 import { ICategory } from "@/types/ICategory";
 import { GET_ALL_CATEGORIES } from "@/graphql/queryAllCategories";
+import SubMenuChildCategories from "./SubMenuChildCategories";
+import { useRouter } from "next/router";
 
 export interface MenuCategoriesProductProps {
   id: string;
@@ -23,35 +25,43 @@ function MenuCategoriesProduct({
   handleMenuCategoriesClose,
 }: MenuCategoriesProductProps): React.ReactNode {
   const { darkBlueColor } = new VariablesColors();
+  const [openSubMenu, setOpenSubMenu] = useState(open); // a implementer pour fermer la fenetre lors de la selection d'une sous categorie.
 
   const { data, loading, error } = useQuery<{ items: ICategory[] }>(
     GET_ALL_CATEGORIES,
   );
 
+  const router = useRouter();
+  const [sortedSubCategories, setSortedSubCategories] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null,
   );
 
   /** sort data alphabetical **/
-  const sortedCategories = data?.items.slice().sort((a, b) => {
+  const sortedCategories: ICategory[] = data?.items.slice().sort((a, b) => {
     return a.name.localeCompare(b.name);
   });
 
   useEffect(() => {
-    console.warn("isActive menu component", open);
     if (!open) {
       setSelectedCategoryId(null);
     }
   }, [open]);
 
-  // Fonction pour traiter la catégorie sélectionnée
+  // Fonction pour traiter la catégorie sélectionnée et afficher les sous-catégories
   function handleCategorySelect(categoryId: string) {
+    const sortedSubcategories = sortedCategories.find(
+      (item) => item.id === categoryId,
+    );
+    sortedSubcategories?.childCategories;
+    if (!sortedSubcategories.childCategories.length) {
+      router.push(`/product/category/${categoryId}`);
+    }
+    setSortedSubCategories(sortedSubcategories?.childCategories || []);
     setSelectedCategoryId(categoryId);
   }
 
-  useEffect(() => {
-    console.warn("Selected category ID in component is : ", selectedCategoryId);
-  }, [selectedCategoryId]);
+  useEffect(() => {}, [selectedCategoryId]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error...</p>;
@@ -101,13 +111,12 @@ function MenuCategoriesProduct({
             </Box>
             <SubMenuCategories
               listCategories={sortedCategories}
-              idActive={1}
               title="Catégories"
               onCategorySelected={handleCategorySelect}
             />
           </Box>
         </Box>
-        {selectedCategoryId && (
+        {selectedCategoryId && sortedSubCategories.length > 0 && (
           <Box
             flexGrow={4}
             display="flex"
@@ -116,7 +125,13 @@ function MenuCategoriesProduct({
             borderRadius={"0 2rem 2rem 0"}
             bgcolor={"white"}
           >
-            <SubMenuProduct title="Produits" idCategory={selectedCategoryId} />
+            {sortedSubCategories && (
+              <SubMenuChildCategories
+                idCategoryParent={selectedCategoryId}
+                title="Sous-catégories"
+                listChildCategories={sortedSubCategories}
+              />
+            )}
           </Box>
         )}
       </Box>

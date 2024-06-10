@@ -1,13 +1,10 @@
-import { GET_ALL_CATEGORIES } from "@/graphql/queryAllCategories";
 import { ICategory } from "@/types/ICategory";
-import { useQuery } from "@apollo/client";
-import { Box, Icon, Link, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
+import React, { useState } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { VariablesColors } from "@/styles/Variables.colors";
 
 export interface SubMenuCategoriesProps {
-  idActive: number | null;
   title: string;
   listCategories: ICategory[];
   onCategorySelected: (categoryId: string) => void;
@@ -15,9 +12,9 @@ export interface SubMenuCategoriesProps {
 const { orangeColor } = new VariablesColors();
 
 function SubMenuCategories({
-  idActive,
   title,
   listCategories,
+
   onCategorySelected,
 }: SubMenuCategoriesProps) {
   const [hoveredItemId, setHoveredItemId] = useState(null);
@@ -28,9 +25,11 @@ function SubMenuCategories({
     }
   }
 
-  /** organise les articles par lettre alphabétique **/
+  /** organise et creer l'arboresence des categorie par lettre alphabétique **/
   const groupedCategories = listCategories.reduce((acc, item) => {
+    // initialisation de l'objet par une lettre avec 1er eleement du tableau
     const firstLetter = item.name[0].toUpperCase();
+
     if (!acc[firstLetter]) {
       acc[firstLetter] = [];
     }

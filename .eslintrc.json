@@ -3,7 +3,10 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["next", "plugin:prettier/recommended"],
+  "extends": [
+    "next",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "tsx": true
@@ -11,12 +14,15 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "import"],
+  "plugins": [
+    "react",
+    "import"
+  ],
   "rules": {
     "react-hooks/exhaustive-deps": "off",
-    "no-console": "off",
+    "no-console": "warn",
     "no-restricted-syntax": [
-      "error",
+      "warn",
       {
         "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(error|warn)$/]",
         "message": "You can only call the error() and warn() functions from the console object"
@@ -33,7 +39,11 @@
           "@type": "./src/types",
           "@api": "./src/api"
         },
-        "extensions": [".ts", ".tsx", ".json"]
+        "extensions": [
+          ".ts",
+          ".tsx",
+          ".json"
+        ]
       }
     }
   }
