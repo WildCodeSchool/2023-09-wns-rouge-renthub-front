@@ -15,6 +15,7 @@ import { useMutation } from "@apollo/client";
 import toast, { Toaster } from "react-hot-toast";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { VariablesColors } from "@/styles/Variables.colors";
+import { useUserContext } from "@/context/UserContext";
 
 const colors = new VariablesColors();
 const { lightGreyColor, successColor, errorColor } = colors;
@@ -23,6 +24,7 @@ const UserConnection = (): React.ReactNode => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const { refetchUserContext } = useUserContext();
   const theme = useTheme();
   const [doLogin] = useMutation(mutationUserLogin);
 
@@ -36,6 +38,7 @@ const UserConnection = (): React.ReactNode => {
         toast(`Connexion réussie, bienvenue ${data.item.firstName}`, {
           style: { background: successColor, color: lightGreyColor },
         });
+        refetchUserContext();
         setEmail("");
         setPassword("");
       }
@@ -56,6 +59,7 @@ const UserConnection = (): React.ReactNode => {
       xs={12}
       sx={{
         margin: 2,
+        width: 370,
         [theme.breakpoints.down("sm")]: {
           marginRight: "auto",
           marginLeft: "auto",
@@ -77,7 +81,7 @@ const UserConnection = (): React.ReactNode => {
               flexDirection: "column",
               alignItems: "center",
               gap: 1,
-              padding: 5,
+              padding: 4,
             }}
           >
             <Grid

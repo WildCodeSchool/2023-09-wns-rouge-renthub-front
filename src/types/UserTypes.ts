@@ -26,7 +26,7 @@ export type UserTypes = {
 };
 
 export type UserContextTypes = {
-  id: string;
-  nickName: string;
-  picture: string;
+  firstName: string;
+  lastName: string;
+  role: string;
 };
