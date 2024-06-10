@@ -1,82 +1,101 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import ServiceOfferingsProps from "@/types/ServiceOfferingsType";
-import { VariablesColors } from "@/styles/Variables.colors";
-import ServiceOfferingsCard from "../cards/ServiceOfferingsCard";
+import FooterMenuCard from "../cards/FooterMenuCard";
+import SubscribeNewsLetterCard from "../cards/SubscribeNewsLetterCard";
+import ServiceOfferings from "./ServiceOfferings";
 
-const ServiceOfferings: React.FC = () => {
-  const { darkBlueColor } = new VariablesColors();
-  const redValue = parseInt(darkBlueColor.substring(1, 3), 16);
-  const greenValue = parseInt(darkBlueColor.substring(3, 5), 16);
-  const blueValue = parseInt(darkBlueColor.substring(5, 7), 16);
-
-  const backgroundColor = `rgba(${redValue}, ${greenValue}, ${blueValue}, 1)`;
-
-  const serviceOfferingsData: ServiceOfferingsProps[] = [
+const Footer: React.FunctionComponent = () => {
+  const data = [
     {
       id: 1,
-      title: "Retrait Gratuit",
-      description: "Près de 500 agences à votre service",
-      image: "/images/serviceOfferings/freeWithdrawal.png",
-      alt: "freeWithdrawal",
+      title: "La société",
+      links: [
+        { id: 1, name: "Qui sommes-nous ?", url: "/qui-sommes-nous" },
+        { id: 2, name: "témoignages clietns", url: "/temoignages" },
+      ],
     },
     {
       id: 2,
-      title: "Tarifs Promo",
-      description: "Des tarfis avantageux le week-end",
-      image: "/images/serviceOfferings/promoRate.png",
-      alt: "promoRate",
+      title: "Nos Services",
+      links: [
+        { id: 1, name: "RenHub Service", url: "/renhub-service" },
+        { id: 2, name: "RenHub Event", url: "/renhub-event" },
+      ],
     },
     {
       id: 3,
-      title: "Réservation en ligne",
-      description: "Disponibilité et prix en temps réel",
-      image: "/images/serviceOfferings/onlineBooking.png",
-      alt: "onlineBooking",
+      title: "Nos matériels",
+      links: [
+        { id: 1, name: "Catalogue", url: "/catalogue" },
+        {
+          id: 2,
+          name: "Documentation technique",
+          url: "/documentation-technique",
+        },
+        { id: 3, name: "Faq", url: "/faq" },
+      ],
     },
     {
       id: 4,
-      title: "On vous rappelle",
-      description: "Sous 2h pour toute demande de réservation",
-      image: "/images/serviceOfferings/weCallYouBack.png",
-      alt: "weCallYouBack",
-    },
-    {
-      id: 5,
-      title: "Assurance incluse",
-      description: "Vous êtes couvert en cas de sinistre",
-      image: "/images/serviceOfferings/includedInsurance.png",
-      alt: "includedInsurance",
+      title: "Nos agences",
+      links: [
+        { id: 1, name: "France", url: "/fr" },
+        { id: 2, name: "Allemagne", url: "/de" },
+        { id: 3, name: "Portugal", url: "/pt" },
+      ],
     },
   ];
-
   return (
-    <Box
-      padding={{ xs: "2rem 0", md: "4rem 0" }}
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "start",
-        backgroundColor: "white",
-        height: "fit-content",
-      }}
-    >
+    <>
+      {/* top footer */}
+      <Grid item xs={12}>
+        <ServiceOfferings />
+      </Grid>
+      <Box
+        padding={{ xs: "2rem 0", md: "1rem 0" }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "start",
+          height: "fit-content",
+        }}
+      >
+        <Grid
+          container
+          item
+          maxWidth="xl"
+          justifyContent={"space-between"}
+          alignItems="start"
+          xs={9}
+          direction={{ xs: "row", md: "row" }}
+          rowGap={"1.7rem"}
+        >
+          {data.map((menuCard) => (
+            <FooterMenuCard key={menuCard.id} menuCard={menuCard} />
+          ))}
+          <SubscribeNewsLetterCard />
+        </Grid>
+      </Box>
+      {/* middle footer */}
+
+      {/* bottom footer */}
       <Grid
         container
         item
         maxWidth="xl"
-        justifyContent={"space-between"}
-        alignItems="start"
-        xs={9}
+        justifyContent={"center"}
+        alignItems="center"
+        xs={12}
         direction={{ xs: "row", md: "row" }}
-        rowGap={"1.7rem"}
+        rowGap={"1.rem"}
+        borderTop={"1px solid black"}
       >
-        {serviceOfferingsData.map((serviceOffering, index) => (
-          <div key={index}>rzqr</div>
-        ))}
+        <Typography textAlign={"center"} fontSize={"0.8rem"} padding={"0.6rem"}>
+          Mentions légales - Données personnelles - CGL - Plan du site
+        </Typography>
       </Grid>
-    </Box>
+    </>
   );
 };
 
-export default ServiceOfferings;
+export default Footer;

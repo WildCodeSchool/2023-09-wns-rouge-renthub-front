@@ -11,8 +11,9 @@ import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import { UserProvider } from "@/context/UserContext";
 import { queryMeContext } from "@/components/graphql/Users";
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { UserContextTypes } from "@/types/UserTypes";
 import { API_URL } from "@/api/configApi";
@@ -20,6 +21,7 @@ import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/appBar/Navbar";
 import BackOfficeLayout from "@/components/backoffice/layout/BackOfficeLayout";
 import React from "react";
+import LoadingApp from "@/styles/LoadingApp";
 
 const theme = createTheme({
   typography: {
@@ -65,6 +67,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: "#FF8E3C",
+        },
+      },
+    },
   },
 });
 
@@ -99,25 +108,11 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (privatePages.includes(router.pathname) && error) {
-      router.replace("/signin");
+      router.push("/signin");
     }
   }, [router, error]);
 
-  if (loading) {
-    return (
-      <div>
-        {" "}
-        <Suspense
-          fallback={
-            <div className="loader-container">
-              <div className="spinner" />
-              <p>Chargement</p>
-            </div>
-          }
-        />
-      </div>
-    );
-  }
+  if (loading) return <LoadingApp />;
 
   return children;
 }
@@ -130,14 +125,16 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
-        <AuthProvider>
-          <CssBaseline />
-          {!isBackOffice && <Navbar />}
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-          {!isBackOffice && <Footer />}
-        </AuthProvider>
+        <UserProvider>
+          <AuthProvider>
+            <CssBaseline />
+            {!isBackOffice && <Navbar />}
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+            {!isBackOffice && <Footer />}
+          </AuthProvider>
+        </UserProvider>
       </ThemeProvider>
     </ApolloProvider>
   );
