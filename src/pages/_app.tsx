@@ -67,6 +67,15 @@ const theme = createTheme({
         },
       },
     },
+    MuiPopover: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: "white",
+          borderRadius: "1rem",
+        },
+      },
+    },
+
     MuiLink: {
       styleOverrides: {
         root: {
