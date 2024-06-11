@@ -2,7 +2,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import CategoryIcon from "@mui/icons-material/Category";
-import DirectionsSubwayFilledIcon from "@mui/icons-material/DirectionsSubwayFilled";
+import AddIcon from "@mui/icons-material/Add";
 
 export const menuItems = [
   {
@@ -34,6 +34,12 @@ export const menuItems = [
         text: "Catégories",
         icon: CategoryIcon,
         href: "/renthub-backoffice/categories",
+      },
+      {
+        id: "categories-create",
+        text: "Créer une catégorie",
+        icon: AddIcon,
+        href: "/renthub-backoffice/categories/new",
       },
     ],
   },
