@@ -16,11 +16,6 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-interface VerifyEmailMutationData {
-  userId: number;
-  code: string;
-}
-
 const VerifyEmail = (): React.ReactNode => {
   const user = parseInt(useSearchParams().get("userId"));
   const [code, setCode] = useState<string>("");
