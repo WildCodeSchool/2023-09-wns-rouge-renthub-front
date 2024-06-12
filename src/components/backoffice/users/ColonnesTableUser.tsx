@@ -18,44 +18,44 @@ export function ColonnesTableUser() {
       {
         field: "firstName",
         headerName: "Prénom",
-        valueGetter: (value, row) => row.firstName,
+        valueGetter: (value, row) => row.firstName || "",
         flex: 1,
       },
       {
         field: "lastName",
         headerName: "Last name",
-        valueGetter: (value, row) => row.lastName,
+        valueGetter: (value, row) => row.lastName || "",
         flex: 1,
       },
       {
         field: "nickName",
         headerName: "Surnom",
-        valueGetter: (value, row) => row.nickName,
+        valueGetter: (value, row) => row.nickName || "",
         flex: 1,
       },
       {
         field: "email",
         headerName: "Email",
-        valueGetter: (value, row) => row.email,
+        valueGetter: (value, row) => row.email || "",
         flex: 1,
       },
       {
         field: "phoneNumber",
         headerName: "Téléphone",
-        valueGetter: (value, row) => row.phoneNumber,
+        valueGetter: (value, row) => row.phoneNumber || "",
         flex: 1,
       },
       {
         field: "role",
         headerName: "Rôle",
-        valueGetter: (value, row) => row.role.right,
+        valueGetter: (value, row) => row.role.right || "",
         flex: 1,
       },
       {
         field: "lastConnectionDate",
         headerName: "Dernière connexion",
         valueGetter: (value, row) =>
-          format(new Date(row.lastConnectionDate), "dd/MM/yyyy"),
+          format(new Date(row.lastConnectionDate), "dd/MM/yyyy") || "",
         flex: 1,
       },
       {
@@ -63,27 +63,37 @@ export function ColonnesTableUser() {
         headerName: "Créé le",
         flex: 1,
         valueGetter: (value, row) =>
-          format(new Date(row.createdAt), "dd/MM/yyyy"),
+          format(new Date(row.createdAt), "dd/MM/yyyy") || "",
       },
       {
         field: "createdBy",
         headerName: "Créé par",
-        valueGetter: (value, row) =>
-          row.createdBy?.firstName + " " + row.createdBy?.lastName,
+        valueGetter: (value, row) => {
+          const createdBy = row.createdBy;
+          if (createdBy) {
+            return createdBy.firstName + " " + createdBy.lastName;
+          }
+          return "";
+        },
         flex: 1,
       },
       {
         field: "updatedAt",
         headerName: "Mis à jour le",
         valueGetter: (value, row) =>
-          format(new Date(row.updatedAt), "dd/MM/yyyy"),
+          format(new Date(row.updatedAt), "dd/MM/yyyy") || "",
         flex: 1,
       },
       {
         field: "updatedBy",
         headerName: "Mis à jour par",
-        valueGetter: (value, row) =>
-          row.updatedBy?.firstName + " " + row.updatedBy?.lastName,
+        valueGetter: (value, row) => {
+          const updatedBy = row.updatedBy;
+          if (updatedBy) {
+            return updatedBy.firstName + " " + updatedBy.lastName;
+          }
+          return "";
+        },
         flex: 1,
       },
       {
