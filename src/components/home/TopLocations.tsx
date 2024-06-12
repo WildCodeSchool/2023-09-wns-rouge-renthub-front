@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import HeroCarousel from "../utils/Carousel";
+import HeroCarousel from "../utils/carousel/Carousel";
 
 function TopLocations() {
   return (

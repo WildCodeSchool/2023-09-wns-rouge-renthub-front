@@ -36,7 +36,6 @@ function List(): React.ReactNode {
     );
   }
 
-  console.debug("categoryId", router.query, sortedProducts);
   return (
     <LayoutFull title="RentHub : Product">
       <Grid container justifyContent={"center"}>

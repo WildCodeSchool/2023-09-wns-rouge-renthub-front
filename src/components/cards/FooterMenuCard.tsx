@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Box, CardMedia, Link, Menu, Typography } from "@mui/material";
+import React from "react";
+import { Box, Link, Typography } from "@mui/material";
 import MenuCardProps from "@/types/MenuFooterTypes";
-import SubscribeNewsLetterCard from "./SubscribeNewsLetterCard";
 
 function FooterMenuCard({
   menuCard,
