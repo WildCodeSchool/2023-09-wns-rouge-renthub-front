@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
-import {
-  Button,
-  Card,
-  CircularProgress,
-  Container,
-  Typography,
-} from "@mui/material";
-import toast, { Toaster } from "react-hot-toast";
+import { Button, Card, CircularProgress, Typography } from "@mui/material";
+import { Toaster } from "react-hot-toast";
 import { mutationVerifyEmail } from "@/components/graphql/Users";
+import { showToast } from "@/components/utils/toastHelper";
 
 type UserEmailVerify = {
   success: boolean;
@@ -27,12 +22,10 @@ const EmailVerify = () => {
     variables: { token },
     onCompleted: (data) => {
       if (data.item.success === true) {
-        toast(data.item.message, {
-          style: { background: "#e89116", color: "#fff" },
-        });
+        showToast("success", data.item.message);
         setVerified(true);
       } else {
-        toast.error(data.item.message);
+        showToast("error", data.item.message);
       }
     },
   });

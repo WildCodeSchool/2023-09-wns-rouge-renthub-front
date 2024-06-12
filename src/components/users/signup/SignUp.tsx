@@ -7,7 +7,8 @@ import { VariablesColors } from "@/styles/Variables.colors";
 import { useMutation } from "@apollo/client";
 import { mutationCreateUser } from "@/components/graphql/Users";
 import { UserFormData } from "@/types/UserTypes";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { showToast } from "@/components/utils/toastHelper";
 
 const colors = new VariablesColors();
 const { lightGreyColor } = colors;
@@ -62,19 +63,11 @@ const SignUp = (): React.ReactNode => {
       if ("id" in result.data?.item) {
         setCurrentStep("welcome");
       } else {
-        toast("Erreur pendant la création de votre compte", {
-          style: { background: "#e14d2a", color: "#fff" },
-        });
+        showToast("error", "Erreur pendant la création de votre compte");
       }
     } catch (error) {
-      toast("Erreur pendant la création de votre compte", {
-        style: { background: "#e14d2a", color: "#fff" },
-      });
-      setEmail("");
-      setPassword("");
-      setFirstName("");
-      setLastName("");
-      setPhoneNumber("");
+      console.error("error", error);
+      showToast("error", "Erreur pendant la création de votre compte");
       setCurrentStep("email");
     }
   }
