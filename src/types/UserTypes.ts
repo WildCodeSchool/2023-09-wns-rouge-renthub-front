@@ -59,3 +59,11 @@ interface UpdatedBy {
   firstName: string;
   lastName: string;
 }
+
+export interface UserFormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
+}
