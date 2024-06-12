@@ -1,4 +1,4 @@
-
+@import "../styles/variables.colors.scss";
 /*****************************************
 *                                       *
 *      RESET CSS                        *
@@ -117,15 +117,14 @@ section {
   box-sizing: border-box;
 }
 
-ul , li {
+ul,
+li {
   list-style: none;
 }
-a{
+a {
   text-decoration: none;
   color: inherit;
-  
 }
-
 
 .loader-container {
   width: 100%;
@@ -164,3 +163,16 @@ a{
   }
 }
 
+.btn-lightBlue {
+  background-color: $lightBlueColor;
+  color: $whiteColor;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $hoverLightBlueColor;
+  }
+}
