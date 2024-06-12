@@ -14,9 +14,9 @@
   "plugins": ["react", "import"],
   "rules": {
     "react-hooks/exhaustive-deps": "off",
-    "no-console": "warn",
+    "no-console": "off",
     "no-restricted-syntax": [
-      "warn",
+      "error",
       {
         "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(error|warn)$/]",
         "message": "You can only call the error() and warn() functions from the console object"

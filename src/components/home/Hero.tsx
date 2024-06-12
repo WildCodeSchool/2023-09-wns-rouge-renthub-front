@@ -1,7 +1,7 @@
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { Grid, Typography, useMediaQuery } from "@mui/material";
-import Carousel from "../utils/Carousel";
+import Carousel from "../utils/carousel/Carousel";
 
 function Hero() {
   const { whiteColor, blackColor } = new VariablesColors();
@@ -55,15 +55,15 @@ function Hero() {
         sx={{ ...styleTitleHeroWrapper }}
       >
         <Typography variant="h1" sx={{ ...styleTitleHero }}>
-          Louez des équipements de sport pour l&#39;hiver et profitez de la
-          neige en toute sécurité !
+          {`Louez des équipements de sport pour l'hiver et profitez de la
+          neige en toute sécurité !`}
         </Typography>
         <OrangeBtnWhiteHover>Voir notre sélection</OrangeBtnWhiteHover>
       </Grid>
       <Grid
         className="carousel-hero"
         alignSelf={"center"}
-        color={"white"}
+        color={whiteColor}
         item
         xs={12}
         sm={6}

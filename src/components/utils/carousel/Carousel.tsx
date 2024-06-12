@@ -1,5 +1,5 @@
 import { useMediaQuery } from "@mui/material";
-import ProductCard from "../cards/ProductCard";
+import ProductCard from "../../cards/ProductCard";
 import MultiCarousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
