@@ -14,11 +14,8 @@ import {
 } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { VariablesColors } from "@/styles/Variables.colors";
-
-const colors = new VariablesColors();
-const { errorColor, successColor, whiteColor } = colors;
+import { Toaster } from "react-hot-toast";
+import { showToast } from "@/components/utils/toastHelper";
 
 interface VerifyEmailMutationData {
   userId: number;
@@ -48,20 +45,10 @@ const VerifyEmail = (): React.ReactNode => {
       if (!result.data.verifyEmail.success) {
         throw new Error(result.data.verifyEmail.message);
       }
-      toast("Votre compte a été vérifié avec succès !", {
-        style: {
-          background: successColor,
-          color: whiteColor,
-        },
-      });
+      showToast("success", "Votre compte a été vérifié avec succès !");
     } catch (error) {
       console.error(error);
-      toast(error.message, {
-        style: {
-          background: errorColor,
-          color: whiteColor,
-        },
-      });
+      showToast("error", error.message);
     }
   }
 
@@ -77,20 +64,10 @@ const VerifyEmail = (): React.ReactNode => {
       if (result.data.generateNewVerificationCode !== true) {
         throw new Error("Erreur lors de l'envoi du code");
       }
-      toast("Votre code a été envoyé sur votre boite mail !", {
-        style: {
-          background: successColor,
-          color: whiteColor,
-        },
-      });
+      showToast("success", "Votre code a été envoyé sur votre boite mail !");
     } catch (error) {
       console.error(error);
-      toast("Erreur lors de l'envoi du code", {
-        style: {
-          background: errorColor,
-          color: whiteColor,
-        },
-      });
+      showToast("error", "Erreur lors de l'envoi du code");
     }
   }
 

@@ -12,13 +12,10 @@ import UserEmail from "../components/UserEmail";
 import UserPassword from "../components/UserPassword";
 import { mutationUserLogin } from "@/components/graphql/Users";
 import { useMutation } from "@apollo/client";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
-import { VariablesColors } from "@/styles/Variables.colors";
 import { useUserContext } from "@/context/UserContext";
-
-const colors = new VariablesColors();
-const { lightGreyColor, successColor, errorColor } = colors;
+import { showToast } from "@/components/utils/toastHelper";
 
 const UserConnection = (): React.ReactNode => {
   const [email, setEmail] = useState<string>("");
@@ -35,17 +32,20 @@ const UserConnection = (): React.ReactNode => {
         variables: { data: { email, password } },
       });
       if ("id" in data.item) {
-        toast(`Connexion réussie, bienvenue ${data.item.firstName}`, {
-          style: { background: successColor, color: lightGreyColor },
-        });
+        showToast(
+          "success",
+          `Connexion réussie, bienvenue ${data.item.firstName}`,
+        );
         refetchUserContext();
         setEmail("");
         setPassword("");
       }
     } catch (error) {
-      toast(error.message, {
-        style: { background: errorColor, color: lightGreyColor },
-      });
+      if (error.message === "Failed to fetch") {
+        showToast("error", "Erreur de connexion, veuillez réessayer");
+      } else {
+        showToast("error", error.message);
+      }
       setEmail("");
       setPassword("");
     }
@@ -120,7 +120,7 @@ const UserConnection = (): React.ReactNode => {
                 Première connexion ?
               </Typography>
               <Link variant="body2" href="/signup">
-                {"Créer votre compte"}
+                {"Créez votre compte"}
               </Link>
             </Box>
           </Card>
