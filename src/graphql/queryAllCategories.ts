@@ -25,7 +25,7 @@ export const GET_ALL_CATEGORIES = gql`
         name
         uri
       }
-      productReference {
+      productReferences {
         name
         id
       }

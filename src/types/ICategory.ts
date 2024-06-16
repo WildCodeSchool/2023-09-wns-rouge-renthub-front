@@ -13,5 +13,5 @@ export interface ICategory {
   parentCategory: ICategory | null;
   childCategories: ICategory[] | null;
   picture: IPicture | null;
-  productReference: IProductReference[] | null;
+  productReferences: IProductReference[] | null;
 }

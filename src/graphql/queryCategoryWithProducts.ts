@@ -25,9 +25,20 @@ export const GET_CATEGORY_PRODUCT = gql`
         name
         uri
       }
-      productReference {
+      productReferences {
         name
+        brandName
+        price
+        description
         id
+        pictureProduct {
+          id
+          index
+          picture {
+            urlHD
+            urlMiniature
+          }
+        }
       }
     }
   }
