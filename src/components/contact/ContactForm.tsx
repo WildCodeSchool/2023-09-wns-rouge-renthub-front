@@ -13,15 +13,12 @@ import { FormEvent, useRef, useState } from "react";
 import UserEmail from "../users/components/UserEmail";
 import UserPhone from "../users/components/UserPhone";
 import UserName from "../users/components/UserName";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
 import { API_URL, RECAPTCHA_SITE_KEY } from "@/api/configApi";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
-import { VariablesColors } from "@/styles/Variables.colors";
-
-const colors = new VariablesColors();
-const { lightGreyColor, successColor, errorColor } = colors;
+import { showToast } from "../utils/toastHelper";
 
 const ContactForm = (): React.ReactNode => {
   const theme = useTheme();
@@ -71,25 +68,14 @@ const ContactForm = (): React.ReactNode => {
         token,
       })
       .then(() => {
-        toast("Votre formulaire a été soumis avec succès.", {
-          style: {
-            background: successColor,
-            color: lightGreyColor,
-          },
-        });
+        showToast("success", "Votre formulaire a été soumis avec succès.");
         resetForm();
       })
       .catch(() => {
-        console.error("error");
-        toast(
+        showToast(
+          "error",
           `Une erreur s'est produite. Contactez-nous au 01 40 XX XX XX ou à
-            contact@renthub.shop.`,
-          {
-            style: {
-              background: errorColor,
-              color: lightGreyColor,
-            },
-          },
+          contact@renthub.shop`,
         );
         resetForm();
       });

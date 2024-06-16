@@ -1,12 +1,11 @@
 import {
   Box,
   Button,
-  Icon,
   InputAdornment,
   TextField,
   Typography,
 } from "@mui/material";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import Link from "next/link";
 import Alert from "@mui/material/Alert";
@@ -21,8 +20,6 @@ function SubscribeNewsLetterCard(): React.ReactNode {
   };
 
   const handleSubscribe = () => {
-    console.warn("send email to subscribe to newsletter", email);
-
     // mock email subscription : if the server response is 200, the subscription is successful
     setTimeout(() => {
       emailStatus ? setEmailStatus(false) : setEmailStatus(true);
@@ -83,8 +80,6 @@ function SubscribeNewsLetterCard(): React.ReactNode {
                     position: "relative",
                     right: "-1.5rem",
                     bottom: "0.5rem",
-                    backgroundColor: "white",
-                    color: "gray",
                   }}
                   onClick={handleSubscribe}
                   startIcon={<SendOutlined />}

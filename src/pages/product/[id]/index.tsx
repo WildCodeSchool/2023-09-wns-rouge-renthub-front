@@ -1,5 +1,4 @@
 import ProductCard from "@/components/cards/ProductCard";
-import ContactHeader from "@/components/contact/ContactHeader";
 import LayoutFull from "@/components/layout/LayoutFull";
 import { GET_PRODUCT_REF } from "@/graphql/queryProdcutRef";
 import { IProductReference } from "@/types/IProductReference";
@@ -11,7 +10,6 @@ import React from "react";
 function Product(): React.ReactNode {
   const router = useRouter();
   const { id } = router.query;
-  console.debug("acces index product");
   const { data, loading, error } = useQuery<{ item: IProductReference }>(
     GET_PRODUCT_REF,
     { variables: { getProductReferenceId: id } },
@@ -32,7 +30,6 @@ function Product(): React.ReactNode {
   }
 
   const product = data.item;
-  console.debug("ProductId", { data, loading, error });
   return (
     <LayoutFull title="RentHub : Product">
       <Box

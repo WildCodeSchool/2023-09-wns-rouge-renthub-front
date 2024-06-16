@@ -4,14 +4,9 @@ import InfoLocation from "./InfoLocation";
 import Promotions from "./Promotions";
 import Articles from "./Articles";
 import Testimonials from "./Testimonials";
-import Footer from "../footer/Footer";
 import TopLocations from "./TopLocations";
-import ServiceOfferings from "../footer/ServiceOfferings";
 
 function Home() {
-  const matchesSmall = useMediaQuery("(max-width:599px)");
-  const matchesSuperSmall = useMediaQuery("(max-width:359px)");
-
   const styleHome = {
     margin: "auto",
   };

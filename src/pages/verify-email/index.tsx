@@ -14,7 +14,8 @@ import {
 } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { showToast } from "@/components/utils/toastHelper";
 
 interface VerifyEmailMutationData {
   userId: number;
@@ -24,8 +25,11 @@ interface VerifyEmailMutationData {
 const VerifyEmail = (): React.ReactNode => {
   const user = parseInt(useSearchParams().get("userId"));
   const [code, setCode] = useState<string>("");
-  const [doValidate, loading] = useMutation(mutationVerifyEmail);
-  const [doResend, loadingResend] = useMutation(mutationReSendCode);
+  const [doValidate] = useMutation<
+    { verifyEmail: { success: boolean; message: string } },
+    { data: VerifyEmailMutationData }
+  >(mutationVerifyEmail);
+  const [doResend] = useMutation(mutationReSendCode);
   const theme = useTheme();
 
   async function sendCode() {
@@ -41,20 +45,10 @@ const VerifyEmail = (): React.ReactNode => {
       if (!result.data.verifyEmail.success) {
         throw new Error(result.data.verifyEmail.message);
       }
-      toast("Votre compte a été vérifié avec succès !", {
-        style: {
-          background: "green",
-          color: "#fff",
-        },
-      });
+      showToast("success", "Votre compte a été vérifié avec succès !");
     } catch (error) {
       console.error(error);
-      toast(error.message, {
-        style: {
-          background: "red",
-          color: "#fff",
-        },
-      });
+      showToast("error", error.message);
     }
   }
 
@@ -70,20 +64,10 @@ const VerifyEmail = (): React.ReactNode => {
       if (result.data.generateNewVerificationCode !== true) {
         throw new Error("Erreur lors de l'envoi du code");
       }
-      toast("Votre code a été envoyé sur votre boite mail !", {
-        style: {
-          background: "green",
-          color: "#fff",
-        },
-      });
+      showToast("success", "Votre code a été envoyé sur votre boite mail !");
     } catch (error) {
       console.error(error);
-      toast("Erreur lors de l'envoi du code", {
-        style: {
-          background: "red",
-          color: "#fff",
-        },
-      });
+      showToast("error", "Erreur lors de l'envoi du code");
     }
   }
 
