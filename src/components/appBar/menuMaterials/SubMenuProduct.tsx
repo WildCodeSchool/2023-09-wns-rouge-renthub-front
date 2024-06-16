@@ -4,7 +4,7 @@ import { IProductReference } from "@/types/IProductReference";
 import { useQuery } from "@apollo/client";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 export interface SubMenuProductProps {
   idCategory: string;
@@ -22,10 +22,14 @@ function SubMenuProduct({
   );
 
   const sortedProducts = data
-    ? [...data.item?.productReference].sort((a, b) => {
+    ? [...data?.item?.productReferences].sort((a, b) => {
         return a.name.localeCompare(b.name);
       })
     : [];
+
+  useEffect(() => {
+    console.debug("SubMenuProduct", { data, loading, error });
+  });
 
   return (
     <Box

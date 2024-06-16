@@ -20,6 +20,7 @@ export const GET_PRODUCT_REF = gql`
 
       pictureProduct {
         id
+        index
         picture {
           name
           uri
