@@ -17,11 +17,6 @@ import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
 
-interface VerifyEmailMutationData {
-  userId: number;
-  code: string;
-}
-
 const VerifyEmail = (): React.ReactNode => {
   const user = parseInt(useSearchParams().get("userId"));
   const [code, setCode] = useState<string>("");

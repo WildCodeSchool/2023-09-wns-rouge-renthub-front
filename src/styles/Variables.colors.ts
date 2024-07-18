@@ -1,6 +1,7 @@
 export class VariablesColors {
   darkBlueColor = "#152535"; // dark blue
   lightBlueColor = "#6c96ff"; // light blue
+  hoverBlueColor = "#001f6c"; // hover blue
   lightGreyColor = "#f8f8f8"; // light grey
   orangeColor = "#ff8e3c"; // orange
   lightOrangeColor = "#ff9e6c"; // light orange
