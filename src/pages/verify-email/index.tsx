@@ -16,6 +16,7 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
+import { VerifyEmailMutationData } from "@/types/UserTypes";
 
 const VerifyEmail = (): React.ReactNode => {
   const user = parseInt(useSearchParams().get("userId"));
