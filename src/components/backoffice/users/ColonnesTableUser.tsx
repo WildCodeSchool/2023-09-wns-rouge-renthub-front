@@ -121,7 +121,6 @@ export function ColonnesTableUser() {
             }
             label="Supprimer"
             title="Supprimer l'utilisateur"
-            onClick={() => console.log(params.row)}
           />,
         ],
       },

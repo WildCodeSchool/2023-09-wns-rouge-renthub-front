@@ -15,25 +15,6 @@ export const UserForm = ({ userId }: { userId?: string | null }) => {
   const { lightBlueColor, hoverBlueColor } = new VariablesColors();
   const router = useRouter();
 
-  // const { data, loading, error } = useQuery(GET_USER_BY_ID, {
-  //   variables: { id: userId },
-  //   skip: !userId,
-  // });
-
-  // useEffect(() => {
-  //   if (data) {
-  //     setUser(data.user);
-  //   }
-  // }, [data]);
-
-  // const [createUser] = useMutation(CREATE_USER, {
-  //   onCompleted: () => router.push("/renthub-backoffice/users-list"),
-  // });
-
-  // const [updateUser] = useMutation(UPDATE_USER, {
-  //   onCompleted: () => router.push("/renthub-backoffice/users-list"),
-  // });
-
   const formik = useFormik<UserFormValues>({
     initialValues: {
       firstName: "",
@@ -57,9 +38,6 @@ export const UserForm = ({ userId }: { userId?: string | null }) => {
       }
     },
   });
-
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error.message}</p>;
 
   return (
     <>
