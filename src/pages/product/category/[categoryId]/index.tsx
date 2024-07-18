@@ -6,7 +6,7 @@ import { useQuery } from "@apollo/client";
 import { Box, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 
 function List(): React.ReactNode {
   const router = useRouter();
@@ -17,7 +17,7 @@ function List(): React.ReactNode {
   );
 
   const sortedProducts = data
-    ? [...data.item?.productReference].sort((a, b) => {
+    ? [...data.item?.productReferences].sort((a, b) => {
         return a.name.localeCompare(b.name);
       })
     : [];
@@ -80,7 +80,7 @@ function List(): React.ReactNode {
                     description={product.description}
                     src={
                       product.pictureProduct
-                        ? product.pictureProduct[0].picture.urlMiniature
+                        ? product.pictureProduct[0]?.picture.urlMiniature
                         : undefined
                     }
                   />
