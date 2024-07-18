@@ -1,12 +1,12 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 import { StepFormButton } from "@/styles/MuiButtons";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { VariablesColors } from "@/styles/Variables.colors";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const colors = new VariablesColors();
-const { color3 } = colors;
+const { orangeColor } = colors;
 
 type StepSubmitProps = {
   onSubmit: () => void;
@@ -14,11 +14,12 @@ type StepSubmitProps = {
 };
 
 const StepSubmit = (props: StepSubmitProps): React.ReactNode => {
+  const theme = useTheme();
   return (
     <Grid
       container
       item
-      xs={11}
+      xs={9}
       sm={10}
       md={5}
       lg={3.5}
@@ -30,13 +31,17 @@ const StepSubmit = (props: StepSubmitProps): React.ReactNode => {
         justifyContent: "center",
         alignItems: "center",
         gap: "1rem",
+        [theme.breakpoints.down("sm")]: {
+          p: 1,
+          minHeight: "370px",
+        },
       }}
     >
-      <CheckCircleIcon sx={{ fontSize: 50, color: color3 }} />
-      <Typography variant="h5" fontWeight={700} gutterBottom>
+      <CheckCircleIcon sx={{ fontSize: 50, color: orangeColor }} />
+      <Typography variant="h5" fontWeight={700} textAlign="center" gutterBottom>
         Tout est ok ?
       </Typography>
-      <Typography variant="subtitle2" gutterBottom>
+      <Typography variant="subtitle2" textAlign="center" gutterBottom>
         {`Si c'est bon pour vous, c'est bon pour nous !`}
       </Typography>
       <StepFormButton

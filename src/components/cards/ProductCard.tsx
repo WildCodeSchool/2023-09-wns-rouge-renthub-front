@@ -27,12 +27,13 @@ function ProductCard({
   price,
   src,
 }: ProductCardPropsType) {
-  const { color1, color3 } = new VariablesColors();
+  const { darkBlueColor, orangeColor } = new VariablesColors();
   const priceArray = Array.isArray(price) ? price : [price];
 
   return (
     <Card
       sx={{
+        minWidth: 286,
         width: 286,
         minHeight: "fit-content",
         borderRadius: "20px",
@@ -42,22 +43,19 @@ function ProductCard({
         flexDirection: "column",
         justifyContent: "space-between",
         transition: "background-color 0.3s ease",
-        "--colorBtnCard": color1,
+        "--colorBtnCard": darkBlueColor,
         "&:hover": {
-          backgroundColor: "#152535",
+          backgroundColor: darkBlueColor,
           color: "white",
-          "--colorBtnCard": color3,
+          "--colorBtnCard": orangeColor,
         },
       }}
     >
-      <Box
-        sx={{
-          padding: "20px 20px 0 20px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+      <Stack
+        direction={"column"}
+        justifyContent="flex-start"
+        alignItems={"center"}
+        padding={"20px"}
       >
         <Box
           sx={{
@@ -72,7 +70,9 @@ function ProductCard({
           <CardMedia component="img" alt={name} image={src} />
         </Box>
         <Box sx={{ alignSelf: "flex-start" }}>
-          <Typography component={"span"}>{brandName}</Typography>
+          <Typography component={"span"} fontSize={"0.7rem"}>
+            {brandName}
+          </Typography>
           <Typography
             paddingTop={2}
             variant="h6"
@@ -84,15 +84,8 @@ function ProductCard({
             </Typography>
           </Typography>
         </Box>
-      </Box>
-      <CardContent
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "30px",
-          justifyContent: "space-between",
-        }}
-      >
+      </Stack>
+      <CardContent>
         <Stack
           direction={"column"}
           justifyContent="flex-start"

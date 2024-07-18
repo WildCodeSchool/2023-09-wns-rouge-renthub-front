@@ -1,8 +1,11 @@
 import { styled } from "@mui/material";
 import { VariablesColors } from "./Variables.colors";
+import { Opacity } from "@mui/icons-material";
+import { deepOrange } from "@mui/material/colors";
 
 const colors = new VariablesColors();
-const { color1, color2, color3, color6, color7 } = colors;
+const { darkBlueColor, lightGreyColor, orangeColor, whiteColor, blackColor } =
+  colors;
 
 interface ButtonsHoverProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -11,7 +14,7 @@ interface ButtonsHoverProps
 
 export const OrangeBtnWhiteHover = styled("button")<ButtonsHoverProps>(() => ({
   borderRadius: "10px",
-  backgroundColor: color3,
+  backgroundColor: orangeColor,
   color: "white",
   fontWeight: "600",
   maxWidth: "fit-content",
@@ -26,20 +29,20 @@ export const OrangeBtnWhiteHover = styled("button")<ButtonsHoverProps>(() => ({
   transition:
     "background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease",
   "&:hover": {
-    backgroundColor: color2,
-    color: color1,
-    border: `1px solid ${color1}`,
+    backgroundColor: lightGreyColor,
+    color: darkBlueColor,
+    outline: `1px solid ${darkBlueColor}`,
   },
   "&:disabled": {
     cursor: "not-allowed",
-    backgroundColor: color1,
+    backgroundColor: darkBlueColor,
     color: "white",
   },
 }));
 
 export const OrangeBtnBlueHover = styled("button")<ButtonsHoverProps>(() => ({
-  borderRadius: "10px",
-  backgroundColor: color3,
+  borderRadius: "40px",
+  backgroundColor: orangeColor,
   color: "white",
   fontWeight: "600",
   maxWidth: "fit-content",
@@ -54,17 +57,41 @@ export const OrangeBtnBlueHover = styled("button")<ButtonsHoverProps>(() => ({
   transition:
     "background-color 0.4s ease, color 0.4s ease, font-weight 0.4s ease",
   "&:hover": {
-    backgroundColor: color1,
+    backgroundColor: darkBlueColor,
   },
 }));
 
+export const OrangeBtnRoundedWhiteHover = styled("button")<ButtonsHoverProps>(
+  () => ({
+    borderRadius: "50%",
+    backgroundColor: orangeColor,
+    color: "white",
+    fontWeight: "600",
+    maxWidth: "fit-content",
+    width: "25px",
+    height: "25px",
+    border: "none",
+    outline: "none",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+
+    transition:
+      "background-color 0.4s ease, color 0.4s ease, font-weight 0.4s ease",
+    "&:hover": {
+      backgroundColor: whiteColor,
+    },
+  }),
+);
+
 export const StepFormButton = styled("button")<ButtonsHoverProps>(() => ({
   borderRadius: "10px",
-  backgroundColor: color1,
+  backgroundColor: darkBlueColor,
   color: "white",
   fontWeight: "600",
-  minWidth: "160px",
-  minHeight: "40px",
+  minWidth: "2rem",
+  minHeight: "2rem",
   border: "none",
   outline: "none",
   cursor: "pointer",
@@ -74,11 +101,11 @@ export const StepFormButton = styled("button")<ButtonsHoverProps>(() => ({
   transition:
     "background-color 0.4s ease, color 0.4s ease, font-weight 0.4s ease",
   "&:hover": {
-    backgroundColor: color3,
+    backgroundColor: orangeColor,
   },
   "&:disabled": {
     cursor: "not-allowed",
-    backgroundColor: color1,
+    backgroundColor: darkBlueColor,
   },
 }));
 
@@ -87,6 +114,7 @@ export const CardDetailsBtn = styled("button")<ButtonsHoverProps>(() => ({
   alignItems: "center",
   borderRadius: "20px",
   height: "25px",
+
   padding: "0px 20px",
   outline: "1px solid #000000",
   border: "none",
@@ -96,8 +124,8 @@ export const CardDetailsBtn = styled("button")<ButtonsHoverProps>(() => ({
   backgroundColor: "black",
   color: "white",
   "&:hover": {
-    backgroundColor: color1,
-    color: color6,
-    outline: `1px solid ${color6}`,
+    backgroundColor: darkBlueColor,
+    color: whiteColor,
+    outline: `1px solid ${whiteColor}`,
   },
 }));

@@ -7,10 +7,11 @@ import { VariablesColors } from "@/styles/Variables.colors";
 import { useMutation } from "@apollo/client";
 import { mutationCreateUser } from "@/components/graphql/Users";
 import { UserFormData } from "@/types/UserTypes";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { showToast } from "@/components/utils/toastHelper";
 
 const colors = new VariablesColors();
-const { color2 } = colors;
+const { lightGreyColor } = colors;
 
 const SignUp = (): React.ReactNode => {
   // FORM
@@ -62,19 +63,11 @@ const SignUp = (): React.ReactNode => {
       if ("id" in result.data?.item) {
         setCurrentStep("welcome");
       } else {
-        toast("Erreur pendant la création de votre compte", {
-          style: { background: "#e14d2a", color: "#fff" },
-        });
+        showToast("error", "Erreur pendant la création de votre compte");
       }
     } catch (error) {
-      toast("Erreur pendant la création de votre compte", {
-        style: { background: "#e14d2a", color: "#fff" },
-      });
-      setEmail("");
-      setPassword("");
-      setFirstName("");
-      setLastName("");
-      setPhoneNumber("");
+      console.error("error", error);
+      showToast("error", "Erreur pendant la création de votre compte");
       setCurrentStep("email");
     }
   }
@@ -89,20 +82,20 @@ const SignUp = (): React.ReactNode => {
           xs={12}
           sx={{
             display: "flex",
-            flexDirection: "row",
+            flexDirection: { xs: "column-reverse", sm: "row" },
           }}
         >
           <Toaster />
           <Grid
             item
-            xs={6}
-            sm={4}
+            xs={12}
+            sm={5}
             md={3.5}
             lg={3}
             sx={{
               display: "flex",
               flexDirection: "column",
-              backgroundColor: color2,
+              backgroundColor: lightGreyColor,
               height: "89vh",
               padding: "1%",
             }}
@@ -155,7 +148,7 @@ const SignUp = (): React.ReactNode => {
               </Box>
             ))}
           </Grid>
-          <Grid item xs={6} sm={6} md={8.5}>
+          <Grid item xs={12} sm={7} md={8.5} lg={9}>
             {currentStep === "submit" ? (
               <StepSubmit onSubmit={onSubmit} loading={loading.loading} />
             ) : (

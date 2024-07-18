@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+ pnpm-lock.yaml
 .pnp.js
 
 # testing
@@ -36,3 +37,6 @@ next-env.d.ts
 
 # .vscode
 .vscode/
+
+# variables
+/src/api/configApi.ts

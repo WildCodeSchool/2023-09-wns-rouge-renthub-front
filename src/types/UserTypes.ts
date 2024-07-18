@@ -1,3 +1,5 @@
+import { Role } from "./RoleTypes";
+
 export type UserFormData = {
   firstName: string;
   lastName: string;
@@ -26,7 +28,42 @@ export type UserTypes = {
 };
 
 export type UserContextTypes = {
-  id: string;
-  nickName: string;
-  picture: string;
+  firstName: string;
+  lastName: string;
+  role: string;
 };
+
+export interface UserInterface {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  createdBy: CreatedBy | null;
+  createdAt: string;
+  role: Role;
+  lastConnectionDate: string;
+  nickName: string;
+  updatedAt: string;
+  updatedBy: UpdatedBy | null;
+}
+
+export interface CreatedBy {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
+
+interface UpdatedBy {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface UserFormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
+}

@@ -1,18 +1,19 @@
 import React from "react";
 import router from "next/router";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 import { StepFormButton } from "@/styles/MuiButtons";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import { VariablesColors } from "@/styles/Variables.colors";
 
 const colors = new VariablesColors();
-const { color3 } = colors;
+const { orangeColor } = colors;
 
 type StepWelcomeProps = {
   email: string;
 };
 
 const StepWelcome = (props: StepWelcomeProps): React.ReactNode => {
+  const theme = useTheme();
   return (
     <Grid
       container
@@ -25,9 +26,13 @@ const StepWelcome = (props: StepWelcomeProps): React.ReactNode => {
         justifyContent: "center",
         alignItems: "center",
         gap: "1rem",
+        [theme.breakpoints.down("sm")]: {
+          minHeight: "370px",
+          height: "100%",
+        },
       }}
     >
-      <RocketLaunchIcon sx={{ fontSize: 50, color: color3 }} />
+      <RocketLaunchIcon sx={{ fontSize: 50, color: orangeColor }} />
       <Typography variant="h5" fontWeight={700} gutterBottom>
         Bienvenue !
       </Typography>

@@ -1,10 +1,9 @@
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import Hero from "./Hero";
 import InfoLocation from "./InfoLocation";
 import Promotions from "./Promotions";
 import Articles from "./Articles";
 import Testimonials from "./Testimonials";
-import Footer from "../footer/Footer";
 import TopLocations from "./TopLocations";
 
 function Home() {
@@ -12,42 +11,35 @@ function Home() {
     margin: "auto",
   };
 
+  const matchSize599 = useMediaQuery("(max-width:599px)");
   const styleHero = {
     position: "relative",
     background: "url('/images/heroBackground.jpg')",
     backgroundAttachment: "fixed",
     backgroundPosition: "center 30%",
-    backgroundSize: "cover", // Use 'cover' to ensure the image covers the entire container
-    height: "500px",
+    backgroundSize: "cover",
+    height: matchSize599 ? "605px" : "500px",
   };
 
   return (
-    <Grid
-      container
-      maxWidth="xl"
-      justifyContent={"center"}
-      sx={{ ...styleHome }}
-    >
-      <Grid item xs={12} sx={{ ...styleHero }}>
+    <Grid container justifyContent={"center"} sx={{ ...styleHome }}>
+      <Grid item xs={12} lg={9} sx={{ ...styleHero }}>
         <Hero />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid className="body" item xs={9}>
         <InfoLocation />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid className="body" item xs={9}>
         <Promotions />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid className="body" item xs={9}>
         <TopLocations />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12} component={"section"}>
         <Articles />
       </Grid>
-      <Grid className="body" item xs={12}>
+      <Grid item xs={12}>
         <Testimonials />
-      </Grid>
-      <Grid className="body" item xs={12}>
-        <Footer />
       </Grid>
     </Grid>
   );

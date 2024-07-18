@@ -31,7 +31,9 @@
           "@pages": "./src/pages",
           "@styles": "./src/styles",
           "@type": "./src/types",
-          "@api": "./src/api"
+          "@api": "./src/api",
+          "@graphql": "./src/graphql",
+          "@context": "./src/context"
         },
         "extensions": [".ts", ".tsx", ".json"]
       }
