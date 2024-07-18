@@ -16,10 +16,6 @@ function List(): React.ReactNode {
     { variables: { findCategoryId: categoryId } },
   );
 
-  useEffect(() => {
-    console.debug("111", data);
-  });
-
   const sortedProducts = data
     ? [...data.item?.productReferences].sort((a, b) => {
         return a.name.localeCompare(b.name);

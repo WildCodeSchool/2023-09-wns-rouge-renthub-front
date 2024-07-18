@@ -27,10 +27,6 @@ function SubMenuProduct({
       })
     : [];
 
-  useEffect(() => {
-    console.debug("SubMenuProduct", { data, loading, error });
-  });
-
   return (
     <Box
       minWidth={"400px"}
