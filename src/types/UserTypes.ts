@@ -33,6 +33,11 @@ export type UserContextTypes = {
   role: string;
 };
 
+export type VerifyEmailMutationData = {
+  code: string;
+  userId: number;
+};
+
 export interface UserInterface {
   id: string;
   firstName: string;
