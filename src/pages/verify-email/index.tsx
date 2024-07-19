@@ -43,7 +43,7 @@ const VerifyEmail = (): React.ReactNode => {
         throw new Error(result.data.verifyEmail.message);
       }
       showToast("success", "Votre compte a été vérifié avec succès !");
-      router.push("/");
+      router.push("/signin");
     } catch (error) {
       console.error(error);
       showToast("error", error.message);
@@ -87,7 +87,7 @@ const VerifyEmail = (): React.ReactNode => {
         flexDirection: "column",
       }}
     >
-      <Toaster position="bottom-left" />
+      <Toaster />
       <Typography variant="h5" gutterBottom>
         Vérification de votre compte
       </Typography>
