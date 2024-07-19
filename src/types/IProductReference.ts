@@ -26,5 +26,5 @@ export interface IProductReference {
   stock: {
     name: string;
     isAvailable: boolean;
-  };
+  }[];
 }
