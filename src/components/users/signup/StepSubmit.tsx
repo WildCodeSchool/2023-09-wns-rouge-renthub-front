@@ -5,7 +5,6 @@ import { StepFormButton } from "@/styles/MuiButtons";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { VariablesColors } from "@/styles/Variables.colors";
 import CircularProgress from "@mui/material/CircularProgress";
-import { RECAPTCHA_SITE_KEY } from "@/api/configApi";
 
 const colors = new VariablesColors();
 const { orangeColor } = colors;
@@ -53,7 +52,7 @@ const StepSubmit = (props: StepSubmitProps): React.ReactNode => {
         {`Si c'est bon pour vous, c'est bon pour nous !`}
       </Typography>
       <ReCAPTCHA
-        sitekey={RECAPTCHA_SITE_KEY}
+        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
         ref={captchaRef}
         onChange={handleCaptchaChange}
       />
