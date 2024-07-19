@@ -16,7 +16,6 @@ import UserName from "../users/components/UserName";
 import { Toaster } from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
-import { API_URL, RECAPTCHA_SITE_KEY } from "@/api/configApi";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { showToast } from "../utils/toastHelper";
 
@@ -63,7 +62,7 @@ const ContactForm = (): React.ReactNode => {
     };
     setLoading(true);
     axios
-      .post(`${API_URL}sendcontactemail`, {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}sendcontactemail`, {
         formDetails,
         token,
       })
@@ -169,7 +168,7 @@ const ContactForm = (): React.ReactNode => {
             />
 
             <ReCAPTCHA
-              sitekey={RECAPTCHA_SITE_KEY}
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
               ref={captchaRef}
               onChange={handleCaptchaChange}
             />

@@ -1,5 +1,4 @@
 import { Button, Typography, Box } from "@mui/material";
-import { PATH_IMAGE } from "@/api/configApi";
 
 const ContactHeader = (): React.ReactNode => {
   return (
@@ -12,7 +11,7 @@ const ContactHeader = (): React.ReactNode => {
         alignItems: "center",
         justifyContent: "center",
         gap: "8px",
-        background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${PATH_IMAGE}/general/contact.jpg)`,
+        background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${process.env.NEXT_PUBLIC_PATH_IMAGE}/general/contact.jpg)`,
       }}
     >
       <Typography variant="h4" gutterBottom>
