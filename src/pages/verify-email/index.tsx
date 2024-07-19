@@ -17,6 +17,7 @@ import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
 import { VerifyEmailMutationData } from "@/types/UserTypes";
+import router from "next/router";
 
 const VerifyEmail = (): React.ReactNode => {
   const user = parseInt(useSearchParams().get("userId"));
@@ -42,6 +43,7 @@ const VerifyEmail = (): React.ReactNode => {
         throw new Error(result.data.verifyEmail.message);
       }
       showToast("success", "Votre compte a été vérifié avec succès !");
+      router.push("/");
     } catch (error) {
       console.error(error);
       showToast("error", error.message);
@@ -61,6 +63,7 @@ const VerifyEmail = (): React.ReactNode => {
         throw new Error("Erreur lors de l'envoi du code");
       }
       showToast("success", "Votre code a été envoyé sur votre boite mail !");
+      router.push("/");
     } catch (error) {
       console.error(error);
       showToast("error", "Erreur lors de l'envoi du code");
