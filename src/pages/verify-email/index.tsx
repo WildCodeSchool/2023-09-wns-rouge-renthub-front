@@ -17,6 +17,11 @@ import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
 
+interface VerifyEmailMutationData {
+  userId: number;
+  code: string;
+}
+
 const VerifyEmail = (): React.ReactNode => {
   const user = parseInt(useSearchParams().get("userId"));
   const [code, setCode] = useState<string>("");
@@ -73,18 +78,19 @@ const VerifyEmail = (): React.ReactNode => {
       sm={8}
       xs={12}
       sx={{
-        margin: 2,
+        margin: "auto",
         [theme.breakpoints.down("sm")]: {
-          marginRight: "auto",
-          marginLeft: "auto",
           alignItems: "center",
+          justifyContent: "end",
         },
+        alignContent: "center",
+        paddingBlock: 5,
         display: "flex",
         flexDirection: "column",
       }}
     >
       <Toaster position="bottom-left" />
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom paddingBlockEnd={2}>
         Vérification de votre compte
       </Typography>
       <Grid item xs={12} sm={6} md={6} xl={5} minWidth={360}>

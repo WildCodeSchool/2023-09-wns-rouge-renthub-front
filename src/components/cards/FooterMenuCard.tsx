@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Container, Link, Typography } from "@mui/material";
 import MenuCardProps from "@/types/MenuFooterTypes";
 
 function FooterMenuCard({
@@ -32,7 +32,12 @@ function FooterMenuCard({
           {menuCard.title}
         </Typography>
 
-        <div style={{ marginTop: "1rem" }}>
+        <Box
+          sx={{
+            display: { xs: "block", md: "block" },
+            marginTop: { md: "1rem" },
+          }}
+        >
           {menuCard.links.map((link) => (
             <Link key={link.id} href={link.url}>
               <Typography
@@ -46,7 +51,7 @@ function FooterMenuCard({
               </Typography>
             </Link>
           ))}
-        </div>
+        </Box>
       </div>
     </Box>
   );

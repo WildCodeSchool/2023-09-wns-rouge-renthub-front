@@ -98,14 +98,13 @@ function Navbar(): React.ReactNode {
               />
               {/* @TODO: set modal in responsive menu */}
               <IconButton
+                aria-describedby={id}
                 aria-label="materiels"
                 size="large"
                 sx={{
                   color: orangeColor,
                 }}
-                onClick={() => {
-                  // displaying the modal...
-                }}
+                onClick={HandleMenuCategoriesClick}
               >
                 <ExpandCircleDownOutlinedIcon fontSize="inherit" />
               </IconButton>
