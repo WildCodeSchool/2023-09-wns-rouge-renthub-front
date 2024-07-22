@@ -16,6 +16,7 @@ import {
 type UserPasswordProps = {
   password: string;
   setPassword: (password: string) => void;
+  label?: string;
 };
 
 const UserPassword = (props: UserPasswordProps): React.ReactNode => {
@@ -63,10 +64,10 @@ const UserPassword = (props: UserPasswordProps): React.ReactNode => {
   return (
     <>
       <TextField
-        id="outlined-adornment-password"
+        id={props.label ? props.label : "outlined-adornment-password"}
         type={showPassword ? "text" : "password"}
         size="small"
-        label="Mot de passe"
+        label={props.label ? props.label : "Mot de passe"}
         variant="outlined"
         value={props.password}
         onChange={handleChange}

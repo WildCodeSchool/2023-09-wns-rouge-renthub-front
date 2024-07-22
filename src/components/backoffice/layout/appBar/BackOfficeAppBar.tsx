@@ -1,7 +1,6 @@
 import { AppBar, Box, CardMedia, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { VariablesColors } from "@/styles/Variables.colors";
-import { PATH_IMAGE } from "@/api/configApi";
 import { useMutation } from "@apollo/client";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { mutationSignOut } from "@/components/graphql/Users";
@@ -50,7 +49,7 @@ const BackOfficeAppBar = (): React.ReactNode => {
             objectFit: "contain",
             cursor: "pointer",
           }}
-          image={`${PATH_IMAGE}/general/renthub-logo.png`}
+          image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/general/renthub-logo.png`}
           title="logo renthub"
           onClick={() => {
             router.push("/renthub-backoffice");

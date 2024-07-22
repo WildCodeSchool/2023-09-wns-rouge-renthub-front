@@ -100,8 +100,12 @@ jobs:
         with:
           context: .
           target: prod
-          platforms: linux/amd64, linux/arm64
+          platforms: linux/amd64
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
             ${{ steps.tag_sha.outputs.value }}
+          build-args: |
+            NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}
+            NEXT_PUBLIC_PATH_IMAGE=${{ secrets.NEXT_PUBLIC_PATH_IMAGE }}
+            NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}

@@ -16,6 +16,8 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
+import { VerifyEmailMutationData } from "@/types/UserTypes";
+import router from "next/router";
 
 interface VerifyEmailMutationData {
   userId: number;
@@ -46,6 +48,7 @@ const VerifyEmail = (): React.ReactNode => {
         throw new Error(result.data.verifyEmail.message);
       }
       showToast("success", "Votre compte a été vérifié avec succès !");
+      router.push("/signin");
     } catch (error) {
       console.error(error);
       showToast("error", error.message);
@@ -65,6 +68,7 @@ const VerifyEmail = (): React.ReactNode => {
         throw new Error("Erreur lors de l'envoi du code");
       }
       showToast("success", "Votre code a été envoyé sur votre boite mail !");
+      router.push("/");
     } catch (error) {
       console.error(error);
       showToast("error", "Erreur lors de l'envoi du code");
@@ -89,8 +93,8 @@ const VerifyEmail = (): React.ReactNode => {
         flexDirection: "column",
       }}
     >
-      <Toaster position="bottom-left" />
-      <Typography variant="h5" gutterBottom paddingBlockEnd={2}>
+      <Toaster />
+      <Typography variant="h5" gutterBottom>
         Vérification de votre compte
       </Typography>
       <Grid item xs={12} sm={6} md={6} xl={5} minWidth={360}>
