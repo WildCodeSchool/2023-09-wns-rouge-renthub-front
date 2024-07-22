@@ -16,6 +16,7 @@ import { Toaster } from "react-hot-toast";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { useUserContext } from "@/context/UserContext";
 import { showToast } from "@/components/utils/toastHelper";
+import { useRouter } from "next/router";
 
 const UserConnection = (): React.ReactNode => {
   const [email, setEmail] = useState<string>("");
@@ -23,6 +24,8 @@ const UserConnection = (): React.ReactNode => {
 
   const { refetchUserContext } = useUserContext();
   const theme = useTheme();
+  const router = useRouter();
+
   const [doLogin] = useMutation(mutationUserLogin);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -39,6 +42,8 @@ const UserConnection = (): React.ReactNode => {
         refetchUserContext();
         setEmail("");
         setPassword("");
+
+        router.push("/");
       }
     } catch (error) {
       if (error.message === "Failed to fetch") {
