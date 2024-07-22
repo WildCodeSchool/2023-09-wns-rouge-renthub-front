@@ -15,7 +15,7 @@ export interface IProductReference {
   createdAt: string;
   updatedAt: string;
 
-  description;
+  description: string;
   index: number;
   display: boolean;
   brandName: string;
@@ -27,4 +27,13 @@ export interface IProductReference {
     name: string;
     isAvailable: boolean;
   }[];
+}
+
+export interface ProduitFormValues {
+  name: string;
+  brandName: string;
+  description: string;
+  price: number;
+  category: { id: string } | null;
+  pictureProduct: { id: string } | null;
 }
