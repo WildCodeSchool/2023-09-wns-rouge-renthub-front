@@ -40,7 +40,6 @@ export const OrangeBtnWhiteHover = styled("button")<ButtonsHoverProps>(() => ({
   },
 }));
 
-
 export const OrangeBtnBlueHover = styled("button")<ButtonsHoverProps>(() => ({
   borderRadius: "40px",
   backgroundColor: orangeColor,

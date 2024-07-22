@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Box, Chip, Stack, Typography } from "@mui/material";
-import Cloud from "@mui/icons-material/Cloud";
-import Sun from "@mui/icons-material/LightMode";
-import { transform } from "next/dist/build/swc";
-import { blue, blueGrey } from "@mui/material/colors";
+
 import { VariablesColors } from "@/styles/Variables.colors";
 interface PriceTimeProps {
   price: number;
@@ -53,11 +50,17 @@ export default function PriceTime({
           sx={{ textDecoration: priceRental ? "line-through" : "none" }}
           fontWeight={priceRental || 700}
           variant="h6"
+          fontSize={16}
         >
           {price}€
         </Typography>
         {priceRental && (
-          <Typography variant="h6" fontWeight={700}>
+          <Typography
+            component="div"
+            variant="h6"
+            fontWeight={700}
+            fontSize={16}
+          >
             {priceRental}€
           </Typography>
         )}
