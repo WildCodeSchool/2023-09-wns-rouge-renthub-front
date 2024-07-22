@@ -44,5 +44,5 @@ export interface ProduitFormValues {
   description: string;
   price: number;
   category: { id: string } | null;
-  pictureProduct: { id: string } | null;
+  pictures: [{ id: number }] | null;
 }

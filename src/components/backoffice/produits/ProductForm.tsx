@@ -19,6 +19,9 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ICategory } from "@/types/ICategory";
 import PictureDownload from "../utils/PictureDownload";
 import { MUTATION_CREATE_PRODUCT_REFERENCE } from "@/graphql/productReference/mutationCreateProductReference";
+import axios from "axios";
+import { da } from "date-fns/locale";
+import { ConnectingAirportsOutlined } from "@mui/icons-material";
 
 const ProductForm = (): React.ReactNode => {
   const { lightBlueColor, hoverBlueColor } = new VariablesColors();
@@ -31,6 +34,11 @@ const ProductForm = (): React.ReactNode => {
   const [picture, setPicture] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [doCreate] = useMutation(MUTATION_CREATE_PRODUCT_REFERENCE);
+  // const data = {
+  //   name: name,
+  //   parentCategory: parentCategory ? { id: parentCategory } : null,
+  //   picture: filename ? filename : null,
+  // };
 
   const formik = useFormik<ProduitFormValues>({
     initialValues: {
@@ -41,9 +49,11 @@ const ProductForm = (): React.ReactNode => {
       category: {
         id: "",
       },
-      pictureProduct: {
-        id: "",
-      },
+      pictures: [
+        {
+          id: null,
+        },
+      ],
     },
     // validationSchema: Yup.object({
     //   firstName: Yup.string().required("Le prénom est requis"),
@@ -53,7 +63,36 @@ const ProductForm = (): React.ReactNode => {
     //   password: Yup.string().required("Le mot de passe est requis"),
     // }),
     onSubmit: async (values) => {
-      // console.log(values);
+      let pictureId = null;
+      if (picture) {
+        const formData = new FormData();
+        formData.append("file", picture);
+        const { data } = await axios.post(
+          `${process.env.NEXT_PUBLIC_PATH_IMAGE}`,
+          formData,
+        );
+
+        pictureId = data.pictureId;
+      }
+
+      const data: ProduitFormValues = {
+        name: values.name,
+        brandName: values.brandName,
+        description: values.description,
+        price: values.price,
+        category: { id: String(values.category) },
+        pictures: [
+          {
+            id: pictureId,
+          },
+        ],
+      };
+
+      await doCreate({
+        variables: {
+          data,
+        },
+      });
     },
   });
   return (
@@ -138,10 +177,11 @@ const ProductForm = (): React.ReactNode => {
                 <Select
                   labelId="category"
                   id="category"
-                  value={formik.values.category.id}
+                  value={formik.values.category}
                   label="Age"
                   onChange={formik.handleChange}
                   size="small"
+                  name="category"
                 >
                   {categories?.map((category) => (
                     <MenuItem key={category.id} value={category.id}>

@@ -3,7 +3,6 @@ import { GET_PRODUCT_REF } from "@/graphql/queryProdcutRef";
 import { IProductReference } from "@/types/IProductReference";
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
-
 import PriceTime from "@/components/product/PriceTime";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
