@@ -14,6 +14,9 @@ import ResponsiveMenu from "./ResponsiveMenu";
 import { VariablesColors } from "@/styles/Variables.colors";
 import MenuCategoriesProduct from "./menuMaterials/MenuCategoriesProduct";
 import SearchBar from "./SearchBar";
+import { useMutation } from "@apollo/client";
+import { mutationSignOut } from "../graphql/Users";
+import { useUserContext } from "@/context/UserContext";
 
 function Navbar(): React.ReactNode {
   const [globalFilterValue, setGlobalFilterValue] =
@@ -25,11 +28,30 @@ function Navbar(): React.ReactNode {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   /* Menu item, redirect to the well path */
-  const pages = [
+  const { user, refetchUserContext } = useUserContext();
+  // Signout
+  const [doSignout] = useMutation(mutationSignOut, {
+    onCompleted: () => {
+      refetchUserContext();
+    },
+  });
+  const handleSignOut = () => {
+    doSignout();
+  };
+
+  /* Menu item, redirect to the well path */
+  const pages_notConnected = [
     { title: "Nos agences", path: "/agences" },
     { title: "Se connecter", path: "/signin" },
-    { title: "Mon panier", path: "/cart" },
   ];
+
+  const pages_connected = [
+    { title: "Mon panier", path: "/cart" },
+    { title: "Profil", path: "/account" },
+    { title: "Deconnection", path: "/signin" },
+  ];
+
+  const pages = user ? pages_connected : pages_notConnected;
 
   const HandleMenuCategoriesClick = (event: React.MouseEvent<HTMLElement>) => {
     setShowMenuCategories(!showMenuCategories);
@@ -128,6 +150,9 @@ function Navbar(): React.ReactNode {
                 <Button
                   key={idx}
                   onClick={() => {
+                    if (page.title === "Deconnection") {
+                      handleSignOut();
+                    }
                     router.push(page.path);
                   }}
                   sx={{ my: 2, color: "black", display: "block" }}

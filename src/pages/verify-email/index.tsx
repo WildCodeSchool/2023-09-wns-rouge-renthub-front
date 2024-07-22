@@ -19,11 +19,6 @@ import { showToast } from "@/components/utils/toastHelper";
 import { VerifyEmailMutationData } from "@/types/UserTypes";
 import router from "next/router";
 
-interface VerifyEmailMutationData {
-  userId: number;
-  code: string;
-}
-
 const VerifyEmail = (): React.ReactNode => {
   const user = parseInt(useSearchParams().get("userId"));
   const [code, setCode] = useState<string>("");

@@ -15,7 +15,7 @@ import LoadingApp from "@/styles/LoadingApp";
 import { useAuth } from "@/config/userAuth";
 import theme from "@/config/themeMui";
 
-const privatePages = ["/compte"];
+const privatePages = ["/compte", "/cart", "/profil"];
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { loading } = useAuth(privatePages);

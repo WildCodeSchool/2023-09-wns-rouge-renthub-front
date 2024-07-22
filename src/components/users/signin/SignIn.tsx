@@ -16,8 +16,10 @@ import { Toaster } from "react-hot-toast";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { useUserContext } from "@/context/UserContext";
 import { showToast } from "@/components/utils/toastHelper";
+import { useRouter } from "next/router";
 
 const UserConnection = (): React.ReactNode => {
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -37,8 +39,7 @@ const UserConnection = (): React.ReactNode => {
           `Connexion réussie, bienvenue ${data.item.firstName}`,
         );
         refetchUserContext();
-        setEmail("");
-        setPassword("");
+        router.replace("/");
       }
     } catch (error) {
       if (error.message === "Failed to fetch") {
