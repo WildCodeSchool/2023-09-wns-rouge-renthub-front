@@ -19,6 +19,11 @@ import { showToast } from "@/components/utils/toastHelper";
 import { VerifyEmailMutationData } from "@/types/UserTypes";
 import router from "next/router";
 
+interface VerifyEmailMutationData {
+  userId: number;
+  code: string;
+}
+
 const VerifyEmail = (): React.ReactNode => {
   const user = parseInt(useSearchParams().get("userId"));
   const [code, setCode] = useState<string>("");
@@ -77,12 +82,13 @@ const VerifyEmail = (): React.ReactNode => {
       sm={8}
       xs={12}
       sx={{
-        margin: 2,
+        margin: "auto",
         [theme.breakpoints.down("sm")]: {
-          marginRight: "auto",
-          marginLeft: "auto",
           alignItems: "center",
+          justifyContent: "end",
         },
+        alignContent: "center",
+        paddingBlock: 5,
         display: "flex",
         flexDirection: "column",
       }}

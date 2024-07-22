@@ -79,14 +79,14 @@ function MenuCategoriesProduct({
     >
       <Box
         display={"flex"}
-        flexDirection={"row"}
+        flexDirection={{ xs: "column-reverse", md: "row" }}
         width={"auto"}
         gap={0}
-        sx={{ display: { xs: "none", md: "flex" } }}
+        sx={{ display: { xs: "flex", md: "flex" } }}
       >
         <Box
           display="flex"
-          flexDirection="column"
+          flexDirection={{ xs: "column", md: "row" }}
           padding={"1rem"}
           flexGrow={1}
           bgcolor={darkBlueColor}

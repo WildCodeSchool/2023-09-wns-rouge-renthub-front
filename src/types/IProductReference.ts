@@ -8,6 +8,18 @@ export interface IPictureProduct {
   updatedAt: string;
   urlHD: string;
 }
+
+export interface IStock {
+  id: number;
+  name: string;
+  isAvailable: boolean;
+  sku: string;
+  serialNumber: string;
+  purchaseDataTime: Date;
+  supplier?: string;
+  productReference: number;
+}
+
 export interface IProductReference {
   id: number;
   name: string;
@@ -15,7 +27,7 @@ export interface IProductReference {
   createdAt: string;
   updatedAt: string;
 
-  description;
+  description: string;
   index: number;
   display: boolean;
   brandName: string;
@@ -23,8 +35,5 @@ export interface IProductReference {
   category: ICategory;
   pictureProduct: { id: number; picture: Partial<IPictureProduct>[] } | null;
 
-  stock: {
-    name: string;
-    isAvailable: boolean;
-  }[];
+  stock: Partial<IStock>[];
 }
