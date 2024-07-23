@@ -49,7 +49,7 @@ const BackOfficeAppBar = (): React.ReactNode => {
             objectFit: "contain",
             cursor: "pointer",
           }}
-          image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/general/renthub-logo.png`}
+          image={`/images/renthub-logo.png`}
           title="logo renthub"
           onClick={() => {
             router.push("/renthub-backoffice");
