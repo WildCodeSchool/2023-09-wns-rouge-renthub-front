@@ -4,6 +4,7 @@ import { GET_CART } from "@/graphql/cart/cart";
 import { useQuery } from "@apollo/client";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { Cart } from "@/types/Cart";
+import { format } from "date-fns";
 
 export default function CartProducts() {
   const { data, loading, error } = useQuery<{ item: Cart }>(GET_CART);
@@ -45,6 +46,10 @@ export default function CartProducts() {
               <Typography variant="body1">Location à la journée</Typography>
               <Typography variant="body1">
                 Quantité: {productCart.quantity}
+              </Typography>
+              <Typography variant="body1">
+                Période: {format(productCart.dateTimeStart, "dd/MM/yyyy")} -{" "}
+                {format(productCart.dateTimeEnd, "dd/MM/yyyy")}
               </Typography>
               <Typography variant="body1">
                 Prix: {productCart.productReference.price} €
