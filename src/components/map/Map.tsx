@@ -43,6 +43,7 @@ export default function MyMap({
               lng={branch.lng}
               agencyName={branch.name}
               address={branch.address}
+              email={branch.email}
               phone={branch.phone}
               fax={branch.fax}
               hours={branch.hours}

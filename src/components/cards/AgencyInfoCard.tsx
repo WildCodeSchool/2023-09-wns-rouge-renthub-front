@@ -77,7 +77,7 @@ export const AgencyInfoCard = ({
                 gap={1}
                 sx={{ color: "#000000" }}
               >
-                <PhoneIcon sx={{ fontSize: 16 }} />
+                <PhoneIcon sx={{}} />
                 {phone ? phone : " - "}
               </Typography>
 
@@ -119,7 +119,7 @@ export const AgencyInfoCard = ({
                 gap={1}
                 sx={{ color: "#000000" }}
               >
-                <HourIcon sx={{ fontSize: 16 }} />
+                <HourIcon sx={{}} />
                 {hours}
               </Typography>
             </>
