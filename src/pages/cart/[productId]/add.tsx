@@ -12,10 +12,7 @@ import { MUTATION_CREATE_PRODUCT_CART } from "@/graphql/productCart/productCart"
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
 import { GET_COUNT_STOCKS_AVAILABLE_BY_DATES_PRODUCTREFERENCEID } from "@/graphql/stocks/queryStocks";
-
-function dateformater(date: Date) {
-  return new Date(format(date, "yyyy-MM-dd")).toISOString();
-}
+import { dateformater } from "@/components/utils/helpers";
 
 type Product = {
   id: number;
@@ -47,9 +44,11 @@ export default function AddToCart() {
     name: "",
     price: 50,
   });
+  const router = useRouter();
+  const productId = router.query.productId;
+
   const [quantity, setQuantity] = useState<number>(1);
   const { lightGreyColor } = new VariablesColors();
-  const productId = useRouter().query.productId;
   const { data } = useQuery<{ item: IProductReference }>(GET_PRODUCT_REF, {
     variables: { getProductReferenceId: productId },
   });
@@ -79,12 +78,13 @@ export default function AddToCart() {
             productReference: {
               id: productId,
             },
-            dateTimeStart: state[0].startDate,
-            dateTimeEnd: state[0].endDate,
+            dateTimeStart: dateformater(state[0].startDate),
+            dateTimeEnd: dateformater(state[0].endDate),
           },
         },
       });
       showToast("success", "Produit ajouté au panier");
+      router.replace("/cart");
     } catch (error) {
       showToast("error", "Une erreur s'est produite");
     }
