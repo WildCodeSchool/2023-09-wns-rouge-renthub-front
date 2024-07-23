@@ -41,7 +41,7 @@ function Navbar(): React.ReactNode {
 
   /* Menu item, redirect to the well path */
   const pages_notConnected = [
-    { title: "Nos agences", path: "/agences" },
+    { title: "Nos agences", path: "/agencies" },
     { title: "Se connecter", path: "/signin" },
   ];
 
