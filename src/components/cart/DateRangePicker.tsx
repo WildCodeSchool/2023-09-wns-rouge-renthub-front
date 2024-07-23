@@ -26,6 +26,17 @@ export default function DateRangePicker({
 }: DateRangePickerProps) {
   const { orangeColor } = new VariablesColors();
 
+  function handleReset() {
+    setState([
+      {
+        startDate: new Date(),
+        endDate: new Date(),
+        key: "selection",
+      },
+    ]);
+    setQuantity(1);
+  }
+
   return (
     <Box>
       <Box display={"flex"} gap={1} alignItems={"baseline"}>
@@ -94,7 +105,7 @@ export default function DateRangePicker({
               type="number"
               label="Quantité"
               size="small"
-              value={quantity}
+              value={quantityAvailable === 0 ? 0 : quantity}
               onChange={(e) => {
                 Number(e.target.value) <= quantityAvailable &&
                   Number(e.target.value) > 0 &&
@@ -118,11 +129,11 @@ export default function DateRangePicker({
               sx={{ color: "white" }}
               onClick={addProductCart}
             >
-              Valider la période
+              Ajouter au panier
             </Button>
-            <Link href="#" underline="hover" sx={{ color: "black" }}>
-              Effacer la période
-            </Link>
+            <Button sx={{ color: "black" }} onClick={handleReset}>
+              Remettre à zéro
+            </Button>
           </Box>
         </Box>
       </Box>

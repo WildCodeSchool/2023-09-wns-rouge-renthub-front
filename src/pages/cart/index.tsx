@@ -10,7 +10,7 @@ export default function Cart() {
   return (
     <>
       <Container maxWidth="xl">
-        <Grid container spacing={2}>
+        <Grid container spacing={0}>
           <Grid item xs={12} sm={6}>
             <CartProducts />
           </Grid>
@@ -20,7 +20,11 @@ export default function Cart() {
             sm={6}
             sx={{
               backgroundColor: lightGreyColor,
-              borderLeft: " 1px solid grey",
+              borderLeft: "1px solid grey",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              p: 2,
             }}
           >
             <RecapitulatifCart />

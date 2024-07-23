@@ -1,7 +1,7 @@
-import { addDays } from "date-fns";
-import { useState } from "react";
+import { addDays, format } from "date-fns";
+import { useEffect, useState } from "react";
 import DateRangePicker from "@/components/cart/DateRangePicker";
-import { Container, Divider, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import Recapitulatif from "@/components/cart/Recapitulatif";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { useRouter } from "next/router";
@@ -11,6 +11,11 @@ import { IProductReference } from "@/types/IProductReference";
 import { MUTATION_CREATE_PRODUCT_CART } from "@/graphql/productCart/productCart";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
+import { GET_COUNT_STOCKS_AVAILABLE_BY_DATES_PRODUCTREFERENCEID } from "@/graphql/stocks/queryStocks";
+
+function dateformater(date: Date) {
+  return new Date(format(date, "yyyy-MM-dd")).toISOString();
+}
 
 type Product = {
   id: number;
@@ -32,6 +37,11 @@ export default function AddToCart() {
       key: "selection",
     },
   ]);
+
+  const dateForMutation = new Date(
+    format(state[0].startDate, "yyyy-MM-dd"),
+  ).toISOString();
+
   const [product, setProduct] = useState<Product>({
     id: 1,
     name: "",
@@ -40,15 +50,25 @@ export default function AddToCart() {
   const [quantity, setQuantity] = useState<number>(1);
   const { lightGreyColor } = new VariablesColors();
   const productId = useRouter().query.productId;
-  const { data, loading, error } = useQuery<{ item: IProductReference }>(
-    GET_PRODUCT_REF,
-    { variables: { getProductReferenceId: productId } },
+  const { data } = useQuery<{ item: IProductReference }>(GET_PRODUCT_REF, {
+    variables: { getProductReferenceId: productId },
+  });
+  const { data: countStockAvaiable, refetch } = useQuery<{ count: number }>(
+    GET_COUNT_STOCKS_AVAILABLE_BY_DATES_PRODUCTREFERENCEID,
+    {
+      variables: {
+        productReferenceId: Number(productId),
+        dateStart: dateformater(state[0].startDate),
+        dateEnd: dateformater(state[0].endDate),
+      },
+    },
   );
+
   const [doCreateCart] = useMutation(MUTATION_CREATE_PRODUCT_CART);
 
-  const quantityAvailable = data?.item.stock.filter(
-    (stock) => stock.isAvailable,
-  ).length;
+  useEffect(() => {
+    refetch();
+  }, [state]);
 
   const addProductCart = async () => {
     try {
@@ -78,10 +98,10 @@ export default function AddToCart() {
           <Grid item xs={12} sm={6}>
             <DateRangePicker
               state={state}
-              setState={setState}
               quantity={quantity}
+              setState={setState}
               setQuantity={setQuantity}
-              quantityAvailable={quantityAvailable}
+              quantityAvailable={countStockAvaiable?.count || 0}
               addProductCart={addProductCart}
             />
           </Grid>
