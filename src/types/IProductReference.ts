@@ -37,3 +37,12 @@ export interface IProductReference {
 
   stock: Partial<IStock>[];
 }
+
+export interface ProduitFormValues {
+  name: string;
+  brandName: string;
+  description: string;
+  price: number;
+  category: { id: string } | null;
+  pictureProduct: { id: string } | null;
+}
