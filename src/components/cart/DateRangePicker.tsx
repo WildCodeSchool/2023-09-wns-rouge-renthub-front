@@ -132,7 +132,7 @@ export default function DateRangePicker({
               Ajouter au panier
             </Button>
             <Button sx={{ color: "black" }} onClick={handleReset}>
-              Remettre à zéro
+              Réinitialiser
             </Button>
           </Box>
         </Box>
