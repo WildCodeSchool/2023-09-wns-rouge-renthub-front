@@ -39,6 +39,7 @@ const UserConnection = (): React.ReactNode => {
           `Connexion réussie, bienvenue ${data.item.firstName}`,
         );
         refetchUserContext();
+        router.push("/");
       }
     } catch (error) {
       if (error.message === "Failed to fetch") {
