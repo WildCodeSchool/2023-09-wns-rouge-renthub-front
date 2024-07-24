@@ -1,5 +1,4 @@
 import LayoutFull from "@/components/layout/LayoutFull";
-import { GET_PRODUCT_REF } from "@/graphql/queryProdcutRef";
 import { IProductReference } from "@/types/IProductReference";
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
@@ -14,6 +13,7 @@ import React, { useEffect, useMemo, useState } from "react";
 
 import { CardDescription } from "@/components/product/CardDesciption";
 import { VariablesColors } from "@/styles/Variables.colors";
+import { GET_PRODUCT_REF } from "@/graphql/productReference/queryProdcutRef";
 
 function Product(): React.ReactNode {
   const router = useRouter();
@@ -123,10 +123,7 @@ function Product(): React.ReactNode {
         >
           <Image
             style={{ borderRadius: "1rem" }}
-            src={
-              product.pictureProduct[0]?.picture.urlMiniature ||
-              product.pictureProduct[0]?.picture.url
-            }
+            src={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/${product.pictures[0].name}`}
             width={450}
             height={400}
             objectFit={"contain"}

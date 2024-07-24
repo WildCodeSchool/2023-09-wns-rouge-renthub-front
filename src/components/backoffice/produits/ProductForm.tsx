@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   FormControl,
+  FormHelperText,
   Grid,
   InputLabel,
   MenuItem,
@@ -14,31 +15,23 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { ProduitFormValues } from "@/types/IProductReference";
-import { GET_ALL_CATEGORIES } from "@/graphql/queryAllCategories";
+import { GET_ALL_CATEGORIES } from "@/graphql/category/queryAllCategories";
 import { useMutation, useQuery } from "@apollo/client";
 import { ICategory } from "@/types/ICategory";
 import PictureDownload from "../utils/PictureDownload";
 import { MUTATION_CREATE_PRODUCT_REFERENCE } from "@/graphql/productReference/mutationCreateProductReference";
 import axios from "axios";
-import { da } from "date-fns/locale";
-import { ConnectingAirportsOutlined } from "@mui/icons-material";
+import * as Yup from "yup";
+import { Toaster } from "react-hot-toast";
+import { showToast } from "@/components/utils/toastHelper";
+import CategorySelect from "../categories/CategorySelect";
 
 const ProductForm = (): React.ReactNode => {
   const { lightBlueColor, hoverBlueColor } = new VariablesColors();
-  const {
-    data: dataCategories,
-    loading,
-    error,
-  } = useQuery<{ items: ICategory[] }>(GET_ALL_CATEGORIES);
-  const categories = dataCategories?.items;
   const [picture, setPicture] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [doCreate] = useMutation(MUTATION_CREATE_PRODUCT_REFERENCE);
-  // const data = {
-  //   name: name,
-  //   parentCategory: parentCategory ? { id: parentCategory } : null,
-  //   picture: filename ? filename : null,
-  // };
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   const formik = useFormik<ProduitFormValues>({
     initialValues: {
@@ -55,49 +48,64 @@ const ProductForm = (): React.ReactNode => {
         },
       ],
     },
-    // validationSchema: Yup.object({
-    //   firstName: Yup.string().required("Le prénom est requis"),
-    //   lastName: Yup.string().required("Le nom est requis"),
-    //   email: Yup.string().email().required("L'email est requis"),
-    //   phoneNumber: Yup.string().required("Le numéro de téléphone est requis"),
-    //   password: Yup.string().required("Le mot de passe est requis"),
-    // }),
+    validationSchema: Yup.object({
+      name: Yup.string().required("Le nom est obligatoire"),
+      brandName: Yup.string().required("Le nom de la marque est obligatoire"),
+      description: Yup.string()
+        .required("La description est obligatoire")
+        .min(10, "La description doit contenir au moins 10 caractères"),
+      price: Yup.number()
+        .required("Le prix est obligatoire")
+        .min(1, "Le prix doit être supérieur à 0"),
+      category: Yup.object().required("La catégorie est obligatoire"),
+    }),
     onSubmit: async (values) => {
-      let pictureId = null;
-      if (picture) {
-        const formData = new FormData();
-        formData.append("file", picture);
-        const { data } = await axios.post(
-          `${process.env.NEXT_PUBLIC_PATH_IMAGE}`,
-          formData,
-        );
+      try {
+        let pictureId = null;
+        if (picture) {
+          const formData = new FormData();
+          formData.append("file", picture);
+          const { data } = await axios.post(
+            `${process.env.NEXT_PUBLIC_PATH_IMAGE}`,
+            formData,
+            {
+              withCredentials: true,
+            },
+          );
 
-        pictureId = data.pictureId;
-      }
+          pictureId = data.pictureId;
+        }
 
-      const data: ProduitFormValues = {
-        name: values.name,
-        brandName: values.brandName,
-        description: values.description,
-        price: values.price,
-        category: { id: String(values.category) },
-        pictures: [
-          {
-            id: pictureId,
+        const data: ProduitFormValues = {
+          name: values.name,
+          brandName: values.brandName,
+          description: values.description,
+          price: values.price,
+          category: { id: selectedCategory },
+          pictures: [
+            {
+              id: pictureId,
+            },
+          ],
+        };
+
+        await doCreate({
+          variables: {
+            data,
           },
-        ],
-      };
-
-      await doCreate({
-        variables: {
-          data,
-        },
-      });
+        });
+        showToast("success", "Produit ajouté avec succès !");
+      } catch (error) {
+        console.error(error);
+        showToast("error", "Erreur lors de l'ajout du produit");
+      }
     },
   });
+
   return (
     <>
       <TitlePageWithStyle title="Ajouter une produit" sx={{ mt: 2 }} />
+      <Toaster />
       <Box sx={styleBoxContainer(lightBlueColor)}>
         <form onSubmit={formik.handleSubmit}>
           <Grid
@@ -170,26 +178,11 @@ const ProductForm = (): React.ReactNode => {
               />
             </Grid>
             <Grid item xs={12} sm={6} width={"100%"}>
-              <FormControl fullWidth>
-                <InputLabel id="category" size="small">
-                  Catégories
-                </InputLabel>
-                <Select
-                  labelId="category"
-                  id="category"
-                  value={formik.values.category}
-                  label="Age"
-                  onChange={formik.handleChange}
-                  size="small"
-                  name="category"
-                >
-                  {categories?.map((category) => (
-                    <MenuItem key={category.id} value={category.id}>
-                      {category.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <CategorySelect
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                formik={formik}
+              />
             </Grid>
             <Grid item xs={12} sm={6} width={"100%"}>
               <PictureDownload

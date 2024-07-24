@@ -17,20 +17,14 @@ export const GET_PRODUCT_REF = gql`
         index
         name
       }
-
-      pictureProduct {
-        id
-        index
-        picture {
-          name
-          uri
-          urlHD
-          urlMiniature
-          mimetype
-          updatedAt
-        }
+      pictures {
+        name
+        uri
+        urlHD
+        urlMiniature
+        mimetype
+        updatedAt
       }
-
       stock {
         name
         isAvailable

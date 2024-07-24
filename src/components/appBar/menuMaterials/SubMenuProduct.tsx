@@ -1,4 +1,4 @@
-import { GET_CATEGORY_PRODUCT } from "@/graphql/queryCategoryWithProducts";
+import { GET_CATEGORY_PRODUCT } from "@/graphql/category/queryCategoryWithProducts";
 import { ICategory } from "@/types/ICategory";
 import { IProductReference } from "@/types/IProductReference";
 import { useQuery } from "@apollo/client";

@@ -31,13 +31,10 @@ export const GET_CATEGORY_PRODUCT = gql`
         price
         description
         id
-        pictureProduct {
-          id
-          index
-          picture {
-            urlHD
-            urlMiniature
-          }
+        pictures {
+          urlHD
+          urlMiniature
+          name
         }
       }
     }
