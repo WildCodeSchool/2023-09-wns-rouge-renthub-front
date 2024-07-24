@@ -61,7 +61,7 @@ const CategoryDataGrid: React.FC<CategoryDataGridProps> = ({ categories }) => {
       groupedRows.push(row);
     }
   });
-  console.info("rows1", rowMap, groupedRows);
+  // console.info("rows1", rowMap, groupedRows);
   // Ajouter les enfants après leurs parents
   // rows.forEach((row) => {
   //   if (row.parentId !== null && row.parentId !== undefined) {
@@ -78,7 +78,7 @@ const CategoryDataGrid: React.FC<CategoryDataGridProps> = ({ categories }) => {
   };
 
   useEffect(() => {
-    console.debug("categories", rows);
+    // console.debug("categories", rows);
   }, [categories]);
 
   const columns: GridColDef[] = useMemo(
