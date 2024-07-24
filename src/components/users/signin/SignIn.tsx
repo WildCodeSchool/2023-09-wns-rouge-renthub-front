@@ -10,13 +10,13 @@ import {
 } from "@mui/material";
 import UserEmail from "../components/UserEmail";
 import UserPassword from "../components/UserPassword";
-import { mutationUserLogin } from "@/components/graphql/Users";
 import { useMutation } from "@apollo/client";
 import { Toaster } from "react-hot-toast";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { useUserContext } from "@/context/UserContext";
 import { showToast } from "@/components/utils/toastHelper";
 import { useRouter } from "next/router";
+import { mutationUserLogin } from "@/graphql/user/mutationUserLogin";
 
 const UserConnection = (): React.ReactNode => {
   const router = useRouter();

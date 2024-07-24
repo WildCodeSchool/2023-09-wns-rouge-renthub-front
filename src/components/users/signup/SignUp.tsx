@@ -5,10 +5,10 @@ import StepWelcome from "./StepWelcome";
 import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { useMutation } from "@apollo/client";
-import { mutationCreateUser } from "@/components/graphql/Users";
 import { UserFormData } from "@/types/UserTypes";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
+import { mutationCreateUser } from "@/graphql/user/mutationCreateUser";
 
 const colors = new VariablesColors();
 const { lightGreyColor } = colors;
