@@ -62,10 +62,7 @@ function Product(): React.ReactNode {
   }, [data]);
 
   function addProductToCart(productId: number) {
-    router.push({
-      pathname: "/cart/add",
-      query: { productId: productId },
-    });
+    router.push(`/cart/${productId}/add`);
   }
 
   if (loading) {
