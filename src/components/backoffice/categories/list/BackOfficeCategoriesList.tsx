@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { ICategory } from "@/types/ICategory";
 import { GET_ALL_CATEGORIES } from "@/graphql/queryAllCategories";
-import CategoryDataGrid from "./CategoriesDataGrid";
+import CategoryDataGrid from "./CategoriesDataGridTest";
 import { Box, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import router from "next/router";

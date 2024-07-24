@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   DataGrid,
   GridActionsCellItem,
@@ -6,13 +6,14 @@ import {
   GridPaginationModel,
   GridRenderCellParams,
 } from "@mui/x-data-grid";
+import { DataGridPro } from "@mui/x-data-grid-pro";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { format } from "date-fns";
 import { ICategory } from "@/types/ICategory";
-import { Box, Typography } from "@mui/material";
+import { Box, TablePagination, Typography } from "@mui/material";
 import { VariablesColors } from "@/styles/Variables.colors";
 import router from "next/router";
 
@@ -25,26 +26,74 @@ type CategoryDataGridProps = {
 
 const CategoryDataGrid: React.FC<CategoryDataGridProps> = ({ categories }) => {
   const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
-    pageSize: 10,
+    pageSize: 20,
     page: 0,
   });
-  const rows = categories.map((category) => ({
-    id: category.id,
-    name: category.name,
-    parentCategory: category.parentCategory,
-    childCategories: category.childCategories,
-    createdAt: category.createdAt,
-    updatedAt: category.updatedAt,
-    display: category.display,
-  }));
+
+  const rows = categories
+    .map((category) => ({
+      id: category.id,
+      index: category.index,
+      name: category.name,
+      parentCategory: category.parentCategory,
+      parentId: category?.parentCategory?.id,
+      childIds: category?.childCategories?.map((child) => child.id),
+      childCategoriesName: category.childCategories?.map((child) => child.name),
+      childCategories: category.childCategories,
+      createdAt: category.createdAt,
+      updatedAt: category.updatedAt,
+      display: category.display,
+    }))
+    .sort((a, b) => {
+      if (a.parentId === null) return -1; // Les catégories racines d'abord
+      if (b.parentId === null) return 1;
+      return a.parentId?.localeCompare(b.parentId); // Trie par parentId
+    });
+
+  // Regrouper les catégories avec leurs enfants
+  const groupedRows = [];
+  const rowMap = new Map();
+
+  rows.forEach((row) => {
+    rowMap.set(row.id, row);
+    if (row.parentId === null || row.parentId === undefined) {
+      // Ajouter les catégories racines en premier
+      groupedRows.push(row);
+    }
+  });
+  console.info("rows1", rowMap, groupedRows);
+  // Ajouter les enfants après leurs parents
+  // rows.forEach((row) => {
+  //   if (row.parentId !== null && row.parentId !== undefined) {
+  //     const parentRow = rowMap.get(row.parentId);
+  //     if (parentRow) {
+  //       groupedRows.push(row);
+  //     }
+  //   }
+  // });
+  // console.info("groupedRows", groupedRows);
 
   const handleEditClick = (id: string) => {
     router.push(`/renthub-backoffice/categories/edit/${id}`);
   };
 
+  useEffect(() => {
+    console.debug("categories", rows);
+  }, [categories]);
+
   const columns: GridColDef[] = useMemo(
     () => [
-      { field: "name", headerName: "Nom", width: 150, sortable: true },
+      // { field: "name", headerName: "Nom", width: 150, sortable: true },
+      {
+        field: "name",
+        headerName: "Nom",
+        width: 200,
+        renderCell: (params) => (
+          <div style={{ marginLeft: params.row.parentCategory?.name ? 20 : 0 }}>
+            {params.value}
+          </div>
+        ),
+      },
       {
         field: "parentCategory",
         headerName: "Catégorie parente",
@@ -131,13 +180,26 @@ const CategoryDataGrid: React.FC<CategoryDataGridProps> = ({ categories }) => {
   );
 
   return (
-    <Box style={{ height: 631, width: "100%" }}>
-      <DataGrid
+    <Box style={{ height: "85vh", width: "100%" }}>
+      <DataGridPro
         rows={rows}
         columns={columns}
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
         checkboxSelection
+        hideFooterPagination={false}
+        pageSizeOptions={[0]}
+        treeData
+        getTreeDataPath={(row) => [row.id]}
+        getRowId={(row) => row.id}
+        groupingColDef={{
+          headerName: "Catégorie",
+          renderCell: (params) => (
+            <div style={{ marginLeft: params.row.parentCategory ? 20 : 0 }}>
+              {params.value}
+            </div>
+          ),
+        }}
       />
     </Box>
   );
