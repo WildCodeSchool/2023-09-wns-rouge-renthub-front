@@ -6,8 +6,8 @@ import React, {
   useCallback,
 } from "react";
 import { useQuery } from "@apollo/client";
-import { queryMeContext } from "@/components/graphql/Users";
 import { UserContextTypes } from "@/types/UserTypes";
+import { queryMeContext } from "@/graphql/user/queryMeContext";
 
 interface UserContextProps {
   user: UserContextTypes | null;
