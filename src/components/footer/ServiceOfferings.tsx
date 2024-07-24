@@ -54,7 +54,7 @@ export function ServiceOfferings() {
     <Box
       padding={{ xs: "2rem 0", md: "4rem 0" }}
       sx={{
-        display: "flex",
+        display: { xs: "none", md: "flex" },
         justifyContent: "center",
         alignItems: "start",
         backgroundColor: backgroundColor,

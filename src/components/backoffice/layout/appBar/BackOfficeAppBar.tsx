@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { useMutation } from "@apollo/client";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { mutationSignOut } from "@/components/graphql/Users";
 import { useUserContext } from "@/context/UserContext";
+import { mutationSignOut } from "@/graphql/user/mutationSignOut";
 
 const colors = new VariablesColors();
 const { whiteColor, orangeColor } = colors;
@@ -49,7 +49,7 @@ const BackOfficeAppBar = (): React.ReactNode => {
             objectFit: "contain",
             cursor: "pointer",
           }}
-          image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/general/renthub-logo.png`}
+          image={`/images/renthub-logo.png`}
           title="logo renthub"
           onClick={() => {
             router.push("/renthub-backoffice");

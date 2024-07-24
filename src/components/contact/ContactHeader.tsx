@@ -11,7 +11,7 @@ const ContactHeader = (): React.ReactNode => {
         alignItems: "center",
         justifyContent: "center",
         gap: "8px",
-        background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${process.env.NEXT_PUBLIC_PATH_IMAGE}/general/contact.jpg)`,
+        background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/images/contact.jpg)`,
       }}
     >
       <Typography variant="h4" gutterBottom>
@@ -21,7 +21,7 @@ const ContactHeader = (): React.ReactNode => {
         01 40 XX XX XX
       </Button>
       <Typography variant="subtitle2" gutterBottom>
-        Vous pouvez nous joindre au 01 40 XX XX XX
+        Vous pouvez nous joindre notre service commercial au 01 40 XX XX XX
       </Typography>
       <Typography variant="subtitle2" gutterBottom>
         du Lundi au Samedi de 10H à 19H

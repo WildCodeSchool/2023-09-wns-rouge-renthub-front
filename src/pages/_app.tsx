@@ -14,8 +14,9 @@ import BackOfficeLayout from "@/components/backoffice/layout/BackOfficeLayout";
 import LoadingApp from "@/styles/LoadingApp";
 import { useAuth } from "@/config/userAuth";
 import theme from "@/config/themeMui";
+import { CartProvider } from "@/context/CartContext";
 
-const privatePages = ["/compte"];
+const privatePages = ["/compte", "/cart", "/profil"];
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { loading } = useAuth(privatePages);
@@ -32,14 +33,16 @@ function App({ Component, pageProps }: AppProps) {
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <UserProvider>
-          <AuthProvider>
-            <CssBaseline />
-            {!isBackOffice && <Navbar />}
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-            {!isBackOffice && <Footer />}
-          </AuthProvider>
+          <CartProvider>
+            <AuthProvider>
+              <CssBaseline />
+              {!isBackOffice && <Navbar />}
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+              {!isBackOffice && <Footer />}
+            </AuthProvider>
+          </CartProvider>
         </UserProvider>
       </ThemeProvider>
     </ApolloProvider>

@@ -43,4 +43,23 @@ export const menuItems = [
       },
     ],
   },
+  {
+    id: "produits",
+    text: "Gestion des produits",
+    icon: CategoryIcon,
+    subMenus: [
+      {
+        id: "produits-list",
+        text: "Produits",
+        icon: CategoryIcon,
+        href: "/renthub-backoffice/produits",
+      },
+      {
+        id: "produits-create",
+        text: "Créer un produit",
+        icon: AddIcon,
+        href: "/renthub-backoffice/produits/new",
+      },
+    ],
+  },
 ];

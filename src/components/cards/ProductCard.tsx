@@ -63,11 +63,15 @@ function ProductCard({
             display: "flex",
             alignItems: "flex-start",
             justifyContent: "center",
-            backgroundColor: "white",
             borderRadius: "20px",
           }}
         >
-          <CardMedia component="img" alt={name} image={src} />
+          <CardMedia
+            component="img"
+            alt={name}
+            image={src}
+            sx={{ width: "150px", height: "150px", objectFit: "contain" }}
+          />
         </Box>
         <Box sx={{ alignSelf: "flex-start" }}>
           <Typography component={"span"} fontSize={"0.7rem"}>
@@ -99,7 +103,7 @@ function ProductCard({
             </Box>
           </Box>
           <Box sx={{ position: "relative", zIndex: 1 }}>
-            <Link href={`/?productId=${id}`} style={{ textDecoration: "none" }}>
+            <Link href={`/product/${id}`} style={{ textDecoration: "none" }}>
               <CardDetailsBtn sx={{ backgroundColor: "var(--colorBtnCard)" }}>
                 <Typography variant="body2">Voir le matériel</Typography>
               </CardDetailsBtn>

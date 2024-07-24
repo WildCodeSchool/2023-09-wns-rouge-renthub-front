@@ -23,7 +23,12 @@ export default function ServiceOfferingsCards({
       }}
     >
       <CardMedia
-        sx={{ margin: "auto", width: "auto", height: "100px" }}
+        sx={{
+          display: { xs: "none", md: "block" },
+          margin: "auto",
+          width: "auto",
+          height: "100px",
+        }}
         component="img"
         image={card.image}
         alt={card.alt}
@@ -33,11 +38,13 @@ export default function ServiceOfferingsCards({
         component="div"
         textAlign="center"
         fontWeight={700}
+        fontSize={{ xs: "0.8rem", md: "1.2rem" }}
       >
         {card.title}
       </Typography>
 
       <Typography
+        sx={{ display: { xs: "none", md: "block" } }}
         variant="body1"
         width={"70%"}
         component="div"

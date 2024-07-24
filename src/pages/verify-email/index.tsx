@@ -1,7 +1,3 @@
-import {
-  mutationReSendCode,
-  mutationVerifyEmail,
-} from "@/components/graphql/Users";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import { useMutation } from "@apollo/client";
 import {
@@ -18,6 +14,8 @@ import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
 import { VerifyEmailMutationData } from "@/types/UserTypes";
 import router from "next/router";
+import { mutationVerifyEmail } from "@/graphql/user/mutationVerifyEmail";
+import { mutationReSendCode } from "@/graphql/user/mutationResendCode";
 
 const VerifyEmail = (): React.ReactNode => {
   const user = parseInt(useSearchParams().get("userId"));
@@ -77,12 +75,13 @@ const VerifyEmail = (): React.ReactNode => {
       sm={8}
       xs={12}
       sx={{
-        margin: 2,
+        margin: "auto",
         [theme.breakpoints.down("sm")]: {
-          marginRight: "auto",
-          marginLeft: "auto",
           alignItems: "center",
+          justifyContent: "end",
         },
+        alignContent: "center",
+        paddingBlock: 5,
         display: "flex",
         flexDirection: "column",
       }}

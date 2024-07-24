@@ -1,11 +1,22 @@
-import { Box, Typography } from "@mui/material";
-import { DateRangeState } from "../../pages/cart/[productId]/add";
-import { format } from "date-fns";
-import { BiPurchaseTag } from "react-icons/bi";
+import {
+  Box,
+  Card,
+  CardContent,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
+import { useCartContext } from "@/context/CartContext";
+import OrderCard from "./OrderCard";
 
 export default function RecapitulatifCart() {
+  const { cart, refetchCartContext } = useCartContext();
+
   return (
     <>
+      <OrderCard totalPrice={cart?.totalPrice} />
       <Box
         sx={{ mt: 3 }}
         display={"flex"}
@@ -22,16 +33,10 @@ export default function RecapitulatifCart() {
           Retrait gratuit magasin
         </Typography>
         <Typography variant="h6" pt={2}>
-          Période de location
-        </Typography>
-        <Typography variant="h6" pt={2}>
           Matériel de location
         </Typography>
         <Typography variant="body1" fontWeight={"bold"}>
           {/* {nameProduct ? nameProduct : "-"} */}
-        </Typography>
-        <Typography variant="h6" pt={2}>
-          Quantité
         </Typography>
         <Typography variant="body1" fontWeight={"bold"}>
           {/* {quantity >= 1 ? quantity : "-"} */}
