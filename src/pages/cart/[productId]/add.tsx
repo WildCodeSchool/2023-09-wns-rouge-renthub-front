@@ -5,14 +5,17 @@ import { Container, Grid } from "@mui/material";
 import Recapitulatif from "@/components/cart/Recapitulatif";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { useRouter } from "next/router";
-import { GET_PRODUCT_REF } from "@/graphql/queryProdcutRef";
 import { useMutation, useQuery } from "@apollo/client";
 import { IProductReference } from "@/types/IProductReference";
 import { MUTATION_CREATE_PRODUCT_CART } from "@/graphql/productCart/productCart";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/components/utils/toastHelper";
 import { GET_COUNT_STOCKS_AVAILABLE_BY_DATES_PRODUCTREFERENCEID } from "@/graphql/stocks/queryStocks";
-import { dateformater } from "@/components/utils/helpers";
+import { GET_PRODUCT_REF } from "@/graphql/productReference/queryProdcutRef";
+
+function dateformater(date: Date) {
+  return new Date(format(date, "yyyy-MM-dd")).toISOString();
+}
 
 type Product = {
   id: number;

@@ -1,4 +1,5 @@
 import { ICategory } from "./ICategory";
+import { IPicture } from "./IPicture";
 
 export interface IPictureProduct {
   name: string;
@@ -23,18 +24,15 @@ export interface IStock {
 export interface IProductReference {
   id: number;
   name: string;
-
   createdAt: string;
   updatedAt: string;
-
   description: string;
   index: number;
   display: boolean;
   brandName: string;
   price: number;
   category: ICategory;
-  pictureProduct: { id: number; picture: Partial<IPictureProduct>[] } | null;
-
+  pictures: IPicture;
   stock: Partial<IStock>[];
 }
 
@@ -44,5 +42,5 @@ export interface ProduitFormValues {
   description: string;
   price: number;
   category: { id: string } | null;
-  pictureProduct: { id: string } | null;
+  pictures: [{ id: number }] | null;
 }
