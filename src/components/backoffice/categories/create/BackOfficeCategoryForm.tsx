@@ -1,39 +1,31 @@
 import { VariablesColors } from "@/styles/Variables.colors";
-import { ICategory } from "@/types/ICategory";
+import { ICategory, ICategoryCreateInput } from "@/types/ICategory";
 // FORMIK - YUP
-import * as Yup from "yup";
-import { useFormik } from "formik";
-import { useRouter } from "next/router";
-import React, { use, useEffect, useState } from "react";
 import { TitlePageWithStyle } from "@/components/utils/TitlePageWithStyle";
 import {
   Box,
   Button,
   Checkbox,
-  FormControl,
   Grid,
   InputLabel,
-  ListItem,
-  MenuItem,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
+import { useFormik } from "formik";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import * as Yup from "yup";
 
 import { GET_ALL_CATEGORIES } from "@/graphql/category/queryAllCategories";
 import { useMutation, useQuery } from "@apollo/client";
 
-import { MUTATION_CREATE_CATEGORY } from "@/graphql/category/category";
 import { styleBoxContainer } from "@/components/utils/function";
+import { MUTATION_CREATE_CATEGORY } from "@/graphql/category/category";
 
-import CategorySelect from "../CategorySelect";
 import { showToast } from "@/components/utils/toastHelper";
+import CategorySelect from "../CategorySelect";
 
-export interface CategoryFormValues {
-  display?: boolean;
-  index: number;
-  name: string;
-  categoryId: number | null;
+export interface CategoryFormValues extends ICategoryCreateInput {
   isRootCategory: boolean; // parentCategoryId
 }
 
@@ -41,53 +33,70 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
   const { lightBlueColor, hoverBlueColor } = new VariablesColors();
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [errorCategory, setErrorCategory] = useState<string | null>(null);
+  const [renderKey, setRenderKey] = useState(0); // For re-rendering the component
 
-  const {
-    data: dataCategories,
-    loading,
-    error,
-  } = useQuery<{ items: ICategory[] }>(GET_ALL_CATEGORIES);
-  const [doCreate] = useMutation(MUTATION_CREATE_CATEGORY);
-
-  const categories = dataCategories?.items;
+  const [doCreate] = useMutation(MUTATION_CREATE_CATEGORY, {
+    refetchQueries: [GET_ALL_CATEGORIES],
+  });
 
   const formik = useFormik<CategoryFormValues>({
     initialValues: {
       display: true,
       isRootCategory: true,
-
       index: 1,
       name: "",
-      categoryId: null,
+      parentCategoryId: null,
     },
-    validationSchema: Yup.object({
-      name: Yup.string().required("Le nom de la category est requis"),
+    validationSchema: Yup.object().shape({
+      name: Yup.string().required("Le nom de la catégorie est requis"),
+      isRootCategory: Yup.boolean(),
+      display: Yup.boolean(),
+      index: Yup.number(),
+      parentCategoryId: Yup.number(),
     }),
+
     onSubmit: async (values) => {
+      if (!values.isRootCategory && selectedCategory.length === 0) {
+        setErrorCategory(
+          "La catégorie parente est obligatoire si ce n'est pas une catégorie racine",
+        );
+        return;
+      }
+      // updateUser({ variables: { id: userId, data: values } });
+      formik.setValues({
+        ...values,
+        parentCategoryId: values.isRootCategory
+          ? null
+          : parseInt(selectedCategory),
+      });
+
+      const data: ICategoryCreateInput = {
+        name: formik.values.name,
+        index: formik.values.index,
+        display: formik.values.display,
+
+        parentCategoryId: formik.values.isRootCategory
+          ? null
+          : formik.values.parentCategoryId,
+      };
       try {
-        // updateUser({ variables: { id: userId, data: values } });
-        formik.setValues({
-          ...values,
-          categoryId: values.isRootCategory ? null : parseInt(selectedCategory),
+        const { data: dataResponse, errors } = await doCreate({
+          variables: { data },
         });
-
-        const data: Partial<ICategory> = {
-          name: formik.values.name,
-          index: formik.values.index,
-          display: formik.values.display,
-          parentCategory: formik.values.isRootCategory
-            ? null
-            : { id: parseInt(selectedCategory) },
-          picture: null,
-
-          pictures: [],
-          productReferences: [],
-        };
-
-        await doCreate({ variables: { data } });
-
-        showToast("success", "Category ajouté avec succès !");
+        if (errors) {
+          setErrorCategory(errors[0].message);
+          showToast("error", "Erreur lors de l'ajout de la category");
+        } else {
+          setErrorCategory(null);
+          // Forcer le re-rendu en modifiant la clé de re-rendu
+          setRenderKey((prevKey) => prevKey + 1);
+          formik.resetForm();
+          showToast("success", "Category ajouté avec succès !");
+        }
       } catch (error) {
+        setErrorCategory(error.message);
+
         console.error(error);
         showToast("error", "Erreur lors de l'ajout de la category");
       }
@@ -100,19 +109,22 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
 
   useEffect(() => {
     //console.debug("selectedCategory", selectedCategory);
-    formik.setFieldValue("categoryId", selectedCategory);
+    setErrorCategory(null);
+    formik.setFieldValue("parentCategoryId", selectedCategory);
   }, [selectedCategory]);
 
   const handleDisplayChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setErrorCategory(null);
     //console.debug("event.target.checked", event.target.checked);
-    formik.setFieldValue("display", event.target.checked ? 1 : 0);
+    formik.setFieldValue("display", event.target.checked ? true : false);
   };
 
   const handleRootCategoryChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
+    setErrorCategory(null);
     // console.debug("isRootCategory", event.target.checked);
-    formik.setFieldValue("isRootCategory", event.target.checked);
+    formik.setFieldValue("isRootCategory", event.target.checked ? true : false);
     if (event.target.checked) {
       setSelectedCategory(""); // Réinitialiser la catégorie parente
       formik.setFieldValue("categoryId", null);
@@ -152,6 +164,7 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
                 label="Nom "
                 value={formik.values.name}
                 onChange={formik.handleChange}
+                onChangeCapture={() => setErrorCategory(null)}
                 error={formik.touched.name && Boolean(formik.errors.name)}
                 helperText={formik.touched.name && formik.errors.name}
               />
@@ -183,7 +196,7 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
                 width="100%"
               >
                 <Box>
-                  <InputLabel>Catégorie racine ?</InputLabel>
+                  <InputLabel>Catégorie racine</InputLabel>
                 </Box>
                 <Box>
                   <Checkbox
@@ -195,16 +208,20 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
               </Grid>
 
               <Grid item xs={12} sm={6} width="100%">
-                <Typography width="50%" variant="h6" gutterBottom>
-                  Catégorie parente
-                </Typography>
+                <InputLabel>Inclure dans la catégorie </InputLabel>
                 <Grid item xs={12} sm={6} width={"100%"}>
                   <CategorySelect
+                    key={renderKey}
                     disabled={formik.values.isRootCategory}
                     selectedCategory={selectedCategory}
                     setSelectedCategory={setSelectedCategory}
                     formik={formik}
                   />
+                  {errorCategory && (
+                    <Typography variant="caption" color="error">
+                      {errorCategory}
+                    </Typography>
+                  )}
                 </Grid>
               </Grid>
             </Grid>
@@ -235,13 +252,14 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
           </Grid>
         </form>
 
-        <pre>display{formik.values.display}</pre>
+        <pre>display : {formik.values.display ? "true" : "false"}</pre>
         <pre>index : {formik.values.index}</pre>
         <pre>name : {formik.values.name}</pre>
-        <pre>parentCategoryId : {formik.values.categoryId}</pre>
+        <pre>parentCategoryId : {formik.values.parentCategoryId}</pre>
         <pre>
           isRootCategory : {formik.values.isRootCategory ? "true" : "false"}
         </pre>
+        <pre>error : {errorCategory} </pre>
       </Box>
     </>
   );

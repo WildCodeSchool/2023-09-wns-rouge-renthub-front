@@ -19,7 +19,9 @@ const CategorySelect: React.FC<CategorySelectProps> = (
   props: CategorySelectProps,
 ) => {
   // Get all categories
-  const { data } = useQuery<{ items: ICategory[] }>(queryAllCatWithHierarchy);
+  const { data } = useQuery<{ items: ICategory[] }>(queryAllCatWithHierarchy, {
+    fetchPolicy: "network-only",
+  });
   const categories = data ? data.items : [];
   // Render categories CSS
   const renderMenuItems = (category: ICategory, level = 0) => {

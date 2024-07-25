@@ -15,3 +15,10 @@ export interface ICategory {
   picture: IPicture | null;
   productReferences: IProductReference[] | null;
 }
+
+export interface ICategoryCreateInput {
+  name: string;
+  index: string | number;
+  display: boolean;
+  parentCategoryId: number;
+}
