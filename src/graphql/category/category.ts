@@ -13,7 +13,8 @@ export const MUTATION_CREATE_CATEGORY = gql`
       updatedAt
       parentCategory {
         name
-        IDindex
+        id
+        index
       }
       childCategories {
         name

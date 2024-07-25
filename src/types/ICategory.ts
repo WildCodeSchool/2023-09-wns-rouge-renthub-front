@@ -2,9 +2,9 @@ import { IPicture } from "./IPicture";
 import { IProductReference } from "./IProductReference";
 
 export interface ICategory {
-  id: string;
+  id: string | number;
   name: string;
-  index: string;
+  index: string | number;
   display: boolean;
   createdBy: string | null;
   updatedBy: string | null;
