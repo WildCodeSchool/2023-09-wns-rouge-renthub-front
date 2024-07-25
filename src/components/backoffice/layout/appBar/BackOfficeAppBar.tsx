@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { VariablesColors } from "@/styles/Variables.colors";
 import { useMutation } from "@apollo/client";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { mutationSignOut } from "@/components/graphql/Users";
 import { useUserContext } from "@/context/UserContext";
+import { mutationSignOut } from "@/graphql/user/mutationSignOut";
 
 const colors = new VariablesColors();
 const { whiteColor, orangeColor } = colors;

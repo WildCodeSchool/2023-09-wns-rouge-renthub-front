@@ -10,8 +10,8 @@ import {
 import { MockedProvider } from "@apollo/client/testing";
 import { toast } from "react-hot-toast";
 import SignIn from "@/components/users/signin/SignIn";
-import { mutationUserLogin } from "@/components/graphql/Users";
 import { UserProvider } from "@/context/UserContext";
+import { mutationUserLogin } from "@/graphql/user/mutationUserLogin";
 
 // Mocks React-Hot-Toast
 jest.mock("react-hot-toast");

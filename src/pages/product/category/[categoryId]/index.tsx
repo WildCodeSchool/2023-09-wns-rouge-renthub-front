@@ -1,6 +1,6 @@
 import ProductCard from "@/components/cards/ProductCard";
 import LayoutFull from "@/components/layout/LayoutFull";
-import { GET_CATEGORY_PRODUCT } from "@/graphql/queryCategoryWithProducts";
+import { GET_CATEGORY_PRODUCT } from "@/graphql/category/queryCategoryWithProducts";
 import { ICategory } from "@/types/ICategory";
 import { useQuery } from "@apollo/client";
 import { Box, Grid, Typography } from "@mui/material";
@@ -78,11 +78,7 @@ function List(): React.ReactNode {
                     name={product.name}
                     price={product.price}
                     description={product.description}
-                    src={
-                      product.pictureProduct
-                        ? product.pictureProduct[0]?.picture.urlMiniature
-                        : undefined
-                    }
+                    src={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/${product.pictures[0]?.name}`}
                   />
                 </Link>
               ))}

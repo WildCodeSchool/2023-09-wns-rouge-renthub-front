@@ -15,8 +15,8 @@ import { VariablesColors } from "@/styles/Variables.colors";
 import MenuCategoriesProduct from "./menuMaterials/MenuCategoriesProduct";
 import SearchBar from "./SearchBar";
 import { useMutation } from "@apollo/client";
-import { mutationSignOut } from "../graphql/Users";
 import { useUserContext } from "@/context/UserContext";
+import { mutationSignOut } from "@/graphql/user/mutationSignOut";
 
 function Navbar(): React.ReactNode {
   const [globalFilterValue, setGlobalFilterValue] =

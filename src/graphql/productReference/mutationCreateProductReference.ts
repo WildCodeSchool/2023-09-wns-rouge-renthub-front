@@ -1,12 +1,9 @@
 import { gql } from "@apollo/client";
 
 export const MUTATION_CREATE_PRODUCT_REFERENCE = gql`
-  mutation CreateProductReference($input: ProductReferenceCreateInput!) {
-    item: createProductReference(input: $input) {
+  mutation CreateProductReference($data: ProductReferenceCreateInput!) {
+    createProductReference(data: $data) {
       id
-      pictureProduct {
-        id
-      }
     }
   }
 `;

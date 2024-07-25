@@ -1,20 +1,27 @@
 import LayoutFull from "@/components/layout/LayoutFull";
-import { GET_PRODUCT_REF } from "@/graphql/queryProdcutRef";
 import { IProductReference } from "@/types/IProductReference";
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
-
 import PriceTime from "@/components/product/PriceTime";
 import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import PhoneIcon from "@mui/icons-material/Phone";
 import HourIcon from "@mui/icons-material/AccessTime";
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CardMedia,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useState } from "react";
 
 import { CardDescription } from "@/components/product/CardDesciption";
 import { VariablesColors } from "@/styles/Variables.colors";
+import { GET_PRODUCT_REF } from "@/graphql/productReference/queryProdcutRef";
 
 function Product(): React.ReactNode {
   const router = useRouter();
@@ -63,10 +70,7 @@ function Product(): React.ReactNode {
   }, [data]);
 
   function addProductToCart(productId: number) {
-    router.push({
-      pathname: "/cart/add",
-      query: { productId: productId },
-    });
+    router.push(`/cart/${productId}/add`);
   }
 
   if (loading) {
@@ -122,16 +126,12 @@ function Product(): React.ReactNode {
           justifyContent={"end"}
           padding={{ xs: 2, sm: 4 }}
         >
-          <Image
-            style={{ borderRadius: "1rem" }}
-            src={
-              product.pictureProduct[0]?.picture.urlMiniature ||
-              product.pictureProduct[0]?.picture.url
-            }
-            width={450}
-            height={400}
-            objectFit={"contain"}
+          <CardMedia
+            component="img"
             alt={product.name}
+            sx={{ maxWidth: "450px", objectFit: "contain" }}
+            style={{ borderRadius: "1rem" }}
+            image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/${product.pictures[0].name}`}
           />
         </Grid>
 

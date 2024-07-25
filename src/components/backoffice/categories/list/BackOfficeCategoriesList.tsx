@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { ICategory } from "@/types/ICategory";
-import { GET_ALL_CATEGORIES } from "@/graphql/queryAllCategories";
+import { GET_ALL_CATEGORIES } from "@/graphql/category/queryAllCategories";
 import CategoryDataGrid from "./CategoriesDataGrid";
 import { Box, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
