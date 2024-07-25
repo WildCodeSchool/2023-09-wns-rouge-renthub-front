@@ -69,13 +69,13 @@ export const menuItems = [
     subMenus: [
       {
         id: "stocks-list",
-        text: "Produits",
+        text: "Stocks",
         icon: CategoryIcon,
         href: "/renthub-backoffice/stocks",
       },
       {
-        id: "produits-create",
-        text: "Créer un produit",
+        id: "stocks-create",
+        text: "Ajouter des stocks",
         icon: AddIcon,
         href: "/renthub-backoffice/stocks/new",
       },
