@@ -32,7 +32,7 @@ export interface IProductReference {
   brandName: string;
   price: number;
   category: ICategory;
-  pictures: IPicture;
+  pictures: IPicture[];
   stock: Partial<IStock>[];
 }
 
