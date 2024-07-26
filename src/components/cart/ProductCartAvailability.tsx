@@ -30,11 +30,11 @@ function ProductCartAvailability({
       },
     },
   );
-  const [doUpdateCart] = useMutation(MUTATION_UPDATE_PRODUCT_CART);
+  const [doUpdateProductCart] = useMutation(MUTATION_UPDATE_PRODUCT_CART);
 
   const handleQuantity = async (quantity: number) => {
     try {
-      await doUpdateCart({
+      await doUpdateProductCart({
         variables: {
           data: {
             quantity: Number(quantity),
@@ -42,7 +42,7 @@ function ProductCartAvailability({
           updateProductCartId: Number(productCart.id),
         },
       });
-      showToast("success", "Produit ajouté au panier");
+      showToast("success", "Quantity modifiée");
       refetchCartContext();
     } catch (error) {
       showToast("error", "Une erreur s'est produite");

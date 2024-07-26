@@ -47,7 +47,7 @@ function Navbar(): React.ReactNode {
 
   const pages_connected = [
     { title: "Mon panier", path: "/cart" },
-    { title: "Profil", path: "/account" },
+    { title: "Vos commandes", path: "/order" },
     { title: "Deconnection", path: "/signin" },
   ];
 
