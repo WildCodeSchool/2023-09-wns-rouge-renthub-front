@@ -59,7 +59,7 @@ const ProductForm = (): React.ReactNode => {
         .min(1, "Le prix doit être supérieur à 0"),
       category: Yup.object().required("La catégorie est obligatoire"),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         let pictureId = null;
         if (picture) {
@@ -95,6 +95,11 @@ const ProductForm = (): React.ReactNode => {
           },
         });
         showToast("success", "Produit ajouté avec succès !");
+        // Réinitialisez les valeurs du formulaire ici
+        setSelectedCategory("");
+        resetForm();
+        setPicture(null);
+        setPreviewUrl(null);
       } catch (error) {
         console.error(error);
         showToast("error", "Erreur lors de l'ajout du produit");

@@ -43,7 +43,7 @@ const StockForm = (): React.ReactNode => {
         id: Yup.string().required("Le produit est obligatoire"),
       }).required("Le produit est obligatoire"),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         const data: StockFormValues = {
           name: values.name,
@@ -60,6 +60,7 @@ const StockForm = (): React.ReactNode => {
           },
         });
         showToast("success", "Produit ajouté avec succès !");
+        resetForm();
       } catch (error) {
         console.error(error);
         showToast("error", "Erreur lors de l'ajout du produit");
