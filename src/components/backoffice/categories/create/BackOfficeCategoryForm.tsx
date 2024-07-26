@@ -1,6 +1,5 @@
 import { VariablesColors } from "@/styles/Variables.colors";
 import { ICategoryCreateInput } from "@/types/ICategory";
-// FORMIK - YUP
 import { TitlePageWithStyle } from "@/components/utils/TitlePageWithStyle";
 import {
   Box,
