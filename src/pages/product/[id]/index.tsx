@@ -126,13 +126,15 @@ function Product(): React.ReactNode {
           justifyContent={"end"}
           padding={{ xs: 2, sm: 4 }}
         >
-          <CardMedia
-            component="img"
-            alt={product.name}
-            sx={{ maxWidth: "450px", objectFit: "contain" }}
-            style={{ borderRadius: "1rem" }}
-            image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/${product.pictures[0].name}`}
-          />
+          {product.pictures.length > 0 && (
+            <CardMedia
+              component="img"
+              alt={product.name}
+              sx={{ maxWidth: "450px", objectFit: "contain" }}
+              style={{ borderRadius: "1rem" }}
+              image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/${product.pictures[0].name}`}
+            />
+          )}
         </Grid>
 
         <Grid padding={2} item xs={12} sm={6}>

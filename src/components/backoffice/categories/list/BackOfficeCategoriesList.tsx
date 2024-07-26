@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { ICategory } from "@/types/ICategory";
 import { GET_ALL_CATEGORIES } from "@/graphql/category/queryAllCategories";
@@ -14,6 +14,7 @@ const BackOfficeCategoriesList = (): React.ReactNode => {
   );
   if (loading) return <LoadingApp />;
   const categories = data?.items || [];
+
   return (
     <Box sx={{ marginTop: "30px" }}>
       <Button

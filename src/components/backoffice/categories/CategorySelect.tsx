@@ -6,18 +6,22 @@ import { ICategory } from "@/types/ICategory";
 import { queryAllCatWithHierarchy } from "@/graphql/category/queryAllCatWithHierarchy";
 import { FormikProps } from "formik";
 import { ProduitFormValues } from "@/types/IProductReference";
+import { CategoryFormValues } from "./create/BackOfficeCategoryForm";
 
 type CategorySelectProps = {
+  disabled?: boolean;
   selectedCategory: string;
   setSelectedCategory: (selectedCategory: string) => void;
-  formik: FormikProps<ProduitFormValues>;
+  formik: FormikProps<ProduitFormValues | CategoryFormValues>;
 };
 
 const CategorySelect: React.FC<CategorySelectProps> = (
   props: CategorySelectProps,
 ) => {
   // Get all categories
-  const { data } = useQuery<{ items: ICategory[] }>(queryAllCatWithHierarchy);
+  const { data } = useQuery<{ items: ICategory[] }>(queryAllCatWithHierarchy, {
+    fetchPolicy: "network-only",
+  });
   const categories = data ? data.items : [];
   // Render categories CSS
   const renderMenuItems = (category: ICategory, level = 0) => {
@@ -49,7 +53,8 @@ const CategorySelect: React.FC<CategorySelectProps> = (
     props.formik.setFieldValue("category", { id: event.target.value });
   };
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth disabled={props.disabled}>
+      {/* {props.formik} */}
       <InputLabel size="small" id="category-select-label">
         Catégories
       </InputLabel>
