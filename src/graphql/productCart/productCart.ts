@@ -18,3 +18,11 @@ export const MUTATION_UPDATE_PRODUCT_CART = gql`
     }
   }
 `;
+
+export const MUTATION_DELETE_PRODUCT_CART = gql`
+  mutation deleteProductCart($deleteProductCartId: Int!) {
+    deleteProductCart(id: $deleteProductCartId) {
+      id
+    }
+  }
+`;

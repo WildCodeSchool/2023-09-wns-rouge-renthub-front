@@ -16,7 +16,7 @@ export default function RecapitulatifCart() {
 
   return (
     <>
-      <OrderCard totalPrice={cart?.totalPrice} />
+      <OrderCard cart={cart} />
       <Box
         sx={{ mt: 3 }}
         display={"flex"}
