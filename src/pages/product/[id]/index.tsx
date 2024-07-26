@@ -7,7 +7,15 @@ import { OrangeBtnWhiteHover } from "@/styles/MuiButtons";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import PhoneIcon from "@mui/icons-material/Phone";
 import HourIcon from "@mui/icons-material/AccessTime";
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CardMedia,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useState } from "react";
 
@@ -118,14 +126,15 @@ function Product(): React.ReactNode {
           justifyContent={"end"}
           padding={{ xs: 2, sm: 4 }}
         >
-          <Image
-            style={{ borderRadius: "1rem" }}
-            src={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/${product.pictures[0].name}`}
-            width={450}
-            height={400}
-            objectFit={"contain"}
-            alt={product.name}
-          />
+          {product.pictures.length > 0 && (
+            <CardMedia
+              component="img"
+              alt={product.name}
+              sx={{ maxWidth: "450px", objectFit: "contain" }}
+              style={{ borderRadius: "1rem" }}
+              image={`${process.env.NEXT_PUBLIC_PATH_IMAGE}/${product.pictures[0].name}`}
+            />
+          )}
         </Grid>
 
         <Grid padding={2} item xs={12} sm={6}>

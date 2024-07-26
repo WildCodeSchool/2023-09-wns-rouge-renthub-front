@@ -10,9 +10,13 @@ export function useAuth(privatePages: string[]) {
   }>(queryMeContext);
   const router = useRouter();
 
+  const isPrivatePage = (pathname: string) => {
+    return privatePages.some((page) => pathname.startsWith(page));
+  };
+
   useEffect(() => {
     const handleRouteChange = () => {
-      if (privatePages.includes(router.pathname)) {
+      if (isPrivatePage(router.pathname)) {
         refetch();
       }
     };
@@ -22,10 +26,7 @@ export function useAuth(privatePages: string[]) {
   }, [router, refetch]);
 
   useEffect(() => {
-    if (
-      privatePages.includes(router.pathname) &&
-      (data?.item === null || error)
-    ) {
+    if (isPrivatePage(router.pathname) && (data?.item === null || error)) {
       router.replace("/signin");
     }
   }, [router, data, error]);

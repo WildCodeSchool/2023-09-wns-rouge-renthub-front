@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   DataGrid,
   GridActionsCellItem,
@@ -25,18 +25,29 @@ type CategoryDataGridProps = {
 
 const CategoryDataGrid: React.FC<CategoryDataGridProps> = ({ categories }) => {
   const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
-    pageSize: 10,
+    pageSize: 20,
     page: 0,
   });
-  const rows = categories.map((category) => ({
-    id: category.id,
-    name: category.name,
-    parentCategory: category.parentCategory,
-    childCategories: category.childCategories,
-    createdAt: category.createdAt,
-    updatedAt: category.updatedAt,
-    display: category.display,
-  }));
+
+  const rows = categories
+    .map((category) => ({
+      id: category.id,
+      index: category.index,
+      name: category.name,
+      parentCategory: category.parentCategory,
+      parentId: category?.parentCategory?.id,
+      childIds: category?.childCategories?.map((child) => child.id),
+      childCategoriesName: category.childCategories?.map((child) => child.name),
+      childCategories: category.childCategories,
+      createdAt: category.createdAt,
+      updatedAt: category.updatedAt,
+      display: category.display,
+    }))
+    .sort((a, b) => {
+      if (a.parentId === null) return -1; // Les catégories racines d'abord
+      if (b.parentId === null) return 1;
+      return a.parentId?.toString().localeCompare(b.parentId?.toString());
+    });
 
   const handleEditClick = (id: string) => {
     router.push(`/renthub-backoffice/categories/edit/${id}`);
@@ -44,7 +55,16 @@ const CategoryDataGrid: React.FC<CategoryDataGridProps> = ({ categories }) => {
 
   const columns: GridColDef[] = useMemo(
     () => [
-      { field: "name", headerName: "Nom", width: 150, sortable: true },
+      {
+        field: "name",
+        headerName: "Nom",
+        width: 200,
+        renderCell: (params) => (
+          <div style={{ marginLeft: params.row.parentCategory?.name ? 20 : 0 }}>
+            {params.value}
+          </div>
+        ),
+      },
       {
         field: "parentCategory",
         headerName: "Catégorie parente",
@@ -131,13 +151,16 @@ const CategoryDataGrid: React.FC<CategoryDataGridProps> = ({ categories }) => {
   );
 
   return (
-    <Box style={{ height: 631, width: "100%" }}>
+    <Box style={{ height: "85vh", width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
         checkboxSelection
+        hideFooterPagination={false}
+        pageSizeOptions={[0]}
+        getRowId={(row) => row.id}
       />
     </Box>
   );
