@@ -7,7 +7,7 @@ import { IOrder } from "@/types/IOrder";
 import { VariablesColors } from "@/styles/Variables.colors";
 import CardPageCard from "./OrderPageCard";
 
-function Order() {
+function OrderComponent() {
   const router = useRouter();
   const { greyColor } = new VariablesColors();
 
@@ -73,4 +73,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default OrderComponent;
