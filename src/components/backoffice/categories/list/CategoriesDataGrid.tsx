@@ -6,14 +6,13 @@ import {
   GridPaginationModel,
   GridRenderCellParams,
 } from "@mui/x-data-grid";
-// import { DataGridPro } from "@mui/x-data-grid-pro";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { format } from "date-fns";
 import { ICategory } from "@/types/ICategory";
-import { Box, TablePagination, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { VariablesColors } from "@/styles/Variables.colors";
 import router from "next/router";
 
@@ -47,34 +46,15 @@ const CategoryDataGrid: React.FC<CategoryDataGridProps> = ({ categories }) => {
     .sort((a, b) => {
       if (a.parentId === null) return -1; // Les catégories racines d'abord
       if (b.parentId === null) return 1;
-      return a.parentId?.localeCompare(b.parentId); // Trie par parentId
+      return a.parentId?.toString().localeCompare(b.parentId?.toString());
     });
-
-  // Regrouper les catégories avec leurs enfants
-  const groupedRows = [];
-  const rowMap = new Map();
-
-  function pushChildren(rows, parentId) {
-    rows.forEach((row) => {
-      rowMap.set(row.id, row);
-      if (row.parentId === null || row.parentId === undefined) {
-        // Ajouter les catégories racines en premier
-        groupedRows.push(row);
-      }
-    });
-  }
 
   const handleEditClick = (id: string) => {
     router.push(`/renthub-backoffice/categories/edit/${id}`);
   };
 
-  useEffect(() => {
-    // console.debug("categories", rows);
-  }, [categories]);
-
   const columns: GridColDef[] = useMemo(
     () => [
-      // { field: "name", headerName: "Nom", width: 150, sortable: true },
       {
         field: "name",
         headerName: "Nom",
@@ -180,17 +160,7 @@ const CategoryDataGrid: React.FC<CategoryDataGridProps> = ({ categories }) => {
         checkboxSelection
         hideFooterPagination={false}
         pageSizeOptions={[0]}
-        // treeData
-        // getTreeDataPath={(row) => [row.id]}
         getRowId={(row) => row.id}
-        // groupingColDef={{
-        //   headerName: "Catégorie",
-        //   renderCell: (params) => (
-        //     <div style={{ marginLeft: params.row.parentCategory ? 20 : 0 }}>
-        //       {params.value}
-        //     </div>
-        //   ),
-        // }}
       />
     </Box>
   );
