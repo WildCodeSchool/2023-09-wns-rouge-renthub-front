@@ -1,5 +1,5 @@
 import { VariablesColors } from "@/styles/Variables.colors";
-import { ICategory, ICategoryCreateInput } from "@/types/ICategory";
+import { ICategoryCreateInput } from "@/types/ICategory";
 // FORMIK - YUP
 import { TitlePageWithStyle } from "@/components/utils/TitlePageWithStyle";
 import {
@@ -17,7 +17,7 @@ import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 
 import { GET_ALL_CATEGORIES } from "@/graphql/category/queryAllCategories";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 
 import { styleBoxContainer } from "@/components/utils/function";
 import { MUTATION_CREATE_CATEGORY } from "@/graphql/category/category";
@@ -26,12 +26,12 @@ import { showToast } from "@/components/utils/toastHelper";
 import CategorySelect from "../CategorySelect";
 
 export interface CategoryFormValues extends ICategoryCreateInput {
-  isRootCategory: boolean; // parentCategoryId
+  isRootCategory: boolean;
 }
 
 export default function BackOfficeCategoryForm(): React.ReactNode {
   const { lightBlueColor, hoverBlueColor } = new VariablesColors();
-  const router = useRouter();
+
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [errorCategory, setErrorCategory] = useState<string | null>(null);
   const [renderKey, setRenderKey] = useState(0); // For re-rendering the component
@@ -63,7 +63,7 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
         );
         return;
       }
-      // updateUser({ variables: { id: userId, data: values } });
+
       formik.setValues({
         ...values,
         parentCategoryId: values.isRootCategory
@@ -103,19 +103,13 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
     },
   });
 
-  // useEffect(() => {
-  //   console.debug("categories", selectedCategory, categories);
-  // });
-
   useEffect(() => {
-    //console.debug("selectedCategory", selectedCategory);
     setErrorCategory(null);
     formik.setFieldValue("parentCategoryId", selectedCategory);
   }, [selectedCategory]);
 
   const handleDisplayChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setErrorCategory(null);
-    //console.debug("event.target.checked", event.target.checked);
     formik.setFieldValue("display", event.target.checked ? true : false);
   };
 
@@ -123,10 +117,9 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setErrorCategory(null);
-    // console.debug("isRootCategory", event.target.checked);
     formik.setFieldValue("isRootCategory", event.target.checked ? true : false);
     if (event.target.checked) {
-      setSelectedCategory(""); // Réinitialiser la catégorie parente
+      setSelectedCategory("");
       formik.setFieldValue("categoryId", null);
     }
   };
@@ -251,15 +244,6 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
             </Grid>
           </Grid>
         </form>
-
-        <pre>display : {formik.values.display ? "true" : "false"}</pre>
-        <pre>index : {formik.values.index}</pre>
-        <pre>name : {formik.values.name}</pre>
-        <pre>parentCategoryId : {formik.values.parentCategoryId}</pre>
-        <pre>
-          isRootCategory : {formik.values.isRootCategory ? "true" : "false"}
-        </pre>
-        <pre>error : {errorCategory} </pre>
       </Box>
     </>
   );
