@@ -14,6 +14,7 @@ import {
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
 
 import { GET_ALL_CATEGORIES } from "@/graphql/category/queryAllCategories";
@@ -127,7 +128,7 @@ export default function BackOfficeCategoryForm(): React.ReactNode {
   return (
     <>
       <TitlePageWithStyle title="Ajouter une categorie" sx={{ mt: 2 }} />
-
+      <Toaster />
       <Box sx={styleBoxContainer(lightBlueColor)}>
         <form onSubmit={formik.handleSubmit}>
           <Grid
