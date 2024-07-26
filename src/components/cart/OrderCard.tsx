@@ -12,11 +12,13 @@ import {
 } from "@mui/material";
 import { showToast } from "../utils/toastHelper";
 import { useRouter } from "next/router";
+import { Cart } from "@/types/Cart";
 
-function OrderCard({ totalPrice }: { totalPrice: number }) {
+function OrderCard({ cart }: { cart: Cart }) {
   const router = useRouter();
-  const totalPriceString = (totalPrice / 100).toFixed(2);
+  const totalPriceString = (cart?.totalPrice / 100).toFixed(2);
   const TVA = (Number(totalPriceString) * (20 / 100)).toFixed(2);
+  const HT = (Number(totalPriceString) - Number(TVA)).toFixed(2);
 
   const [doOrder] = useMutation(MUTATION_ORDER);
 
@@ -24,7 +26,9 @@ function OrderCard({ totalPrice }: { totalPrice: number }) {
     try {
       await doOrder();
       showToast("success", "Produit ajouté au panier");
-      router.replace("/");
+      setTimeout(() => {
+        router.replace("/");
+      }, 2000);
     } catch (error) {
       showToast("error", "Une erreur s'est produite");
     }
@@ -45,7 +49,7 @@ function OrderCard({ totalPrice }: { totalPrice: number }) {
       <CardContent>
         <Stack spacing={2}>
           {/* Row 1 */}
-          <Grid container alignItems="center">
+          {/* <Grid container alignItems="center">
             <Grid item xs={6}>
               <Typography variant="body2" fontSize={"small"}>
                 État de la demande :
@@ -66,8 +70,8 @@ function OrderCard({ totalPrice }: { totalPrice: number }) {
                 </Typography>
               </Box>
             </Grid>
-          </Grid>
-          <Divider />
+          </Grid> */}
+          {/* <Divider /> */}
 
           {/* Row 2 */}
           <Grid container alignItems="center">
@@ -86,7 +90,7 @@ function OrderCard({ totalPrice }: { totalPrice: number }) {
               <Typography variant="body1">Article HT</Typography>
             </Grid>
             <Grid item xs={6} textAlign="right">
-              <Typography variant="body1">---</Typography>
+              <Typography variant="body1">{HT}</Typography>
             </Grid>
           </Grid>
           <Divider />
