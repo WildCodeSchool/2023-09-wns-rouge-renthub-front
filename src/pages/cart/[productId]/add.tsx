@@ -86,6 +86,7 @@ export default function AddToCart() {
           },
         },
       });
+
       showToast("success", "Produit ajouté au panier");
       router.replace("/cart");
     } catch (error) {
